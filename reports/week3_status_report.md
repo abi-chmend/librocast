@@ -20,8 +20,7 @@
 
 - Contributions of individual team members
   * Abigail Batinga
-    1. The first subsection is easy. It should be an exact copy of the third section from last week (i.e., goals from a week ago). 
-    It can be empty for the first week.
+    1. N/A
     2. For the first week, I helped complete the requirements and policies, focusing mainly on solidifying external requirements and use cases, as well as delegating responsibilities and roles. I also did some research into the technicalities of certain services and features we'd like to implement. 
     3. For the following week, I'd like to:
       - finalize the wireframe
