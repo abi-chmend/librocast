@@ -2,14 +2,15 @@
 
 - Team report
   1. N/A
-  2. The second subsection should report on progress and issues: what you did, what worked, what you learned, where you had trouble, 
-  and where you are stuck.
+  2. We finished the requirements doc this week. Communicating on slack and assigning individuals homework (each person writes their own use case) was effective. Meetings are relatively low-activity/impromptu.
   3. Goals:
         * Determine software architecture and design - all members
         * Get infrastructure set up for all members - all members
         * Solidify UI design
         * Have a relatively nondescript, broad understanding of how to implement a component based on research - backend team
         * UML diagram-level, translating hypothetical design to pseudocode. Have some idea of what would be difficult to implement - backend team
+        * People should start looking into React and planning how to set up their components
+        * Next week's specification should be read before Thursday
 
 - Contributions of individual team members
   * Abigail Batinga
@@ -22,6 +23,11 @@
     For the team report, this subsection should be higher-level and indicate who is responsible for what tasks. 
     Also, it’s good to include longer-term goals in this list as well, to keep the bigger picture in mind and plan beyond just the next week.
   * Justin Chao
+    1. N/A
+    2. For this first week I wrote my use case, discussed backend goals, and did some cohesive/grammatical revisions for the Requirements documentation. Slack communication was responsive and there were no conflicts of interest when revising the Requirments documentation.
+    3. Goals:
+       - Start looking into React and how to connect it to Google Firebase
+       - I should read the next assignment's specifications before the next meeting
   * Tommy Chung
     1.  N/A
     2. This week,  as I first joined in the team, I read Project Proposal previously written by team members. I asked questions and proposed some ideas
