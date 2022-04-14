@@ -57,3 +57,12 @@
        * General design for these pages, what components will be necessary 
   * Sarah Rashid
   * Kihoon Lee
+    1. N/A
+    2. For this first week I completed one use case of our application, contributed to project requirements and team policies
+    document, and researched possible API and Node.js modules for audio streaming. Although I have a quite of experience in Java and Go
+    to implment backend features, I have very little experience in Node.js. Therefore, one challenge for this quarter would be studying 
+    Node.js well enough to implment our application's backend feature correctly.
+    3. Goals:
+       * Node.js Module and API Research
+       * Study Node.js
+       * Design a high level structure of backend implementation. 
