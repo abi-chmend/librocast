@@ -8,6 +8,8 @@
         * Determine software architecture and design - all members
         * Get infrastructure set up for all members - all members
         * Solidify UI design
+        * Have a relatively nondescript, broad understanding of how to implement a component based on research - backend team
+        * UML diagram-level, translating hypothetical design to pseudocode. Have some idea of what would be difficult to implement - backend team
 
 - Contributions of individual team members
   * Abigail Batinga
