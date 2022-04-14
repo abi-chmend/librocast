@@ -58,6 +58,12 @@
        * Determine any dependencies for book component, search page, feed page  
        * General design for these pages, what components will be necessary 
   * Sarah Rashid
+    1. N/A
+    2. In the first week I contributed to the group project requirements and policies document. I created a use case and went through     assigning roles with the team. I chose the role is a front end developer that will work on our explore and profile page. 
+    3. Goals:
+       * Get an initial design of explore and profile pages
+       * Determine functionality of explore and profile pages
+       * Read React documents
   * Kihoon Lee
     1. N/A
     2. For this first week I completed one use case of our application, contributed to project requirements and team policies
