@@ -21,6 +21,14 @@
     Also, it’s good to include longer-term goals in this list as well, to keep the bigger picture in mind and plan beyond just the next week.
   * Justin Chao
   * Tommy Chung
+    1.  N/A
+    2. This week,  as I first joined in the team, I read Project Proposal previously written by team members. I asked questions and proposed some ideas
+    regarding it. I also worked on the requirements and policies, particularly the user case and three major risks. I didn’t really have trouble or got
+    stuck so far, but I am concerned about the technical tasks starting next week.
+    4.  Goals:
+        - Research how to set up the backend environment to develop our project’s server efficiently and share it with our backend team. 
+        - Design basic software architecture and write pseudocodes for the tasks I am assigned.
+        - Practice Node.js and JavaScript before start implementing real features.
   * Alyssa Allums
     1. N/A
     2. For this first week I contributed to the group discussion and project documents as we planned our project and
