@@ -48,7 +48,8 @@
     2. For this first week I contributed to the group discussion and project documents as we planned our project and
     defined aspects of our workflow. I took on a role for frontend development and am responsible for developing a book
     component, the search page, and the feed page. Along with the rest of the team I worked on the requirements
-    document.
+    document. So far I feel our slack communication and Google doc collaboration has worked well and did not feel stuck
+    or face any issues.
     3. Goals:
        * Architecture setup  
        * Review React  
