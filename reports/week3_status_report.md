@@ -12,11 +12,11 @@
   3. Goals:
         * Determine software architecture and design - all members
         * Get infrastructure set up for all members - all members
-        * Solidify UI design
+        * Solidify UI design - frontend team
         * Have a relatively nondescript, broad understanding of how to implement a component based on research - backend team
         * UML diagram-level, translating hypothetical design to pseudocode. Have some idea of what would be difficult to implement - backend team
-        * People should start looking into React and planning how to set up their components
-        * Next week's specification should be read before Thursday
+        * People should start looking into React and planning how to set up their components - frontend team
+        * Next week's specification should be read before Thursday - all members
 
 - Contributions of individual team members
   * Abigail Batinga
