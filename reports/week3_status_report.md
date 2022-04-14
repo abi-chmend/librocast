@@ -2,8 +2,12 @@
 
 - Team report
   1. N/A
-  2. The second subsection should report on progress and issues: what you did, what worked, what you learned, where you had trouble, 
-  and where you are stuck.
+  2. During the first week our group defined our project, our workflow, and our plan. Building on top of the project
+  proposal we refined the concept for the app, determining the core features, general tasks we need to accomplish,
+  and roles for each member. We made decisions regarding our toolset, choosing to use React for frontend, Node.js for backend,
+  and Google Firebase for data store. For communication, organization, and development we set up our slack channel, a Trello board,
+  and our GitHub. All members contributed to the requirements document. 
+  
   3. Goals:
         * Determine software architecture and design - all members
         * Get infrastructure set up for all members - all members
