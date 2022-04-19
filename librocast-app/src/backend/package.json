@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "dev": "nodemon --exec babel-node server.js"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -12,6 +14,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
     "nodemon": "^2.0.15"
   }
 }
