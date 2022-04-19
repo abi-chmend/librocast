@@ -10,5 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/node": "^7.16.8",
+    "nodemon": "^2.0.15"
   }
 }
