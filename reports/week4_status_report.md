@@ -1,15 +1,7 @@
 # Week 4 Status Report
 
 - Team report
-  1. N/A
-  2. During the first week our group defined our project, our workflow, and our plan. Building on top of the project
-  proposal we refined the concept for the app, determining the core features, general tasks we need to accomplish,
-  and roles for each member. We made decisions regarding our toolset, choosing to use React for frontend, Node.js for backend,
-  and Google Firebase for data store. For communication, organization, and development we set up our slack channel, a Trello board,
-  and our GitHub. We also finished the requirements doc this week. Communicating on slack and assigning individuals homework (each person writes their own use case) was effective.
-  Meetings are relatively low-activity/impromptu.
-  
-  3. Goals:
+  1. Goals from the last week
         * Determine software architecture and design - all members
         * Get infrastructure set up for all members - all members
         * Solidify UI design - frontend team
@@ -17,6 +9,11 @@
         * UML diagram-level, translating hypothetical design to pseudocode. Have some idea of what would be difficult to implement - backend team
         * People should start looking into React and planning how to set up their components - frontend team
         * Next week's specification should be read before Thursday - all members
+ 
+  2. We finished setting up react app and the backend server. Frontend team added and developed feed, explore, and profile pages for the wireframes. By discussing and sharing thoughts in class, we could improve and solidify the UI design in detail. We figured out that we will be using Kaggle's goodreads book data instead of Google Books. The first feature we choosed to develop is user sign up and login feature using Firebase Authentication.
+  
+  3. Goals:
+        * Add user sign up and login using Google Firebase
 
 - Contributions of individual team members
   * Abigail Batinga
@@ -37,14 +34,14 @@
        - Start looking into React and how to connect it to Google Firebase
        - I should read the next assignment's specifications before the next meeting
   * Tommy Chung
-    1.  N/A
-    2. This week,  as I first joined in the team, I read Project Proposal previously written by team members. I asked questions and proposed some ideas
-    regarding it. I also worked on the requirements and policies, particularly the user case and three major risks. I didn’t really have trouble or got
-    stuck so far, but I am concerned about the technical tasks starting next week.
-    4.  Goals:
+    1. Goals from the last week
         - Research how to set up the backend environment to develop our project’s server efficiently and share it with our backend team. 
         - Design basic software architecture and write pseudocodes for the tasks I am assigned.
         - Practice Node.js and JavaScript before start implementing real features.
+    2. This week, I read JavaScript documents and practiced it to get used to its syntax. I also studied the features in Node.js for the server development to prepare myself to start coding next week. It was confusing to figure out how to set up the working environment for both react and node.js.
+    3. Goals:
+      * Implement user registration and login validation using Google Firebase.
+
   * Alyssa Allums
     1. N/A
     2. For this first week I contributed to the group discussion and project documents as we planned our project and
