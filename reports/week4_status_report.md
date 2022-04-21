@@ -64,12 +64,11 @@
        * Finish Figma wireframe 
        * Create front end for profile page
   * Kihoon Lee
-    1. N/A
-    2. For this first week I completed one use case of our application, contributed to project requirements and team policies
-    document, and researched possible API and Node.js modules for audio streaming. Although I have a quite of experience in Java and Go
-    to implment backend features, I have very little experience in Node.js. Therefore, one challenge for this quarter would be studying 
-    Node.js well enough to implment our application's backend feature correctly.
-    3. Goals:
+    1. Last week's goals:
        * Node.js Module and API Research
        * Study Node.js
        * Design a high level structure of backend implementation. 
+    2. For this week, I have studied NodeJS and necessary modules for our project. While studying NodeJS, I have done a basic setup for our backend (including babel and nodemon), so we can add more implementation in the future easily. Additionally, I have researched a few ways to integrate data of book list to our backend.
+    3. Goals:
+       * Implement book search and book filter feature on the backend side
+       * Study more NodeJS and how to connect to the firebase
