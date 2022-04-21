@@ -17,16 +17,16 @@
 
 - Contributions of individual team members
   * Abigail Batinga
-    1. N/A
-    2. For the first week, I helped complete the requirements and policies, focusing mainly on solidifying external requirements and use cases, as well as delegating responsibilities and roles. I also did some research into the technicalities of certain services and features we'd like to implement. 
-    3. For the following week, I'd like to:
+    1. Goals from the last week:
       - finalize the wireframe
       - start looking into our data model
       - do some planning for the backend
       - learn more about the instagram API
-    If tasks from one week aren’t yet complete, they should roll over into tasks for the next week, with an updated estimate for time to completion. 
-    For the team report, this subsection should be higher-level and indicate who is responsible for what tasks. 
-    Also, it’s good to include longer-term goals in this list as well, to keep the bigger picture in mind and plan beyond just the next week.
+    2. This week, I helped improve the wireframe and got the basic react app with firebase setup. I also setup the trello board and set tasks for team members this week. 
+    3. For the following week, I'd like to:
+      - finish the wireframe
+      - code the onboarding and register/login frontend
+      - code the home page
   * Justin Chao
     1. N/A
     2. For this first week I wrote my use case, discussed backend goals, and did some cohesive/grammatical revisions for the Requirements documentation. Slack communication was responsive and there were no conflicts of interest when revising the Requirments documentation.
