@@ -43,17 +43,15 @@
       * Implement user registration and login validation using Google Firebase.
 
   * Alyssa Allums
-    1. N/A
-    2. For this first week I contributed to the group discussion and project documents as we planned our project and
-    defined aspects of our workflow. I took on a role for frontend development and am responsible for developing a book
-    component, the search page, and the feed page. Along with the rest of the team I worked on the requirements
-    document. So far I feel our slack communication and Google doc collaboration has worked well and did not feel stuck
-    or face any issues.
-    3. Goals:
+    1. Goals from the last week:
        * Architecture setup  
        * Review React  
        * Determine any dependencies for book component, search page, feed page  
-       * General design for these pages, what components will be necessary 
+       * General design for these pages, what components will be necessary    
+    2. This week I read over resources for React, Firestore/Firebase, and the fetch API to get familiar with the tools we will be using
+    and prepare for this week's objective of creative the search page.
+    3. Goals:
+       * Create front end for search page  
   * Sarah Rashid
     1. Last week's goals:
        * Get an initial design of explore and profile pages
