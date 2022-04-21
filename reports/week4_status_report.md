@@ -28,11 +28,14 @@
       - code the onboarding and register/login frontend
       - code the home page
   * Justin Chao
-    1. N/A
-    2. For this first week I wrote my use case, discussed backend goals, and did some cohesive/grammatical revisions for the Requirements documentation. Slack communication was responsive and there were no conflicts of interest when revising the Requirments documentation.
-    3. Goals:
-       - Start looking into React and how to connect it to Google Firebase
-       - I should read the next assignment's specifications before the next meeting
+    1. Goals from last week
+        - Determine software architecture and design -
+        - Have a relatively nondescript, broad understanding of how to implement a component based on research
+        - UML diagram-level, translating hypothetical design to pseudocode. Have some idea of what would be difficult to implement
+        - Next week's specification should be read before Thursday
+    2. This week, I got about halfway through the W3School JavScript tutorial. Updated the "explore page" figma diagram. Was kinda unsure where to look
+        into code-wise, but the Tuesday meeting was helpful for that
+    3. Look into Firebase, Instagram API, maybe see how it connects to react
   * Tommy Chung
     1. Goals from the last week
         - Research how to set up the backend environment to develop our project’s server efficiently and share it with our backend team. 
