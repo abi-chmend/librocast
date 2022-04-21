@@ -55,12 +55,14 @@
        * Determine any dependencies for book component, search page, feed page  
        * General design for these pages, what components will be necessary 
   * Sarah Rashid
-    1. N/A
-    2. In the first week I contributed to the group project requirements and policies document. I created a use case and went through     assigning roles with the team. I chose the role is a front end developer that will work on our explore and profile page. 
-    3. Goals:
+    1. Last week's goals:
        * Get an initial design of explore and profile pages
        * Determine functionality of explore and profile pages
        * Read React documents
+    2. This week I worked on the wireframe for the application pages. We revised the functionality of the Explore and Feed pages. I also worked on the profile page and posts. We talked as a team about functionality of these pages as part of our MVP. I also read about React to get familiar with the framework. 
+    3. Goals:
+       * Finish Figma wireframe 
+       * Create front end for profile page
   * Kihoon Lee
     1. N/A
     2. For this first week I completed one use case of our application, contributed to project requirements and team policies
