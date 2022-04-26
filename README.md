@@ -14,3 +14,5 @@ Librocast is a full-stack web application that allows users to create a profile 
 > Repository Layout
 - reports: contains weekly reports
 - librocast-app: contains react app for librocast
+
+To get started, open the librocast-app folder and read the ReadMe below!
