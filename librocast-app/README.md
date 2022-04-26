@@ -2,6 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Run the Project with npm
+
+1. After pulling a new commit, run npm install
+2. Open up your console
+
+**To test the website while coding:**
+3. Run npm start
+4. Go to localhost:3000
+
+**To deploy the website:**
+3. Run npm start
+4. Exit out of that command and run npm build
+5. Push to the repo
+
 ## Available Scripts
 
 In the project directory, you can run:
