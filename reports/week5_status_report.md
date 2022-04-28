@@ -4,33 +4,33 @@
 
   1. Goals from the last week
 
-  - Add user sign up and login using Google Firebase
+     - Add user sign up and login using Google Firebase
 
   2. To build on top of last week's implementation, the frontend team developed and reorganized react components structure. The backend team implemented user authentication such as signup and login and book search feature so we can connect the frontend and backend easily in the future.
 
   3. Goals:
 
-  - Add user search feature in addition to book search
+     - Add user search feature in addition to book search
 
 - Contributions of individual team members
 
   - Abigail Batinga
     1. Goals from the last week:
-    - finish the wireframe
-    - code the onboarding and register/login frontend
-    - code the home page
+       - finish the wireframe
+       - code the onboarding and register/login frontend
+       - code the home page
     2.
     3. For the following week, I'd like to:
   - Justin Chao
     1. Goals from last week
-    - Look into Firebase, Instagram API, maybe see how it connects to react
+       - Look into Firebase, Instagram API, maybe see how it connects to react
     2.
     3.
   - Tommy Chung
 
     1. Goals from the last week
 
-    - Implement user registration and login validation using Google Firebase.
+       - Implement user registration and login validation using Google Firebase.
 
     2.
     3. Goals:
