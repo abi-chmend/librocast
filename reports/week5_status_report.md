@@ -19,8 +19,10 @@
        - finish the wireframe
        - code the onboarding and register/login frontend
        - code the home page
-    2.
+    2.This week, I worked on finishing the wireframe, setting up the architecture design, and working on the home page component.
     3. For the following week, I'd like to:
+     - finish the home page component
+     - finish the onboarding and add design to the register/login forms
   - Justin Chao
     1. Goals from last week
        - Look into Firebase, Instagram API, maybe see how it connects to react
