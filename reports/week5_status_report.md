@@ -40,8 +40,10 @@
 
        - Implement user registration and login validation using Google Firebase.
 
-    2.
+    2. Implementing user sign up and login feature with basic fill out form using Firebase Authentication and React components while studying and practicing. Also contributed in the living document. 
     3. Goals:
+        - More practicing React
+       - Learn how to read and update data in Firebase from the client
 
   - Alyssa Allums
     1. Goals from the last week:
