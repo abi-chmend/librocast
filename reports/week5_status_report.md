@@ -24,8 +24,11 @@
   - Justin Chao
     1. Goals from last week
        - Look into Firebase, Instagram API, maybe see how it connects to react
-    2.
-    3.
+    2. Looked into how Firebase and React intersect (basically how to search/add/delete onto Firestore). Helped update the living document (risks section primarily)
+    3. Goals:
+       - Need to figure out how to "SQLize" the Firebase queries.
+       - Can create some skeleton files for Firebase
+       - Should look how to "SQLize" FileStream (for the GoodReads database, which is currently implemented as CSV)
   - Tommy Chung
 
     1. Goals from the last week
