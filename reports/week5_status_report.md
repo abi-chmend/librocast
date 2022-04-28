@@ -11,6 +11,8 @@
   3. Goals:
 
      - Add user search feature in addition to book search
+     - Set up build automation
+     - Set up automated testing and continuous integration
 
 - Contributions of individual team members
 
