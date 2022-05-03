@@ -9,13 +9,33 @@ fs.createReadStream(filePath)
     console.log("Successfully parsed the csv file!");
   });
 
-export const search = (req, res) => {
-  let title = "Jude";
+export const bookSearch = async (req, res) => {
+  //let { title, genre } = req.params;
+  let title = "sdsds";
   let resultText = "Searched for: " + title;
-  let book = results.find((o) => o.title === title);
-  if (book === undefined) {
-    res.send(resultText + " Book not found");
+  let genre = undefined;
+  if (genre) {
+    results = await results.filter((o) => (o.genre = genre));
+  }
+  let book = results.filter((o) => o.title.includes(title));
+  if (!book) {
+    res.json([]);
   } else {
-    res.send(resultText + " isbn: " + book.isbn);
+    res.json(book);
   }
 };
+/*
+export const userSearch = (req, res) => {
+  if (type is name) {
+
+  } else if (type is userID) {
+
+  }
+  let users;
+  let user = users.find(o) => o.name.includes(name)
+  if (name === undefined) {
+    res.send(resultText + "User not fiound");
+  } else {
+    res.send(user info);
+  }
+}*/
