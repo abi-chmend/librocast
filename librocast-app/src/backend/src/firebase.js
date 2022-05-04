@@ -22,7 +22,7 @@ const db = getFirestore(app)
 
 // Snippet to INSERT value to user database
 /**
-import {db} from './firebase'
+import {db} from './backend/src/firebase'
 import {collection, addDoc, Timestamp} from 'firebase/firestore'
 
  // insert into event handler. Adddoc automatically generates unique id for each
@@ -44,7 +44,7 @@ try {
 /**
 import {useState, useEffect} from 'react'
 import {collection, query, orderBy, onSnapshot} from "firebase/firestore"
-import {db} from './firebase'
+import {db} from './backend/src/firebase'
 
  // change variables as seen fit
 const [results, setResults] = useState([])
@@ -76,7 +76,7 @@ useEffect(() => {
 // Snippet to UPDATE value in user database
 /**
  * import { doc, updateDoc } from "firebase/firestore";
- * import {db} from './firebase'
+ * import {db} from './backend/src/firebase'
  *
  * // function to update value in firestore user database
  * const handleCheckedChange = async () => {
@@ -95,19 +95,21 @@ useEffect(() => {
 
 // Snippet to DELETE value in user database
 /**
-import { doc, updateDoc, deleteDoc} from "firebase/firestore";
-
-// function to delete value in firestore user database
-const handleDelete = async () => {
-    const taskDocRef = doc(db, 'users', id)
-    try{
-        await deleteDoc(taskDocRef)
-    } catch (err) {
-        alert(err)
-    }
-}
-
-// insert function into event handler
+ * import { doc, updateDoc, deleteDoc} from "firebase/firestore";
+ *  import {db} from './backend/src/firebase'
+ *
+ * // function to delete value in firestore user database
+ * const handleDelete = async () => {
+ *     const taskDocRef = doc(db, 'users', id)
+ *     try{
+ *         await deleteDoc(taskDocRef)
+ *     } catch (err) {
+ *         alert(err)
+ *     }
+ * }
+ *
+ * // insert function into event handler
+ *
  */
 
 export {db}
