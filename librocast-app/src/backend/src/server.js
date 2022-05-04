@@ -6,6 +6,7 @@ import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
 import searchRouter from "./routers/searchRouter";
+import apiRouter from "./routers/apiRouter";
 
 // Initialization
 const PORT = 4000;
@@ -14,7 +15,7 @@ app.use(morgan("dev"));
 
 // Routes
 app.use("/", globalRouter);
-app.use("/search", searchRouter);
+app.use("/api", apiRouter);
 
 const handleListening = () =>
   console.log(`✅ Server listenting on port http://localhost:${PORT} 🚀`);

@@ -10,14 +10,13 @@ fs.createReadStream(filePath)
   });
 
 export const bookSearch = async (req, res) => {
-  //let { title, genre } = req.params;
-  let title = "sdsds";
+  const { title, genre } = req.params;
   let resultText = "Searched for: " + title;
-  let genre = undefined;
+  let filtered = results;
   if (genre) {
-    results = await results.filter((o) => (o.genre = genre));
+    filtered = filtered.filter((o) => (o.genre = genre));
   }
-  let book = results.filter((o) => o.title.includes(title));
+  let book = filtered.filter((o) => o.title.includes(title));
   if (!book) {
     res.json([]);
   } else {
