@@ -23,6 +23,25 @@ export const bookSearch = async (req, res) => {
     res.json(book);
   }
 };
+
+export const listGenres = async (req, res) => {
+  let list = [];
+  results.forEach((e) => {
+    let tempList = e.genre_and_votes.split(" ");
+    let text = "";
+    tempList.forEach((s) => {
+      if (isNaN(s)) {
+        text = text + " " + s;
+      } else {
+        if (!list.includes(text)) {
+          list.push(text);
+        }
+        text = "";
+      }
+    });
+  });
+  res.json(list);
+};
 /*
 export const userSearch = (req, res) => {
   if (type is name) {
