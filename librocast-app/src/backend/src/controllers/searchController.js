@@ -13,9 +13,9 @@ export const bookSearch = async (req, res) => {
   const { title, genre } = req.params;
   let resultText = "Searched for: " + title;
   let filtered = results;
-  if (genre) {
+  /*if (genre) {
     filtered = filtered.filter((o) => (o.genre = genre));
-  }
+  }*/
   let book = filtered.filter((o) => o.title.includes(title));
   if (!book) {
     res.json([]);

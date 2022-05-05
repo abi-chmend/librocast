@@ -7,6 +7,7 @@ import './components/App.css'
 import Auth from './components/Auth'
 import Onboard from './components/Onboarding'
 import Nav from './components/Nav';
+import Profile from './utils/profile/Profile';
 
 function App() {
   const { user, authIsReady } = useAuthContext()
@@ -19,6 +20,7 @@ function App() {
         <Route path="/home" element={<Home />}></Route>
         <Route path="/login" element = {<Auth />}></Route>
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       </BrowserRouter>
     </div>
