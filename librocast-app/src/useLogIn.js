@@ -14,6 +14,7 @@ export const useLogIn = () => {
             .then((res) => {
                 dispatch({type: 'LOGIN', payload: res.user})
                 console.log('user logged in:', res.user)
+                
             })
             .catch((err) => {
                 setError(err.message)

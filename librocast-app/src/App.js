@@ -26,10 +26,10 @@ function App() {
       <Nav></Nav>
       <BrowserRouter>
       <Routes>
-
         <Route path="/onboard" element={<Onboard/>}></Route>
         <Route path="/home" element={<Home />}></Route>
-        <Route path="/auth" element = {<Auth />}></Route>
+        <Route path="/login" element = {<Auth />}></Route>
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       </BrowserRouter>
     </div>
