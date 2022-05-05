@@ -12,17 +12,6 @@ function App() {
   const { user, authIsReady } = useAuthContext()
   return (
     <div className="App">
-      {/* {authIsReady && (
-        <BrowserRouter>
-          <Routes>
-              <Route path="/" />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/login" element={<LogIn />} />
-          </Routes>
-        </BrowserRouter>
-      )} */}
-
-
       <Nav></Nav>
       <BrowserRouter>
       <Routes>
