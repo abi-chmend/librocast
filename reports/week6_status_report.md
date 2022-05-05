@@ -25,11 +25,11 @@
        - code the onboarding and register/login frontend
        - code the home page
 
-    2. This week, I worked on finishing the wireframe, setting up the architecture design, and working on the home page component.
+    2. This week, I worked on finishing the home page and setting up the test suite.
     3. For the following week, I'd like to:
 
-    - finish the home page component
-    - finish the onboarding and add design to the register/login forms
+    - combine the components together
+    - fix the build and test documentation.
 
   - Justin Chao
     1. Goals from last week
