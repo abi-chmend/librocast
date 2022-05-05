@@ -1,0 +1,34 @@
+.profileWrapper {
+    width: 745;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+.profilePic {
+    width: 150px;
+    float:left; /* add this */
+}
+.profileInfo {
+    overflow: hidden; /* if you don't want #second to wrap below #first */
+    float:left;
+}
+
+.followers {
+    float:right;
+}
+
+.posts {
+    border:1px solid rgb(38, 0, 255);
+    width:90%;
+    height:200px;
+    position: fixed;
+    top: 170px;
+    float:left;
+}
+
+.bookshelf {
+    border:1px solid rgb(38, 0, 255);
+    width:90%;
+    height:200px;
+    position: fixed;
+    top: 390px;
+    float:left;
+}
