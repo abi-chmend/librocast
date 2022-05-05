@@ -66,12 +66,12 @@
        - Basic feed page
   - Sarah Rashid
     1. Last week's goals:
-       - Finish Figma wireframe
-       - Create front end for profile page
-    2. This week I worked on the Figma wireframe and began implementing the profile page. For the wireframe, I added a new feature for profiles called "bookshelf" which will store a user's to be read, completed, and in progress books. For implementation for the profile page I have begun working on the front end design.
-    3. Goals:
     - Develop personal profile UI and retrieving user info
     - Work on profile bookshelf
+    2. This week I worked on the profile page. I implemented the javascript and css to create the base UI for the page including user profile info, posts, and bookshelf.
+    3. Goals:
+    - Further develop UI
+    - Connect components to retrieve user info, posts, books
   - Kihoon Lee
     1. Last week's goals:
        - Implement user search in addition to current book search feature
