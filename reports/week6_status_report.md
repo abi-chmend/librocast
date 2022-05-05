@@ -54,11 +54,13 @@
 
   - Alyssa Allums
     1. Goals from the last week:
-       - Create front end for search page
-    2. Began implementing search feature in react. Decomposed search into a search page component, search bar component, and a results component. Worked on diagrams for the architecture and design.
+        - Connect frontend to backend search functionality
+        - Add search for users and genres
+    2. This week I continued working on the search functionality, linking the user to a url with search parameters when a query is submitted. I added functionality to switch between user and book search. Also contributed to the living document.
     3. Goals:
-       - Connect frontend to backend search functionality
-       - Add search for users and genres
+       - Call backend to query dataset
+       - Create results component
+       - Basic feed page
   - Sarah Rashid
     1. Last week's goals:
        - Finish Figma wireframe
