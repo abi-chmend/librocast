@@ -1,4 +1,4 @@
-# Week 5 Status Report
+# Week 6 Status Report
 
 - Team report
 
@@ -8,11 +8,12 @@
      - Set up build automation
      - Set up automated testing and continuous integration
 
-  2.
+  2. This week all members continued to work on their tasks and components. We set up automated testing and continuous integration
 
   3. Goals:
-
-     -
+     - Finish and connect components for beta release. Have a usable app
+     - Improve documentation
+     - Add more tests
 
 - Contributions of individual team members
 
