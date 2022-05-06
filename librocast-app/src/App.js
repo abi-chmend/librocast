@@ -7,6 +7,7 @@ import './components/App.css'
 import Auth from './components/Auth'
 import Onboard from './components/Onboarding'
 import Nav from './components/Nav';
+import Profile from './utils/profile/Profile';
 
 function App() {
   const { user, authIsReady } = useAuthContext()
@@ -27,12 +28,20 @@ function App() {
       {authIsReady &&
       <BrowserRouter>
       <Routes>
+<<<<<<< HEAD
         <Route path="/onboard" element={user? <Onboard/> : <Navigate to="/login" />} />
         {//user && <Route path="/onboard" element={<Onboard/>}></Route>
         }
         <Route path="/home" element={<Home/>}></Route>
         <Route path="/login" element = {<Auth/>}></Route>
         <Route path="/signup" element={<SignUp/>}></Route>
+=======
+        <Route path="/onboard" element={<Onboard/>}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/login" element = {<Auth />}></Route>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
+>>>>>>> 47b4da1984ccef32f4dc12d84b8de9760d61b102
       </Routes>
       </BrowserRouter>}
     </div>
