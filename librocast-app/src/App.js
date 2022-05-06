@@ -28,20 +28,11 @@ function App() {
       {authIsReady &&
       <BrowserRouter>
       <Routes>
-<<<<<<< HEAD
-        <Route path="/onboard" element={user? <Onboard/> : <Navigate to="/login" />} />
-        {//user && <Route path="/onboard" element={<Onboard/>}></Route>
-        }
         <Route path="/home" element={<Home/>}></Route>
         <Route path="/login" element = {<Auth/>}></Route>
-        <Route path="/signup" element={<SignUp/>}></Route>
-=======
-        <Route path="/onboard" element={<Onboard/>}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/login" element = {<Auth />}></Route>
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
->>>>>>> 47b4da1984ccef32f4dc12d84b8de9760d61b102
+        <Route path="/onboard" element={user ? <Onboard/> : <Navigate to="/login" />} />
+        <Route path="/profile" element={user ? <Profile/> : <Navigate to="/login" />} />
       </Routes>
       </BrowserRouter>}
     </div>
