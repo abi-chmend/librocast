@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useLogIn } from '../useLogIn'
 import { Link, useNavigate } from "react-router-dom";
 
-
 function Auth() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -25,7 +24,7 @@ function Auth() {
           <h1>Librocast</h1>
           <img src={logo} alt="lightbulb logo"/>
         </div>
-
+        <form onSubmit={handleSubmit}>
         <div className="loginItems">
           <h2>Login</h2>
           <p>Username</p>
@@ -47,17 +46,13 @@ function Auth() {
 
           <div id='loginBtn'>
           
-          <Link to="/onboard">
-          <button>Log in</button>
+          <button type="submit">Log in</button>
           {error && <p>{error}</p>}
-          </Link>
-          
           </div>
           <p>Don't have an account? <Link to ="/signup">Sign Up</Link></p>
         </div>
+        </form>
       </div>
-
-
     </div>
   )}
 

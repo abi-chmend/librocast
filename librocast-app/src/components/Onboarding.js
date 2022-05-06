@@ -2,10 +2,7 @@ import next from './next_btn.png';
 import { useState } from 'react';
 
 
-function Onboard() {
-
-
-  
+function Onboard() {  
 
   // setup state hooks for next button
   const [count, setCount] = useState(0);
