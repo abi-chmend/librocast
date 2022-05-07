@@ -5,7 +5,6 @@ import express from "express";
 // HTTP request logger middleware
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
-import searchRouter from "./routers/searchRouter";
 import apiRouter from "./routers/apiRouter";
 
 // Initialization
