@@ -35,7 +35,6 @@ export default function LogIn() {
           <input
             required
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
          </div>
