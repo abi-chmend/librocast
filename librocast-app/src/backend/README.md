@@ -2,8 +2,8 @@
 
 Search for a book
 
-- /api/search/:book/:genre?
+- /api/searchBook/:book/:genre?
 
-Get the genre list
+Search user
 
-- /api/GenreList
+- /api/searchUser/:userName
