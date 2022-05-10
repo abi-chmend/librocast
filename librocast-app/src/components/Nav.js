@@ -1,6 +1,6 @@
 import { Link, BrowserRouter } from 'react-router-dom';
 import './Nav.css'
-import profileLogo from './profile_logo.png';
+import profileLogo from './librocast_logo.png';
 
 function Nav() {
    return (
