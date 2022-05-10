@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import './Search.css'
 
-const BOOK_URL = "";
+const BOOK_URL = "/api/searchBook/";
 const USER_URL = "";
 const NUM_PAGE_RESULTS = 20;
 
@@ -82,7 +82,7 @@ function QueryResults({searchType, searchString}) {
   const [responseLength, setResponseLength] = useState(0);
   const [index, setIndex] = useState(0);
 
-  function processQuery() {
+  async function processQuery() {
     // TODO: fetch query response
     // TODO: case-user
     // TODO: case-book
@@ -90,9 +90,10 @@ function QueryResults({searchType, searchString}) {
       //TODO: fetch books
       //set response state
 
-      axios.get(BOOK_URL + searchString)
+      await axios.get(BOOK_URL + searchString)
         .then((res) => {
             setResponse(res.data);
+            console.log(res.data);
           })
         .catch((err) => {
           console.log(err);
