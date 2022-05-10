@@ -28,16 +28,26 @@ function Auth() {
 
         <div className="loginItems">
           <h2>Login</h2>
-          <p>Username</p>
-          {/*<input type="text" id="uname" name="uname"></input>*/}
+
+          <p>Name</p>
           <input
               required
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
+            
+
+          <p>Username</p>
+          <input
+              required
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+
+          
           <p>Password</p>
-          {/*<input type="text" id="pass" name="pass"></input>*/}
           <input
             required
             type="password"
@@ -46,14 +56,13 @@ function Auth() {
           />
 
           <div id='loginBtn'>
-          
           <Link to="/onboard">
           <button>Log in</button>
           {error && <p>{error}</p>}
           </Link>
-          
           </div>
-          <p>Don't have an account? <Link to ="/signup">Sign Up</Link></p>
+
+          <p>Already have an account? <Link to ="/signup">Sign Up</Link></p>
         </div>
       </div>
 

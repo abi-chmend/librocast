@@ -12,16 +12,23 @@ import Profile from './utils/profile/Profile';
 function App() {
   const { user, authIsReady } = useAuthContext()
   return (
+    
     <div className="App">
-      <Nav></Nav>
+      <div>
+      <Nav/>
+      </div>
+      
       <BrowserRouter>
+      
       <Routes>
+      
         <Route path="/onboard" element={<Onboard/>}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/login" element = {<Auth />}></Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+
       </BrowserRouter>
     </div>
   )}

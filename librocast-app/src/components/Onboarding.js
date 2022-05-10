@@ -42,11 +42,14 @@ function Onboard() {
   }
 
   return (
+
+    // need to pass name from onboarding to home
           
   <div className='circlesContainer'>
-        <p>You clicked {count} times</p>
+        {/* <p>You clicked {count} times</p> */}
 
           <h1 id="question">What is your name?</h1>
+
           <input type="text" id="uinfo" name="uinfo"></input>
           <div>
           <img id="nextBtn" src={next} onClick={nextClicked}></img>
@@ -54,6 +57,7 @@ function Onboard() {
           <span id="left" className="dot"></span>
           <span id="mid" className="dot"></span>
           <span id="right" className="dot"></span>   
+
         </div>
   )
       

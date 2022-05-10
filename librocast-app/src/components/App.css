@@ -1,8 +1,10 @@
 body, html {
-  background-color: #03989E;
   min-width: 100vw;
   min-height: 100vh;
 }
+
+
+
 
 .authBox {
   background-color: #EBE9E9;
@@ -87,3 +89,40 @@ body, html {
   height:60px;
 }
 
+
+.circlesContainer input {
+  width: 75%;
+  height: 40%;
+  border: none;
+}
+
+.App {
+  background-color: white;
+
+  width: 75%;
+}
+
+#nav {
+  margin-top: 60px;
+  background-color: #EDEDED;
+  float:left;
+  width: 25%;
+  min-height: 100vh;
+  padding-left: 10px;
+  margin-right: 100px;
+}
+
+#readingGoals, #currentRead  {
+  background-color: #03989E;
+  border-radius: 20px;
+  width: 850px;
+  height: 400px;
+  margin-left: 30%;
+  padding: 10px;
+  color: white;
+}
+
+#currentRead {
+  margin-top: 10%;
+
+}
