@@ -8,9 +8,11 @@ import Auth from './components/Auth'
 import Onboard from './components/Onboarding'
 import Nav from './components/Nav';
 import Profile from './utils/profile/Profile';
+import {useState} from 'react';
 
 function App() {
   const { user, authIsReady } = useAuthContext()
+
   return (
     <div className="App">
       {/* {authIsReady && (

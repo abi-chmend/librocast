@@ -22,7 +22,7 @@ const db = getFirestore(app)
 
 // Snippet to INSERT value to user database
 /**
-import {db} from './backend/src/firebase'
+import {db} from 'librocast-app/src/backend/src/firebase'
 import {collection, addDoc, Timestamp} from 'firebase/firestore'
 
  // insert into event handler. Adddoc automatically generates unique id for each
@@ -44,7 +44,7 @@ try {
 /**
 import {useState, useEffect} from 'react'
 import {collection, query, orderBy, onSnapshot} from "firebase/firestore"
-import {db} from './backend/src/firebase'
+import {db} from 'librocast-app/src/backend/src/firebase'
 
  // change variables as seen fit
 const [results, setResults] = useState([])
@@ -53,7 +53,7 @@ const [results, setResults] = useState([])
 useEffect(() => {
     const taskColRef = query(collection(db, 'users'), orderBy('created', 'desc'))
     onSnapshot(taskColRef, (snapshot) => {
-        setTasks(snapshot.docs.map(doc => ({
+        setResults(snapshot.docs.map(doc => ({
             id: doc.id,
             data: doc.data()
         })))
@@ -64,11 +64,11 @@ useEffect(() => {
 {results.map((result) => (
     <Result
         id={result.id}
-        key={result.id}
-        username={result.data.completed}
-        friends={result.data.title}
-        books={result.data.description}
-        achievements={result.data.achievements}
+        bookshelf={result.data.bookshelf}
+        followers={result.data.followers}
+        following={result.data.following}
+        achievements={result.data.goals_progress}
+        picture={result.data.picture}
     />
 ))}
 */
@@ -76,7 +76,7 @@ useEffect(() => {
 // Snippet to UPDATE value in user database
 /**
  * import { doc, updateDoc } from "firebase/firestore";
- * import {db} from './backend/src/firebase'
+ * import {db} from 'librocast-app/src/backend/src/firebase'
  *
  * // function to update value in firestore user database
  * const handleCheckedChange = async () => {
