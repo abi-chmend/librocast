@@ -20,6 +20,7 @@ export const useSignUp = () => {
                     email,
                     displayName
                 })
+                window.location.href = '/onboard'
             })
             .catch((err) => {
                 setError(err.message)

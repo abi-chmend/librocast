@@ -24,7 +24,7 @@ export const searchUser = async (req, res) => {
         .toLowerCase()
         .includes(userName.toLowerCase())
     ) {
-      console.log(doc._fieldsProto);
+      console.log(doc.id);
       users.push(doc._fieldsProto);
     }
   });
