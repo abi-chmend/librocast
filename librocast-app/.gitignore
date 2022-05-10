@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /src/backend/src/serviceAccountKey.json
+/node_modules
 
 # testing
 /coverage
