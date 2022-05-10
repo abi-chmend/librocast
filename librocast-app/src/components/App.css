@@ -1,6 +1,89 @@
-.App {
+body, html {
   background-color: #03989E;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.authBox {
+  background-color: #EBE9E9;
+  border-radius: 20px;
+  width: 40%;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.authItems {
+  text-align: center;
+}
+
+.authItems img {
+  width: 40%;
+  height: 40%;
+}
+
+.authItems h1 {
+  padding-top: 10%;
+  font-family: 'Kulim Park', sans-serif;
+  color: #03989E;
+  font-size: 40px;
+}
+
+.loginItems {
+  font-family: Helvetica;
+  color: #484545;
+  text-align: left;
+  margin-left: 20%;
+  
+}
+
+.loginItems h2 {
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+#loginBtn {
+  margin-top: 10%;
+}
+
+#loginBtn button {
+  width: 30%;
+  background-color: #03989E;
+  text-align: center;
+  color: white;
+  border: none;
+  font-family: Helvetica;
+  font-weight: lighter;
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.circlesContainer {
+  margin-top: 60%;
+  text-align: center;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#left {
+  margin-right: 20px;
+  background-color: #0F4B4E;
+}
+
+#right {
+  margin-left:20px;
+}
+
+#nextBtn {
+  margin-bottom: 5%;
+  width: 60px;
+  height:60px;
 }
 

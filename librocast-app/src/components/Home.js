@@ -7,6 +7,17 @@ function Home() {
 
       <h1>Welcome back, Name!</h1>
       
+
+      <div id="readingGoals">
+
+      </div>
+
+
+      <div id="currentRead">
+
+      </div>
+
+      
     </div>
   )
 }

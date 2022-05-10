@@ -2,8 +2,16 @@
 
 Search for a book
 
-- /api/search/:book/:genre?
+- /api/searchBook/:book/:genre?
 
-Get the genre list
+Search user
 
-- /api/GenreList
+- /api/searchUser/:userName
+
+Add book to bookshelf
+
+- /api/addBook/:userID/:bookID
+
+Add friend to friends list
+
+- /api/addFriend/:userID/:friendID

@@ -25,11 +25,11 @@
        - code the onboarding and register/login frontend
        - code the home page
 
-    2. This week, I worked on finishing the wireframe, setting up the architecture design, and working on the home page component.
+    2. This week, I worked on finishing the home page and setting up the test suite.
     3. For the following week, I'd like to:
 
-    - finish the home page component
-    - finish the onboarding and add design to the register/login forms
+    - combine the components together
+    - fix the build and test documentation.
 
   - Justin Chao
     1. Goals from last week
@@ -46,12 +46,14 @@
 
     1. Goals from the last week
 
-       - Implement user registration and login validation using Google Firebase.
-
-    2. Implementing user sign up and login feature with basic fill out form using Firebase Authentication and React components while studying and practicing. Also contributed in the living document.
-    3. Goals:
        - More practicing React
        - Learn how to read and update data in Firebase from the client
+
+    2. Practiced React to help frontend team. Contributed in the living document.
+    4. Goals:
+      - Implement React component to read and write database in Firebase.
+      - Add database to Firebase
+      - Convert book data to Firebase
 
   - Alyssa Allums
     1. Goals from the last week:
@@ -64,12 +66,12 @@
        - Basic feed page
   - Sarah Rashid
     1. Last week's goals:
-       - Finish Figma wireframe
-       - Create front end for profile page
-    2. This week I worked on the Figma wireframe and began implementing the profile page. For the wireframe, I added a new feature for profiles called "bookshelf" which will store a user's to be read, completed, and in progress books. For implementation for the profile page I have begun working on the front end design.
-    3. Goals:
     - Develop personal profile UI and retrieving user info
     - Work on profile bookshelf
+    2. This week I worked on the profile page. I implemented the javascript and css to create the base UI for the page including user profile info, posts, and bookshelf.
+    3. Goals:
+    - Further develop UI
+    - Connect components to retrieve user info, posts, books
   - Kihoon Lee
     1. Last week's goals:
        - Implement user search in addition to current book search feature
