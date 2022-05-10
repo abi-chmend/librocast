@@ -167,6 +167,23 @@ function DisplayBookshelf(props){
   );
 }
 
-function addPost(props) {
-  
+function AddPost(props) {
+
+  function addPost() {
+    // add post to post div 
+    
+    let postContainer = document.getElementsByClassName("post");
+
+    let newPost = document.createElement("div");
+    let postDesc = document.getElementById("postDesc").value;
+  }
+
+
+  return (
+    <div className="addPost">
+      <button >Add Post</button>
+
+      <input id="postDesc" type="text"></input>
+    </div>
+  )
 }
