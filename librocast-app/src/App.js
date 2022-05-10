@@ -16,6 +16,7 @@ function App() {
 
   return (
     <div className="App">
+      {/*}
       { authIsReady && (
         <BrowserRouter>
           <Routes>
@@ -25,6 +26,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       )}
+      */}
 
 
       <Nav></Nav>
@@ -36,16 +38,11 @@ function App() {
         <Route path="/signup" element= {user ? <Navigate to="/home" /> : <SignUp/>}></Route>
         <Route path="/onboard" element={user ? <Onboard/> : <Navigate to="/login" />} />
         <Route path="/profile" element={user ? <Profile/> : <Navigate to="/login" />} />
+        <Route path="/search" element={<Search />}/>
       </Routes>
       </BrowserRouter>}
 
        
-       {authIsReady && 
-        <BrowserRouter>
-        <Routes>
-          <Route path="/search" element={<Search />}/>
-        </Routes>
-      </BrowserRouter>}
 
     </div>
   )}
