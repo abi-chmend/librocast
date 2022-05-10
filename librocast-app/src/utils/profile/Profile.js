@@ -67,7 +67,8 @@ function getProfileInfo() {
                     picture={profile.data.picture}
                 />
             ))}
-            <div className="posts"
+            <div className="posts">
+                <h2>Posts</h2>
                 {userPosts.map((post) => (
                     <DisplayPost
                         book_title={post.data.book_title}
@@ -76,7 +77,7 @@ function getProfileInfo() {
                         likes={post.data.likes}
                     />
                 ))}
-            />
+            </div>
 
         </div>
     );
@@ -128,8 +129,18 @@ function DisplayMetrics(props) {
 
 function DisplayPost(props){
   return (
-    <div className="post">
-    </div>
+      <div className="post">
+        <div className="postInfo">
+          <h4>{props.book_title}</h4>
+          <h4>{props.contents}</h4>
+        </div>
+        <img
+            src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
+            width="130"
+            height="180"
+            alt=""
+        />
+      </div>
   );
 }
 
@@ -140,6 +151,18 @@ function DisplayBookshelf(props){
         {props.bookshelf.forEach((unknown, bookID) => (
             <div className="book"/>
         ))}
+      <h2>Bookshelf</h2>
+
+      <div className="book">
+        <img
+            src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
+            width="115"
+            height="160"
+            alt=""
+        />
+        <h4> Six of Crows</h4>
+      </div>
+
     </div>
   );
 }

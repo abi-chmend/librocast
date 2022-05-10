@@ -1,0 +1,27 @@
+.searchBar {
+    width: 50%;
+}
+
+.searchType {
+    border-radius: 5px 0 0 5px;
+}
+
+.searchButton {
+    border-radius: 0 5px 5px 0;
+    background-color: white;
+}
+
+.searchInput {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.searchInput, .searchType, .searchButton {
+    height: 30px;
+    border: 1px solid gainsboro;
+}
+
+.search:hover, .search:focus {
+    border: 1.5px solid #00ccb8;
+    background-color: white;
+}
