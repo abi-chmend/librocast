@@ -15,20 +15,44 @@
     float:right;
 }
 
-.posts {
-    border:1px solid rgb(38, 0, 255);
-    width:90%;
-    height:200px;
-    position: fixed;
+.postsWrapper {
+    border:3px solid rgb(1, 155, 193);
+    border-radius: 10px;
+    width:95%;
+    height:400px;
     top: 170px;
     float:left;
 }
 
+.post{
+    border:3px solid rgb(1, 193, 167);
+    border-radius: 10px;
+    width: 90%;
+    overflow:hidden;
+    float: left;
+}
+
+.postInfo {
+    overflow: hidden; /* if you don't want #second to wrap below #first */
+    
+}
+
 .bookshelf {
-    border:1px solid rgb(38, 0, 255);
-    width:90%;
-    height:200px;
-    position: fixed;
+    border:3px solid rgba(238, 221, 170, 0.542);
+    border-radius: 10px;
+    width:95%;
+    height:300px;
     top: 390px;
     float:left;
+    background: rgba(238, 221, 170, 0.542);
+}
+
+.book {
+    border:1.5px solid rgb(238,221, 170);
+    padding: 1px;
+    width:115px;
+    height:215px;
+    top: 390px;
+    float:left;
+    background: rgb(238,221, 170);
 }

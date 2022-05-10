@@ -4,6 +4,7 @@ import "./profile.css"
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(props){
+  
   return (
     <>
     {/* <Nav/> */}
@@ -30,6 +31,7 @@ export default function Profile(props){
 
         <DisplayPosts/>
         <DisplayBookshelf/>
+        {/* do an add to bookshelf function. Button press add, then takes to search page */}
 
       </div>
     </>
@@ -38,8 +40,21 @@ export default function Profile(props){
 
 function DisplayPosts(props){
   return (
-    <div className="posts">
+    <div className="postsWrapper">
       <h2>Posts</h2>
+
+      <div className="post">
+        <div className="postInfo">
+          <h4> Book Title: </h4>
+          <h4> (Caption) </h4>
+        </div>
+        <img
+            src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
+            width="130"
+            height="180"
+            alt=""
+        /> 
+      </div>
     </div>
   );
 }
@@ -48,6 +63,17 @@ function DisplayBookshelf(props){
   return (
     <div className="bookshelf">
       <h2>Bookshelf</h2>
+
+      <div className="book">
+        <img
+            src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
+            width="115"
+            height="160"
+            alt=""
+        /> 
+        <h4> Six of Crows</h4>
+      </div>
+
     </div>
   );
 }
