@@ -6,10 +6,12 @@ import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
 import apiRouter from "./routers/apiRouter";
+import cors from "cors";
 
 // Initialization
 const PORT = 4000;
 const app = express();
+app.use(cors());
 app.use(morgan("dev"));
 
 // Routes
