@@ -2,15 +2,13 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node ./src/server.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^7.1.0",
-    "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "express": "^4.17.3",
     "firebase-admin": "^10.2.0",
