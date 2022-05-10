@@ -3,7 +3,7 @@ import "./profile.css"
 import { getAuth } from "firebase/auth";
 import {useState, useEffect} from 'react'
 import {collection, query, where, onSnapshot} from "firebase/firestore"
-import {db} from 'librocast-app/src/backend/src/firebase'
+//import {db} from 'librocast-app/src/backend/src/firebase'
 //import Nav from "./components/Nav"
 
 // User function will receive user properties (username, bio, followers, following, books read)
