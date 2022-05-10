@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import './Search.css'
 
@@ -89,7 +90,13 @@ function QueryResults({searchType, searchString}) {
       //TODO: fetch books
       //set response state
 
-
+      axios.get(BOOK_URL + searchString)
+        .then((res) => {
+            setResponse(res.data);
+          })
+        .catch((err) => {
+          console.log(err);
+        });
     } else if (searchType === "user") {
       //TODO: fetch users
       //set response state
@@ -100,10 +107,10 @@ function QueryResults({searchType, searchString}) {
   function appendResults() {
     let count;
     let res = results;
-    if (index + NUM_PAGE_RESULTS <= responseLength) {
+    if (index + NUM_PAGE_RESULTS <= response.length) {
       count = NUM_PAGE_RESULTS;
     } else {
-      count = responseLength - index;
+      count = response.length - index;
     }
     for (let i = 0; i < count; i++) {
       let entry = response[i];
