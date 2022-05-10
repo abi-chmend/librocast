@@ -3,7 +3,7 @@ import "./profile.css"
 import { getAuth } from "firebase/auth";
 import {useState, useEffect} from 'react'
 import {collection, query, where, onSnapshot} from "firebase/firestore"
-import {db} from 'librocast-app/src/backend/src/firebase'
+import {db} from 'backend/src/firebase'
 //import Nav from "./components/Nav"
 
 // User function will receive user properties (username, bio, followers, following, books read)
@@ -13,46 +13,50 @@ export default function Profile(){
     <>
     {/* <Nav/> */}
       <div className="profileWrapper">
-          {getProfileInfo}
+          {ProfileInfo}
       </div>
     </>
   );
 }
 
 
-function getProfileInfo() {
-  const auth = getAuth();
-  const user = auth.currentUser;
-
-  if (user !== null) {
-    const userID = user.uid;
+function ProfileInfo() {
+    const auth = getAuth();
+    const user = auth.currentUser;
 
     // store matching user profile
     const [userProfile, setUserProfile] = useState([])
 
     useEffect(() => {
-      const taskColRef = query(collection(db, 'profile'), where("__name__", "==", userID))
-      onSnapshot(taskColRef, (snapshot) => {
-          setUserProfile(snapshot.docs.map(doc => ({
-              id: doc.id,
-              data: doc.data()
-          })))
-      })
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const userID = user.uid;
+        const taskColRef = query(collection(db, 'profile'), where("__name__", "==", userID))
+        onSnapshot(taskColRef, (snapshot) => {
+            setUserProfile(snapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            })))
+        })
     },[])
 
     // store matching user posts
     const [userPosts, setUserPosts] = useState([])
 
     useEffect(() => {
-      const taskColRef = query(collection(db, 'posts'), where("user_id", "==", userID))
-      onSnapshot(taskColRef, (snapshot) => {
-          setUserPosts(snapshot.docs.map(doc => ({
-              id: doc.id,
-              data: doc.data()
-          })))
-      })
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const userID = user.uid;
+        const taskColRef = query(collection(db, 'posts'), where("user_id", "==", userID))
+        onSnapshot(taskColRef, (snapshot) => {
+            setUserPosts(snapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            })))
+        })
     },[])
 
+  if (user !== null) {
     return (
         <div className="profileInfo">
           <h1>{user.displayName}</h1>
