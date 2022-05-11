@@ -1,10 +1,17 @@
 body, html {
+
   min-width: 100vw;
   min-height: 100vh;
 }
 
-
-
+#nav {
+  background-color: #EDEDED;
+  float:left;
+  width: 25%;
+  height: 100vh;
+  padding-left: 10px;
+  margin-right: 100px;
+}
 
 .authBox {
   background-color: #EBE9E9;
@@ -90,33 +97,16 @@ body, html {
 }
 
 
-.circlesContainer input {
-  width: 75%;
-  height: 40%;
-  border: none;
-}
-
-.App {
+#home {
   background-color: white;
-
-  width: 75%;
 }
 
-#nav {
-  margin-top: 60px;
-  background-color: #EDEDED;
-  float:left;
-  width: 25%;
-  min-height: 100vh;
-  padding-left: 10px;
-  margin-right: 100px;
-}
 
 #readingGoals, #currentRead  {
   background-color: #03989E;
   border-radius: 20px;
   width: 850px;
-  height: 400px;
+  height: 80%;
   margin-left: 30%;
   padding: 10px;
   color: white;
@@ -124,5 +114,16 @@ body, html {
 
 #currentRead {
   margin-top: 10%;
+}
 
+#readingGoals button, #currentRead button {
+  border:none;
+  font-family: Helvetica;
+  border-radius: 5px;
+  width: 20%;
+  height: 20px;
+  font-weight: bold;
+  background-color: white;
+  color:#484545;
+  margin: 10px;
 }
