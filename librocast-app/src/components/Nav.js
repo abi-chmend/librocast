@@ -5,40 +5,26 @@ import profileLogo from './librocast_logo.png';
 function Nav() {
    return (
       <div id="nav">
-
-         <BrowserRouter>
-
-            <div id="goToProfile">
-
-
-               <div>
+         <div id="goToProfile">
+            <div>
                <img style={{float:"left"}} src={profileLogo}></img>
-
-
                <div>
-               <h3>Abigail Batinga</h3>
-               <Link to="/profile">Go to profile</Link>
+                  <h3>Abigail Batinga</h3>
+                  <Link to="/profile">Go to profile</Link>
                </div>
-               
-               </div>
-               
-               
             </div>
+         </div>
 
-            <br></br>
+         <br></br>
 
-            <Link to="/home">Home</Link>
-            <br></br>
-            
+         <Link to="/home">Home</Link>
+         <br></br>
 
-            <Link to="/feed">Feed</Link>
+         <Link to="/feed">Feed</Link>
 
-            <br></br>
-            <Link to="/explore">Explore</Link>
+         <br></br>
 
-            
-         </BrowserRouter>
-         
+         <Link to="/explore">Explore</Link>
 
       </div>
    )

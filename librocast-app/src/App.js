@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import SignUp from './signUp'
 import LogIn from './logIn'
 import Home from './components/Home'
@@ -28,19 +28,18 @@ function App() {
       )}
       */}
 
- 
-      {user ? <Nav></Nav> : null}
 
       {authIsReady &&
       <BrowserRouter>
-      <Routes>
-        <Route path="/login" element = {user ? <Navigate to="/home" /> : <Auth/>}></Route>
-        <Route path="/signup" element= {user ? <Navigate to="/home" /> : <SignUp/>}></Route>
-        <Route path="/home" element= {user ? <Home/> : <Navigate to="/login" />}></Route>
-        <Route path="/onboard" element={user ? <Onboard/> : <Navigate to="/login" />} />
-        <Route path="/profile" element={user ? <Profile/> : <Navigate to="/login" />} />
-        <Route path="/search" element={<Search />}/>
-      </Routes>
+        {user ? <Nav></Nav> : null}
+        <Routes>
+            <Route path="/login" element = {user ? <Navigate to="/home" /> : <Auth/>}></Route>
+            <Route path="/signup" element= {user ? <Navigate to="/home" /> : <SignUp/>}></Route>
+            <Route path="/home" element= {user ? <Home/> : <Navigate to="/login" />}></Route>
+            <Route path="/onboard" element={user ? <Onboard/> : <Navigate to="/login" />} />
+            <Route path="/profile" element={user ? <Profile/> : <Navigate to="/login" />}/>
+            <Route path="/search" element={<Search />}/>
+        </Routes>
       </BrowserRouter>}
 
        
