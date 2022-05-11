@@ -6,7 +6,7 @@ import './Search.css'
 
 const BOOK_URL = "/api/searchBook/";
 const USER_URL = "";
-const NUM_PAGE_RESULTS = 20;
+const NUM_PAGE_RESULTS = 5;
 
 export default function Search() {
   const [query, setQuery] = useState("");
@@ -77,12 +77,16 @@ function SearchBar({type, string}) {
 }
 
 function QueryResults({searchType, searchString}) {
-  const [response, setResponse] = useState(processQuery());
+  const [response, setResponse] = useState([]);
   const [results, setResults] = useState([]);
   const [responseLength, setResponseLength] = useState(0);
-  const [index, setIndex] = useState(0);
+  //const [index, setIndex] = useState(0);
+  const [showing, setShowing] = useState([]);
 
-  async function processQuery() {
+  React.useEffect(() => {processQuery();}, []);
+
+
+  function processQuery() {
     // TODO: fetch query response
     // TODO: case-user
     // TODO: case-book
@@ -90,9 +94,10 @@ function QueryResults({searchType, searchString}) {
       //TODO: fetch books
       //set response state
 
-      await axios.get(BOOK_URL + searchString)
+      axios.get(BOOK_URL + searchString)
         .then((res) => {
             setResponse(res.data);
+            setResults(appendResults(res.data));
             console.log(res.data);
           })
         .catch((err) => {
@@ -102,32 +107,69 @@ function QueryResults({searchType, searchString}) {
       //TODO: fetch users
       //set response state
     }
-    appendResults();
   }
 
-  function appendResults() {
-    let count;
-    let res = results;
-    if (index + NUM_PAGE_RESULTS <= response.length) {
-      count = NUM_PAGE_RESULTS;
-    } else {
-      count = response.length - index;
-    }
-    for (let i = 0; i < count; i++) {
-      let entry = response[i];
+  // function appendResults() {
+  //   let count;
+  //   let res = [];
+  //   res.push(results);
+  //   if (index + NUM_PAGE_RESULTS <= response.length) {
+  //     count = NUM_PAGE_RESULTS;
+  //   } else {
+  //     count = response.length - index;
+  //   }
+  //   for (let i = 0; i < count; i++) {
+  //     let entry = response[i];
+  //     res.push(
+  //       <BookSearchResult bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
+  //     );
+  //   }
+  //   setIndex(index + count);
+  //   setResults(res);
+  // }
+
+  function appendResults(data) {
+    let res = [];
+    for (let entry of data) {
       res.push(
-        <BookSearchResult bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
-      );
+        <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
+        );
     }
-    setIndex(index + count);
-    setResults(res);
+    return res;
   }
 
+  // function appendResults(data) {
+  //   let res = [];
+  //   let index;
+  //   results.length + NUM_PAGE_RESULTS < data.length ? index = NUM_PAGE_RESULTS : index = results.length;
+  //   for (let i = results.length; i < index; i++) {
+  //     let entry = data[i];
+  //     res.push(
+  //       <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
+  //     );
+  //   }
+  //   return results.concat(res);
+  // }
+
+  // function incrementResults(data) {
+  //   let count;
+  //   if (index + NUM_PAGE_RESULTS <= data.length) {
+  //     count = NUM_PAGE_RESULTS;
+  //   } else {
+  //     count = data.length - index;
+  //   }
+  //   setShowing(results.slice(index+count));
+  //   setIndex(index+count);
+  // }
+
+  function handleClick() {
+    setResults(appendResults(response));
+  }
 
   return (
-    <div>
+    //<button type={"button"} onClick={handleClick}>More</button>
+    <div id={"resultsContainer"}>
       {results}
-      <button type={"button"} onClick={appendResults}>More</button>
     </div>
   );
 }
@@ -141,7 +183,7 @@ function BookSearchResult({bookID, title, author, cover}) {
 
 
   return (
-    <div className={"bookSearchResult"}>
+    <div id={"bookSearchResult"}>
       <h3>{title}</h3>
       <img src={cover} alt={"Cover Image"}/>
       <h4>{author}</h4>
