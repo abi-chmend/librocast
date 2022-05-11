@@ -2,15 +2,18 @@
     background-color: white;
     height:1500px;
 }
+
 .profileWrapper {
     width: 745;
     overflow: hidden; /* will contain if #first is longer than #second */
     background: white;
 }
+
 .profilePic {
     width: 150px;
     float:left; /* add this */
 }
+
 .profileInfo {
     overflow: hidden; /* if you don't want #second to wrap below #first */
     float:left;
@@ -25,7 +28,7 @@
     flex: 1;
     border: 2px solid white;
     padding-left: 1%;
-    margin-left: 5px;
+    margin-left: 8px;
     margin-right: 30px;
 }  
 
@@ -65,7 +68,7 @@
 .postInfo {
     overflow: hidden; /* if you don't want #second to wrap below #first */
     float:right;
-    width:90%;
+    width:92%;
     padding-left: 5px;
     font-size: 25px;
 }
