@@ -29,7 +29,7 @@ function ProfileInfo() {
         const auth = getAuth();
         const user = auth.currentUser;
         const userID = user.uid;
-        const taskColRef = query(collection(db, 'profile'), where("__name__", "==", userID))
+        const taskColRef = query(collection(db, 'users'), where("__name__", "==", userID))
         onSnapshot(taskColRef, (snapshot) => {
             setUserProfile(snapshot.docs.map(doc => ({
                 id: doc.id,
