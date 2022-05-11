@@ -1,22 +1,49 @@
+.Profile {
+    background-color: white;
+    height:1500px;
+}
+
 .profileWrapper {
     width: 745;
     overflow: hidden; /* will contain if #first is longer than #second */
+    background: white;
 }
+
 .profilePic {
     width: 150px;
     float:left; /* add this */
 }
+
 .profileInfo {
     overflow: hidden; /* if you don't want #second to wrap below #first */
     float:left;
+    width:90%;
 }
+
+.profileInfo-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    border: 2px solid white;
+    padding-left: 1%;
+    margin-left: 8px;
+    margin-right: 30px;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+} 
 
 .followers {
     float:right;
+    overflow: auto;
+    position: relative;
 }
 
 .postsWrapper {
-    border:3px solid rgb(1, 155, 193);
+    border:3px solid rgb(10, 172, 212);
     border-radius: 10px;
     width:95%;
     height:400px;
@@ -25,34 +52,52 @@
 }
 
 .post{
-    border:3px solid rgb(1, 193, 167);
+    border:3px solid rgb(3, 152, 158);
     border-radius: 10px;
     width: 90%;
     overflow:hidden;
     float: left;
+    background-color: rgb(3, 152, 158);
+    color:white;
+    padding-top: 3px;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 10px;
 }
 
 .postInfo {
     overflow: hidden; /* if you don't want #second to wrap below #first */
-    
+    float:right;
+    width:92%;
+    padding-left: 5px;
+    font-size: 25px;
 }
 
 .bookshelf {
     border:3px solid rgba(238, 221, 170, 0.542);
     border-radius: 10px;
-    width:95%;
-    height:300px;
+    width:90%;
+    height:350px;
     top: 390px;
     float:left;
-    background: rgba(238, 221, 170, 0.542);
+    background: rgba(238, 221, 170, 0.94);
+    color: black;
+    margin-top: 10px;
+    padding-left: 20px;
 }
 
 .book {
     border:1.5px solid rgb(238,221, 170);
     padding: 1px;
     width:115px;
-    height:215px;
+    height:230px;
     top: 390px;
     float:left;
     background: rgb(238,221, 170);
+    padding-left: 10px;
+    font-size: 17px;
+}
+
+.bookImage {
+    padding-top:10px;
 }
