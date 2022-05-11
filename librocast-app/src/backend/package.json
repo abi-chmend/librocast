@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./src/server.js"
+    "dev": "nodemon --exec babel-node ./src/server.js",
+    "server": "npm run dev",
+    "client": "cd ../../ && npm start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^7.1.0",
     "csv-parser": "^3.0.0",
     "express": "^4.17.3",
     "firebase-admin": "^10.2.0",

@@ -1,4 +1,4 @@
-import db from "../firestore";
+import { db } from "../firestore";
 import results from "../data/csvParser";
 
 // book search
@@ -25,28 +25,8 @@ export const searchUser = async (req, res) => {
         .includes(userName.toLowerCase())
     ) {
       console.log(doc.id);
-      users.push(doc._fieldsProto);
+      users.push([doc.id, doc._fieldsProto]);
     }
   });
   res.json(users);
-};
-
-export const listGenres = async (req, res) => {
-  let list = [];
-  results.forEach((e) => {
-    let tempList = e.genre_and_votes.split(" ");
-    let text = "";
-    tempList.forEach((s) => {
-      if (isNaN(s)) {
-        text = text + " " + s;
-        console.log(s);
-      } else {
-        if (!list.includes(text)) {
-          list.push(text);
-        }
-        text = "";
-      }
-    });
-  });
-  res.json(list);
 };

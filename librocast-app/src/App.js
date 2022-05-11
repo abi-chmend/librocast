@@ -28,14 +28,14 @@ function App() {
       )}
       */}
 
-
-      <Nav></Nav>
+ 
+      {user ? <Nav></Nav> : null}
       {authIsReady &&
       <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Home/>}></Route>
         <Route path="/login" element = {user ? <Navigate to="/home" /> : <Auth/>}></Route>
         <Route path="/signup" element= {user ? <Navigate to="/home" /> : <SignUp/>}></Route>
+        <Route path="/home" element= {user ? <Home/> : <Navigate to="/login" />}></Route>
         <Route path="/onboard" element={user ? <Onboard/> : <Navigate to="/login" />} />
         <Route path="/profile" element={user ? <Profile/> : <Navigate to="/login" />} />
         <Route path="/search" element={<Search />}/>

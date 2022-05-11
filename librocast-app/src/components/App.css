@@ -4,13 +4,24 @@ body, html {
   min-height: 100vh;
 }
 
+#nav {
+
+  background-color: #EDEDED;
+  float:left;
+  width: 25%;
+  min-height: 100vh;
+  padding-left: 10px;
+  margin-right: 100px;
+}
+
 .authBox {
   background-color: #EBE9E9;
   border-radius: 20px;
   width: 40%;
-  height: 600px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 20px;
 }
 
 .authItems {
