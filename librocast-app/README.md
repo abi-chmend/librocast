@@ -4,17 +4,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Run the Project with npm
 
-1. After pulling a new commit, run npm install
-2. Open up your console
+1. Navigate to the librocast-app folder  
+2. Open up your console    
+3. After pulling a new commit, run npm install  
+4. Navigate to librocast-app/src/backend  
+5. Run npm install  
 
-**To test the website while coding:**
-3. Run npm start
-4. Go to localhost:3000
+**To test the website while coding:**  
+7. Run npm start  
+8. Go to localhost:3000  
 
-**To deploy the website:**
-3. Run npm start
-4. Exit out of that command and run npm build
-5. Push to the repo
+**To deploy the website:**  
+7. Run npm start  
+8. Exit out of that command and run npm build  
+9. Push to the repo  
 
 ## Available Scripts
 

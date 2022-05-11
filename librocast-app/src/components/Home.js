@@ -5,7 +5,7 @@ function Home() {
   return (
     <div id="App">
 
-      <h1>Welcome back, Name!</h1>
+      <h1>Welcome back, Abigale!</h1>
       
 
       <div id="readingGoals">
