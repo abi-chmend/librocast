@@ -34,7 +34,7 @@ function Auth(props) {
     <form onSubmit={handleSubmit}>
       <div className="loginItems">
         <h2>Login</h2>
-        <p>Username</p>
+        <p>Email</p>
         {/*<input type="text" id="uname" name="uname"></input>*/}
         <input
             required

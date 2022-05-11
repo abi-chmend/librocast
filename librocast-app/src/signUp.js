@@ -1,3 +1,4 @@
+import logo from './components/librocast_logo.png';
 import { useState } from 'react'
 import {useSignUp} from './useSignUp'
 import {Link} from "react-router-dom";
@@ -15,46 +16,46 @@ export default function Signup() {
   
   return (
     <div>
-      <div className='login-container'>
-        <h1>Account Information</h1>
+      <div className='authBox'>
+
+      <div className='authItems'>
+      <h1>Librocast</h1>
+      <img src={logo} alt="lightbulb logo"/>
         <form onSubmit={handleSubmit}>
-        <div className="form-margin">
-          <label> Name </label>
+        <div className="loginItems">
+        <h2>Registration</h2>
+          <p> Name </p>
           <input
             required
             type="name"
             onChange={(e) => setDisplayName(e.target.value)}
             value={displayName}
           />
-        </div>
-       
-        <div className="form-margin">
-          <label> Email Address </label>
+                 <p> Email Address </p>
           <input
             required
             type="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
-        </div>
         
-        <div className="form-margin">
-        <label>Password</label>
+        <p>Password</p>
           <input
             required
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-        </div> 
       
-        <div className="form-margin">
-          <button className="button button-primary" type="submit">sign up</button>
+        <div id="loginBtn">
+          <button type="submit">Sign up</button>
         </div>
-          
+        </div> 
+
         <p>Already have an account? <Link to ="/login">Log In</Link></p>
         {error && <p>{error}</p>}
         </form>
+        </div>
       </div>
     </div>
   )
