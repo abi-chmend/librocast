@@ -126,7 +126,7 @@ function DisplayBookshelf(props){
     return (
         <div className="bookshelf">
             <h2>Bookshelf</h2>
-            {props.bookshelf.map((item, index) => (
+            {props.bookshelf.map((book, index) => (
                 <div className="book">
                     <img
                         src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
@@ -134,7 +134,7 @@ function DisplayBookshelf(props){
                         height="160"
                         alt=""
                     />
-                    <h7>{item.book_title}</h7>
+                    <h7>{book.book_title}</h7>
                 </div>
             ))}
         </div>
