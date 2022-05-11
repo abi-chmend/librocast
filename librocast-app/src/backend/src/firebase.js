@@ -44,7 +44,7 @@ try {
 /**
 import {useState, useEffect} from 'react'
 import {collection, query, orderBy, onSnapshot} from "firebase/firestore"
-import {db} from 'librocast-app/src/backend/src/firebase'
+import {db} from 'backend/src/firebase'
 
  // change variables as seen fit
 const [results, setResults] = useState([])
