@@ -1,6 +1,8 @@
-import { Link, BrowserRouter } from 'react-router-dom';
+import {Link, BrowserRouter, Route, NavLink} from 'react-router-dom';
 import './Nav.css'
 import profileLogo from './librocast_logo.png';
+import Search from "./Search";
+import {Routes} from "react-router";
 
 function Nav() {
    return (
@@ -17,7 +19,7 @@ function Nav() {
 
                <div>
                <h3>Abigail Batinga</h3>
-               <Link to="/profile">Go to profile</Link>
+               <Link to="/profile" onClick={window.location.reload}>Go to profile</Link>
                </div>
                
                </div>
@@ -27,14 +29,17 @@ function Nav() {
 
             <br></br>
 
-            <Link to="/home">Home</Link>
+            <Link to="/home" onClick={window.location.reload}>Home</Link>
             <br></br>
             
 
-            <Link to="/feed">Feed</Link>
+            <Link to="/feed" onClick={window.location.reload}>Feed</Link>
 
             <br></br>
-            <Link to="/explore">Explore</Link>
+            <Link to="/explore" onClick={window.location.reload}>Explore</Link>
+
+            <br></br>
+            <Link to="/search" onClick={window.location.reload}>Search</Link>
 
             
          </BrowserRouter>
