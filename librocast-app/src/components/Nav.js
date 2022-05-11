@@ -1,8 +1,12 @@
 import { Link, BrowserRouter } from 'react-router-dom';
 import './Nav.css'
 import profileLogo from './librocast_logo.png';
+import {useAuthContext} from "../useAuthContext";
+import {getAuth} from "firebase/auth";
 
 function Nav() {
+    const auth = getAuth();
+
    return (
       <div id="nav">
          <div id="goToProfile">
@@ -18,6 +22,7 @@ function Nav() {
          <br></br>
 
          <Link to="/home">Home</Link>
+
          <br></br>
 
          <Link to="/feed">Feed</Link>
@@ -25,6 +30,14 @@ function Nav() {
          <br></br>
 
          <Link to="/explore">Explore</Link>
+
+         <br></br>
+
+         <a href ='#' onClick={() => {
+             auth.signOut().then((res) => {
+                 window.location.href = '/login'
+             })}
+         }>Log Out</a>
 
       </div>
    )

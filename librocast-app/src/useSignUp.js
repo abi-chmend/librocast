@@ -26,10 +26,9 @@ export const useSignUp = () => {
                     following:[],
                     goals:[],
                     picture
-                }).then((res) => window.location.href = '/onboard')
-
-
-
+                }).then((res) => {
+                    window.location.href = '/onboard'
+                })
             })
             .catch((err) => {
                 setError(err.message)

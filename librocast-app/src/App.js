@@ -33,6 +33,7 @@ function App() {
       <BrowserRouter>
         {user ? <Nav></Nav> : null}
         <Routes>
+            <Route path="/" element = {user ? <Navigate to="/home"/> : <Auth/>}></Route>
             <Route path="/login" element = {user ? <Navigate to="/home" /> : <Auth/>}></Route>
             <Route path="/signup" element= {user ? <Navigate to="/home" /> : <SignUp/>}></Route>
             <Route path="/home" element= {user ? <Home/> : <Navigate to="/login" />}></Route>
