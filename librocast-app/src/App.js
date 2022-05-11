@@ -15,7 +15,7 @@ function App() {
   const { user, authIsReady } = useAuthContext()
 
   return (
-    <div className="App">
+    <div className="App" >
       {/*}
       { authIsReady && (
         <BrowserRouter>
@@ -30,6 +30,7 @@ function App() {
 
  
       {user ? <Nav></Nav> : null}
+
       {authIsReady &&
       <BrowserRouter>
       <Routes>

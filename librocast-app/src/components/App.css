@@ -98,3 +98,9 @@ body, html {
   height:60px;
 }
 
+.app {
+  display: flex;
+}
+
+
+
