@@ -4,17 +4,16 @@ import { getAuth } from "firebase/auth";
 import {useState, useEffect} from 'react'
 import {collection, query, where, onSnapshot} from "firebase/firestore"
 import {db} from '../../utils/firebase.js'
-//import Nav from "./components/Nav"
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(){
-
   return (
     <>
-    {/* <Nav/> */}
+    <div className="Profile">
       <div className="profileWrapper">
           <ProfileInfo/>
       </div>
+    </div>
     </>
   );
 }
@@ -59,7 +58,7 @@ function ProfileInfo() {
 
     if (user !== null) {
          return (
-         <div className="profileInfo">
+         <div className="flex-child">
              {userProfile.map((profile) => (
                  <DisplayProfile
                      id={profile.id}
@@ -73,7 +72,6 @@ function ProfileInfo() {
              ))}
 
              <div className="postDisplay">
-                 <h2>Posts</h2>
                  {userPosts.map((post) => (
                      <DisplayPost
                          book_title={post.data.book_title}
@@ -95,17 +93,18 @@ function ProfileInfo() {
 }
 function DisplayProfile(props) {
     return (
-        <div className="profile">
+      <>
+        <div className="profileInfo-container">
+          <DisplayPicture picture={props.picture}/>
             <h1>{props.displayName}</h1>
-            <p>Avid reader of fantasy novels</p>
-            <DisplayPicture picture={props.picture}/>
             <DisplayMetrics
                 bookshelf={props.bookshelf}
                 followers={props.followers}
                 following={props.following}
             />
-            <DisplayBookshelf bookshelf={props.bookshelf}/>
         </div>
+        <DisplayBookshelf bookshelf={props.bookshelf}/>
+      </>
     );
 }
 function DisplayPicture(props) {
@@ -125,8 +124,8 @@ function DisplayMetrics(props) {
     const numFollowing = props.following.length
     const booksRead = props.bookshelf.length
     return (
-        <div className="followers">
-            <h1>{numFollowers}&emsp;{numFollowing}&emsp;{booksRead}</h1>
+        <div className="flex-child">
+            <h1>{numFollowers}&emsp;&emsp;{numFollowing}&emsp;&emsp;{booksRead}</h1>
             <p>Followers&emsp;Following&emsp;Books read</p>
         </div>
     );
@@ -134,23 +133,27 @@ function DisplayMetrics(props) {
 
 function DisplayPost(props){
     return (
+      <>
         <div className="post">
+          <h3>Your post:</h3>
             <div className="postInfo">
-                <h4>{props.book_title}</h4>
-                <h4>{props.contents}</h4>
+                <h4>Book: {props.book_title}</h4>
+                <h7>{props.contents}</h7>
             </div>
+            <div className="bookImage"> 
             <img
                 src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
                 width="130"
                 height="180"
                 alt=""
             />
-        </div>
+            </div>
+          </div>
+        </>
     );
 }
 
 function DisplayBookshelf(props){
-
     return (
         <div className="bookshelf">
             <h2>Bookshelf</h2>
@@ -162,7 +165,7 @@ function DisplayBookshelf(props){
                         height="160"
                         alt=""
                     />
-                    <h4>{item.book_title}</h4>
+                    <h7>{item.book_title}</h7>
                 </div>
             ))}
         </div>

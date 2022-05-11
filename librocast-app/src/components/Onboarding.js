@@ -41,8 +41,6 @@ function Onboard() {
   return (
           
   <div className='circlesContainer'>
-        <p>You clicked {count} times</p>
-
           <h1 id="question">What is your name?</h1>
           <input type="text" id="uinfo" name="uinfo"></input>
           <div>
