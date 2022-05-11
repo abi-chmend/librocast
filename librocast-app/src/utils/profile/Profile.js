@@ -1,9 +1,7 @@
 import React from "react";
 import "./profile.css"
 import { getAuth } from "firebase/auth";
-import {useState, useEffect} from 'react'
-import {collection, query, where, onSnapshot} from "firebase/firestore"
-import {db} from '../../utils/firebase.js'
+import {GetUserProfile, GetUserPosts} from '../../backend/Query'
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(){
@@ -19,41 +17,12 @@ export default function Profile(){
 }
 
 function ProfileInfo() {
+
     const auth = getAuth();
     const user = auth.currentUser;
 
-    // store matching user profile
-    const [userProfile, setUserProfile] = useState([])
-
-    useEffect(() => {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const userID = user.uid;
-        const taskColRef = query(collection(db, 'users'), where("__name__", "==", userID))
-        onSnapshot(taskColRef, (snapshot) => {
-            setUserProfile(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-        })
-    },[])
-
-
-     // store matching user posts
-     const [userPosts, setUserPosts] = useState([])
-
-     useEffect(() => {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const userID = user.uid;
-        const taskColRef = query(collection(db, 'posts'), where("user_id", "==", userID))
-        onSnapshot(taskColRef, (snapshot) => {
-            setUserPosts(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-        })
-    },[])
+    const userProfile = GetUserProfile()
+    const userPosts = GetUserPosts()
 
 
     if (user !== null) {
