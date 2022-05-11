@@ -64,10 +64,11 @@ useEffect(() => {
 {results.map((result) => (
     <Result
         id={result.id}
+        displayName={profile.displayName}
         bookshelf={result.data.bookshelf}
         followers={result.data.followers}
         following={result.data.following}
-        achievements={result.data.goals_progress}
+        achievements={result.data.goals}
         picture={result.data.picture}
     />
 ))}
