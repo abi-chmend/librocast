@@ -1,5 +1,6 @@
 .searchBar {
-    width: 50%;
+    width: 100%;
+    text-align: center;
 }
 
 .searchType {
@@ -14,6 +15,7 @@
 .searchInput {
     margin-top: 5px;
     margin-left: 5px;
+    width: 300px;
 }
 
 .searchInput, .searchType, .searchButton {
@@ -25,3 +27,20 @@
     border: 1.5px solid #00ccb8;
     background-color: white;
 }
+
+#resultsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+}
+
+#bookSearchResult {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 2%;
+    width: 320px;
+    text-align: center;
+}
+
+
