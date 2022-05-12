@@ -22,6 +22,7 @@ export const useSignUp = () => {
                     bookshelf: [],
                     displayName,
                     email,
+                    favorite_genres:[],
                     followers:[],
                     following:[],
                     goals:[],

@@ -29,6 +29,7 @@ function Onboard() {
 
         } else if (count == 1) {
            const goals = document.getElementById("response").value.split(',');
+
            goals.forEach((goal) => {
              InsertNewUserGoal(userID, goal.trim(), 0)
             })
@@ -42,6 +43,16 @@ function Onboard() {
 
             question.textContent = "What are your top 3 genres?";
         } else if (count == 2) {
+            // Skeleton for associating favorite genre to new users. To be revised
+            // based on whether genres should be implemented as dropdown
+            /**
+            const genres = document.getElementById("response").value.split(',');
+
+            genre.forEach((genre) => {
+                //InsertGenre
+            })
+            **/
+
             // navigate to home on final click
             window.location.href = "/home";
         } else {
