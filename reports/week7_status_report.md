@@ -67,12 +67,13 @@
        - Basic feed page
   - Sarah Rashid
     1. Last week's goals:
-    - Develop personal profile UI and retrieving user info
-    - Work on profile bookshelf
-    2. This week I worked on the profile page. I implemented the javascript and css to create the base UI for the page including user profile info, posts, and bookshelf.
-    3. Goals:
-    - Further develop UI
+    - Further develop profile UI
     - Connect components to retrieve user info, posts, books
+    2. I worked on the profile page, worked with backend to have frontend UI display followers, following, profile picture, posts and bookshelf on user's page.
+    3. Goals:
+    - Allow for adding posts
+    - Allow for editing profile
+    - Other profile views
   - Kihoon Lee
     1. Last week's goals:
        - Finish RESTful API implementation
