@@ -75,11 +75,10 @@
     - Connect components to retrieve user info, posts, books
   - Kihoon Lee
     1. Last week's goals:
-       - Implement user search in addition to current book search feature
-       - Add more routes and controllers to meet our requirements
-       - Practice more with Nodejs
-    2. For this week, I have restructured the backend RESTful API in the way that frontend team can easily request the data they need. Additionally, I added a few CRUD operations such as GET the genre list to let the users know the list of genres of book dataset.
-    3. Goals:
        - Finish RESTful API implementation
        - Help frontend team to connect the frontend and backend
        - Prepare for Beta release
+    2. For this week, I have implemented most of RESTful API in backend including search book, search user, add friend, delete friend, add book, and delete book. Additionally, I integrated the backend and frontend so that it communicates correctly. For the following week, I will add more tests to backend and add more API if necessary.
+    3. Goals:
+       - Add additional RESTful API implementation
+       - Add backend node tests
