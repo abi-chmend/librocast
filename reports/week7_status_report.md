@@ -4,16 +4,19 @@
 
   1. Goals from the last week
 
-     - Add user search feature in addition to book search
-     - Set up build automation
-     - Set up automated testing and continuous integration
-
-  2. This week all members continued to work on their tasks and components. We set up automated testing and continuous integration
-
-  3. Goals:
      - Finish and connect components for beta release. Have a usable app
      - Improve documentation
      - Add more tests
+
+  2. This week all members continued to work on their tasks and components. We worked on
+  getting the frontend connected to the backend. We also prepared for the beta release and
+  tried to fix some issues with our tests.
+
+  3. Goals:
+     - Fix failing tests
+        - User authentication
+     - Add more tests
+     - Functionality (front and backend) to allow users to add books and view their library
 
 - Contributions of individual team members
 
@@ -22,8 +25,6 @@
     1. Goals from the last week:
 - combine the components together
 - fix the build and test documentation.
-
-
     2. This week, I worked on combining components together, working on the nav component, 
     and the beta release.
     4. For the following week, I'd like to:
@@ -58,13 +59,18 @@
 
   - Alyssa Allums
     1. Goals from the last week:
-        - Connect frontend to backend search functionality
-        - Add search for users and genres
-    2. This week I continued working on the search functionality, linking the user to a url with search parameters when a query is submitted. I added functionality to switch between user and book search. Also contributed to the living document.
-    3. Goals:
        - Call backend to query dataset
        - Create results component
        - Basic feed page
+    2. This week I implemented the frontend functionality to make requests to the backend when
+    a user submits a search. The search page is populated with results from the response data.
+    I also worked on the beta release and worked on getting our build, tests, and workflows to run properly.
+    3. Goals:
+        - Break down search page components
+        - Create functionality to add books to library, call backend to post data
+        - Work on user search
+        - Continue figuring out broken tests
+ 
   - Sarah Rashid
     1. Last week's goals:
     - Further develop profile UI
