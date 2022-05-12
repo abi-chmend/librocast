@@ -22,35 +22,34 @@ const db = getFirestore(app)
 
 // Snippet to INSERT value to user database
 /**
-import {db} from 'librocast-app/src/backend/src/firebase'
-import {collection, addDoc, Timestamp} from 'firebase/firestore'
+ import {db} from 'librocast-app/src/backend/src/firebase'
+ import {collection, addDoc, Timestamp} from 'firebase/firestore'
 
  // insert into event handler. Adddoc automatically generates unique id for each
  // insertion.
-try {
+ try {
     await addDoc(collection(db, 'users'), {
         username: USERNAME_HERE,
         friends: FRIENDS_HERE(Comma-Separated),
         books: BOOKS_HERE(Comma-Separated),
         achievements: ACHIEVEMENTS_HERE(Comma-Separated)
     })
-    onClose()
 } catch (err) {
     alert(err)
 }
-*/
+ */
 
 // Snippet to QUERY and display value to user database
 /**
-import {useState, useEffect} from 'react'
-import {collection, query, orderBy, onSnapshot} from "firebase/firestore"
-import {db} from 'backend/src/firebase'
+ import {useState, useEffect} from 'react'
+ import {collection, query, orderBy, onSnapshot} from "firebase/firestore"
+ import {db} from 'backend/src/firebase'
 
  // change variables as seen fit
-const [results, setResults] = useState([])
+ const [results, setResults] = useState([])
 
-// function to get all results from firestore user database in realtime
-useEffect(() => {
+ // function to get all results from firestore user database in realtime
+ useEffect(() => {
     const taskColRef = query(collection(db, 'users'), orderBy('created', 'desc'))
     onSnapshot(taskColRef, (snapshot) => {
         setResults(snapshot.docs.map(doc => ({
@@ -61,7 +60,7 @@ useEffect(() => {
 },[])
 
  // insert into element to display
-{results.map((result) => (
+ {results.map((result) => (
     <Result
         id={result.id}
         displayName={profile.displayName}
@@ -72,45 +71,45 @@ useEffect(() => {
         picture={result.data.picture}
     />
 ))}
-*/
+ */
 
 // Snippet to UPDATE value in user database
 /**
- * import { doc, updateDoc } from "firebase/firestore";
- * import {db} from 'librocast-app/src/backend/src/firebase'
- *
- * // function to update value in firestore user database
- * const handleCheckedChange = async () => {
- *   const taskDocRef = doc(db, 'users', id)
- *   try{
- *     await updateDoc(taskDocRef, {
- *       field: UPDATED_VALUE
- *     })
- *   } catch (err) {
- *     alert(err)
- *   }
- * }
- *
+ import { doc, updateDoc } from "firebase/firestore";
+ import {db} from 'src/firebase'
+
+ // function to update value in firestore user database
+ const handleCheckedChange = async () => {
+    const taskDocRef = doc(db, 'users', id)
+    try{
+      await updateDoc(taskDocRef, {
+        field: UPDATED_VALUE
+      })
+    } catch (err) {
+      alert(err)
+    }
+  }
+
  * // insert function into event handler
  */
 
 // Snippet to DELETE value in user database
 /**
- * import { doc, updateDoc, deleteDoc} from "firebase/firestore";
- *  import {db} from './backend/src/firebase'
- *
- * // function to delete value in firestore user database
- * const handleDelete = async () => {
- *     const taskDocRef = doc(db, 'users', id)
- *     try{
- *         await deleteDoc(taskDocRef)
- *     } catch (err) {
- *         alert(err)
- *     }
- * }
- *
- * // insert function into event handler
- *
+ import { doc, updateDoc, deleteDoc} from "firebase/firestore";
+ import {db} from 'src/firebase'
+
+ // function to delete value in firestore user database
+ const handleDelete = async () => {
+      const taskDocRef = doc(db, 'users', id)
+      try{
+          await deleteDoc(taskDocRef)
+      } catch (err) {
+          alert(err)
+      }
+  }
+
+ // insert function into event handler
+
  */
 
 export {db}

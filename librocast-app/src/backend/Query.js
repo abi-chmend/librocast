@@ -9,11 +9,7 @@ import {getAuth} from "firebase/auth";
  * with the map() function. Each document contains an identifier id (document.id) and various fields
  * (document.data.field)
  */
-
-
 export function GetUserProfile() {
-    const auth = getAuth();
-    const user = auth.currentUser;
     // store matching user profile
     const [userProfile, setUserProfile] = useState([])
 
