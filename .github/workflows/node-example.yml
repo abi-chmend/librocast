@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: librocast-app/src/backend
+        working-directory: librocast-app
 
     steps:
       - uses: actions/checkout@v3
