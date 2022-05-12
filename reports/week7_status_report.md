@@ -35,11 +35,13 @@
        - Need to figure out how to "SQLize" the Firebase queries.
        - Can create some skeleton files for Firebase
        - Should look how to "SQLize" FileStream (for the GoodReads database, which is currently implemented as CSV)
-    2. Added skeleton files for Firebase and helped with the CI/Testing Report
+    2. Connected Firebase with most of the program, refined Firebase schema, fixed navbar, did small arse bideo
     3. Goals:
+       - Finalized Firebase schema
+       - Merge Firebase files (there's 3!)
+       - Combine queries with CSV queries
+       - Clean file hierarchy structure to be more consistent
        - Check if queries can be optimized better
-       - Try and import firebase queries into webpages, if possible
-       - Solidify tags for different databases
        
   - Tommy Chung
 
