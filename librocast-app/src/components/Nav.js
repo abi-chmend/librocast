@@ -1,49 +1,45 @@
-import {Link, BrowserRouter} from 'react-router-dom';
+import { Link, BrowserRouter } from 'react-router-dom';
 import './Nav.css'
 import profileLogo from './librocast_logo.png';
 import {useAuthContext} from "../useAuthContext";
+import {getAuth} from "firebase/auth";
 
 function Nav() {
-   const { dispatch } = useAuthContext()
+   const auth = getAuth();
 
    return (
-      <div id="nav">
+       <div id="nav">
+          <div id="goToProfile">
+             <div>
+                <img style={{float:"left"}} src={profileLogo}></img>
+                <div>
+                   <h3>LIBROCAST</h3>
+                   <Link to="/profile">Go to profile</Link>
+                </div>
+             </div>
+          </div>
 
-         <BrowserRouter>
+          <br></br>
 
-            <div id="goToProfile">
-               <div>
-               <img style={{float:"left"}} alt="Profile" src={profileLogo}></img>
-               <div>
-                  <h3>LIBROCAST</h3>
-                  <Link to="/profile">Go to profile</Link>
-               </div>
-               </div>
-            </div>
+          <Link to="/home">Home</Link>
 
-            <br></br>
-            <Link to="/home">Home</Link>
+          <br></br>
 
-            <br></br>
-            <Link to="/feed">Feed</Link>
+          <Link to="/feed">Feed</Link>
 
-            <br></br>
-            <Link to="/explore">Explore</Link>
+          <br></br>
 
-            <br></br>
-            <Link to="/search">Search</Link>
+          <Link to="/explore">Explore</Link>
 
+          <br></br>
 
+          <a href ='#' onClick={() => {
+             auth.signOut().then((res) => {
+                window.location.href = '/login'
+             })}
+          }>Log Out</a>
 
-         </BrowserRouter>
-         
-
-      </div>
+       </div>
    )
 }
-//             <br></br>
-//             <a href = "#" onClick={() => {
-//                dispatch({ type: 'LOGOUT'})
-//                window.location.href = '/login'
-//             }}>Log Out</a>
 export default Nav;
