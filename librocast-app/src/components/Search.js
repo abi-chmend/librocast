@@ -5,11 +5,11 @@ import axios from 'axios'
 import './Search.css'
 
 const BOOK_URL = "/api/searchBook/";
-const USER_URL = "";
-const NUM_PAGE_RESULTS = 5;
+//const USER_URL = "";
+//const NUM_PAGE_RESULTS = 5;
 
 export default function Search() {
-  const [query, setQuery] = useState("");
+  //const [query, setQuery] = useState("");
   const url = new URLSearchParams(window.location.search);
 
   //check for properly formatted url
@@ -33,16 +33,12 @@ export default function Search() {
     );
   }
 
-  function clearDisplay() {
-    //reset search state
-  }
-
 }
 
 function SearchBar({type, string}) {
   const [searchInput, setSearchInput] = useState(string);
   const [searchType, setSearchType] = useState(type);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -79,11 +75,11 @@ function SearchBar({type, string}) {
 function QueryResults({searchType, searchString}) {
   const [response, setResponse] = useState([]);
   const [results, setResults] = useState([]);
-  const [responseLength, setResponseLength] = useState(0);
+  //const [responseLength, setResponseLength] = useState(0);
   //const [index, setIndex] = useState(0);
   const [showing, setShowing] = useState([]);
 
-  React.useEffect(() => {processQuery();}, []);
+  React.useEffect(processQuery, [searchString, searchType]);
 
 
   function processQuery() {
@@ -162,9 +158,9 @@ function QueryResults({searchType, searchString}) {
   //   setIndex(index+count);
   // }
 
-  function handleClick() {
-    setResults(appendResults(response));
-  }
+  // function handleClick() {
+  //   setResults(appendResults(response));
+  // }
 
   return (
     //<button type={"button"} onClick={handleClick}>More</button>
@@ -185,7 +181,7 @@ function BookSearchResult({bookID, title, author, cover}) {
   return (
     <div id={"bookSearchResult"}>
       <h3>{title}</h3>
-      <img src={cover} alt={"Cover Image"}/>
+      <img src={cover} alt={"Book cover"}/>
       <h4>{author}</h4>
       <button type={"button"} onClick={addToLibrary}>Add Book</button>
     </div>

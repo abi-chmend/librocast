@@ -5,7 +5,8 @@
   "scripts": {
     "install": "cd ./librocast-app/ && npm install && cd ./src/backend && npm install",
     "start": "cd ./librocast-app/src/backend && npm start",
-    "test": "cd ./librocast-app/ && npm test && cd ./src/backend && npm test"
+    "test": "cd ./librocast-app/ && npm test && cd ./src/backend && npm test",
+    "build": "cd ./librocast-app && npm run-script build"
   },
   "author": "",
   "license": "MIT",
