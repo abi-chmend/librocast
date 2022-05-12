@@ -1,8 +1,6 @@
-import {Link, BrowserRouter, Route, NavLink} from 'react-router-dom';
+import {Link, BrowserRouter} from 'react-router-dom';
 import './Nav.css'
 import profileLogo from './librocast_logo.png';
-import Search from "./Search";
-import {Routes} from "react-router";
 
 function Nav() {
    return (
@@ -14,7 +12,7 @@ function Nav() {
 
 
                <div>
-               <img style={{float:"left"}} src={profileLogo}></img>
+               <img style={{float:"left"}} alt="Profile" src={profileLogo}></img>
 
 
                <div>
