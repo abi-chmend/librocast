@@ -13,7 +13,7 @@ function Nav() {
             <div>
                <img style={{float:"left"}} src={profileLogo}></img>
                <div>
-                  <h3>Abigail Batinga</h3>
+                  <h3>LIBROCAST</h3>
                   <Link to="/profile">Go to profile</Link>
                </div>
             </div>
