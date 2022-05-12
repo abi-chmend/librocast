@@ -23,4 +23,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - run: npm run build --if-present
+        env:
+         CI: false
       - run: npm test
