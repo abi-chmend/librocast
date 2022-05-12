@@ -14,16 +14,16 @@ export function GetUserProfile() {
     const [userProfile, setUserProfile] = useState([])
 
     useEffect(() => {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const userID = user.uid;
-        const taskColRef = query(collection(db, 'users'), where("__name__", "==", userID))
-        onSnapshot(taskColRef, (snapshot) => {
-            setUserProfile(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-        })
+        const userID = GetUserID();
+        if (userID != null) {
+            const taskColRef = query(collection(db, 'users'), where("__name__", "==", userID))
+            onSnapshot(taskColRef, (snapshot) => {
+                setUserProfile(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data()
+                })))
+            })
+        }
     }, [])
 
     return userProfile
@@ -34,17 +34,28 @@ export function GetUserPosts() {
     const [userPosts, setUserPosts] = useState([])
 
     useEffect(() => {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const userID = user.uid;
-        const taskColRef = query(collection(db, 'posts'), where("user_id", "==", userID))
-        onSnapshot(taskColRef, (snapshot) => {
-            setUserPosts(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-        })
+        const userID = GetUserID();
+        if (userID != null) {
+            const taskColRef = query(collection(db, 'users'), where("__name__", "==", userID))
+            onSnapshot(taskColRef, (snapshot) => {
+                setUserPosts(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data()
+                })))
+            })
+        }
     },[])
 
     return userPosts
+}
+
+// 'private' helper function to return current user id
+function GetUserID() {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user == null) {
+        return null;
+    } else {
+        return user.uid;
+    }
 }
