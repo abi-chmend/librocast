@@ -7,11 +7,12 @@ export default function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
+  const [pictureURL, setPictureURL] = useState('')
   const { error, signup } = useSignUp()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    signup(email,password,displayName)
+    signup(email,password,displayName, pictureURL)
   }
   
   return (
@@ -31,7 +32,7 @@ export default function Signup() {
             onChange={(e) => setDisplayName(e.target.value)}
             value={displayName}
           />
-                 <p> Email Address </p>
+          <p> Email Address </p>
           <input
             required
             type="email"
@@ -39,14 +40,21 @@ export default function Signup() {
             value={email}
           />
         
-        <p>Password</p>
-          <input
-            required
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-      
+          <p>Password</p>
+            <input
+              required
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+
+            <p>Profile Picture URL</p>
+            <input
+                required
+                type="pictureURL"
+                onChange={(e) => setPictureURL(e.target.value)}
+                value={pictureURL}
+            />
         <div id="loginBtn">
           <button type="submit">Sign up</button>
         </div>

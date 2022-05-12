@@ -1,9 +1,7 @@
 import React from "react";
 import "./profile.css"
 import { getAuth } from "firebase/auth";
-import {useState, useEffect} from 'react'
-import {collection, query, where, onSnapshot} from "firebase/firestore"
-import {db} from '../../utils/firebase.js'
+import {GetUserProfile, GetUserPosts} from '../../backend/Query'
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(){
@@ -19,41 +17,12 @@ export default function Profile(){
 }
 
 function ProfileInfo() {
+
     const auth = getAuth();
     const user = auth.currentUser;
 
-    // store matching user profile
-    const [userProfile, setUserProfile] = useState([])
-
-    useEffect(() => {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const userID = user.uid;
-        const taskColRef = query(collection(db, 'profile'), where("__name__", "==", userID))
-        onSnapshot(taskColRef, (snapshot) => {
-            setUserProfile(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-        })
-    },[])
-
-
-     // store matching user posts
-     const [userPosts, setUserPosts] = useState([])
-
-     useEffect(() => {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const userID = user.uid;
-        const taskColRef = query(collection(db, 'posts'), where("user_id", "==", userID))
-        onSnapshot(taskColRef, (snapshot) => {
-            setUserPosts(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-        })
-    },[])
+    const userProfile = GetUserProfile()
+    const userPosts = GetUserPosts()
 
 
     if (user !== null) {
@@ -157,7 +126,7 @@ function DisplayBookshelf(props){
     return (
         <div className="bookshelf">
             <h2>Bookshelf</h2>
-            {props.bookshelf.map((item, index) => (
+            {props.bookshelf.map((book, index) => (
                 <div className="book">
                     <img
                         src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
@@ -165,7 +134,7 @@ function DisplayBookshelf(props){
                         height="160"
                         alt=""
                     />
-                    <h7>{item.book_title}</h7>
+                    <h7>{book.book_title}</h7>
                 </div>
             ))}
         </div>
