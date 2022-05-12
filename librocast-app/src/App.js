@@ -14,10 +14,10 @@ function App() {
 
   return (
       <div className="App" >
-        {user ? <Nav></Nav> : null}
 
         {authIsReady &&
             <BrowserRouter>
+              {user ? <Nav></Nav> : null}
               <Routes>
                 <Route path="/" element = {user ? <Navigate to="/home"/> : <Auth/>}></Route>
                 <Route path="/login" element = {user ? <Navigate to="/home" /> : <Auth/>}></Route>
