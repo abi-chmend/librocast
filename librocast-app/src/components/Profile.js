@@ -1,7 +1,7 @@
 import React from "react";
 import "./profile.css"
 import { getAuth } from "firebase/auth";
-import {GetUserProfile, GetUserPosts} from '../../backend/Query'
+import {GetUserProfile, GetUserPosts} from '../backend/Query'
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(){

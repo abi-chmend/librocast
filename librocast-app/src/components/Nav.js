@@ -33,6 +33,9 @@ function Nav() {
 
           <br></br>
 
+          <Link to="/search">Search</Link>
+
+          <br></br>
           <a href ='#' onClick={() => {
              auth.signOut().then((res) => {
                 window.location.href = '/login'

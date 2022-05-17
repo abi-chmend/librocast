@@ -7,7 +7,7 @@ import Search from './components/Search'
 import Auth from './components/Auth'
 import Onboard from './components/Onboarding'
 import Nav from './components/Nav';
-import Profile from './utils/profile/Profile';
+import Profile from './components/Profile';
 
 function App() {
   const { user, authIsReady } = useAuthContext()
