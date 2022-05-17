@@ -7,9 +7,6 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
-// JavaScript
-import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqSMPvorj0QIpvZNMRxLlKn2c3EWKQ_dI",
@@ -24,8 +21,9 @@ const firebaseConfig = {
 
 // JavaScript
 const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
 const analytics = getAnalytics(app);
+export const auth = getAuth();
+export const db = getFirestore(app);
 
 // Code Snippets based on:
 // https://blog.logrocket.com/build-crud-application-react-firebase-web-sdk-v9/
@@ -121,7 +119,4 @@ const analytics = getAnalytics(app);
  // insert function into event handler
 
  */
-
-export const auth = getAuth();
-export const db = getFirestore();
 
