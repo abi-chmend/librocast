@@ -5,7 +5,9 @@ import results from "../data/csvParser";
 export const searchBook = async (req, res) => {
   const { title, genre } = req.params;
   let filtered = results;
-  let book = filtered.filter((o) => o.title.includes(title));
+  let book = filtered.filter((o) =>
+    o.title.toLowerCase().includes(title.toLowerCase())
+  );
   if (!book) {
     res.json([]);
   } else {
