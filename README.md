@@ -11,35 +11,9 @@ Librocast is a full-stack web application that allows users to create a profile 
 - Give readers a "creator" community for reading through live-streamed readings and collaborative book clubs
 - Provide an inclusive environment for readers of all levels to get started with reading
 
-> Repository Layout
-- reports: contains weekly reports
-- librocast-app: contains react app for librocast
 
 ## Getting Started
-Run the following commands in the top-level directory
-#### Install Dependencies
-Before building, testing, or running the system, first install dependencies:
-```
-npm install
-```
-
-#### Run the App
-To run the app and the server:
-```
-npm start
-```
-The app can then be opened in your browser at localhost:3000
-
-#### Testing
-To run all tests:
-```
-npm test
-```
-#### Build
-To build the app for deployment:
-```
-npm run build
-```
+[Developer's Guide](./documentation/developer_documentation.md)
 
 ## Functional Use Cases
 * User can sign up and login
