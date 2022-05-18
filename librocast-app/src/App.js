@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { useContext } from "react"
 import SignUp from './signUp'
 import Home from './components/Home'
-import { useAuthContext } from './useAuthContext'
+import { AuthContext } from './authContext'
 import './components/App.css'
 import Search from './components/Search'
 import Auth from './components/Auth'
@@ -10,7 +11,9 @@ import Nav from './components/Nav';
 import Profile from './utils/profile/Profile';
 
 function App() {
-  const { user, authIsReady } = useAuthContext()
+  
+  const { user, authIsReady } = useContext(AuthContext)
+
 
   return (
       <div className="App" >

@@ -1,7 +1,7 @@
 import { createContext, useReducer, useEffect } from 'react'
 import { auth } from './utils/firebase'
 
-export const AuthContext = createContext()
+export const AuthContext = createContext("default")
 
 export const authReducer = (state, action) => {
   switch (action.type) {
