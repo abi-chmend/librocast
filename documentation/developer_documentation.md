@@ -7,7 +7,7 @@
     - __src/:__ frontend, backend, and tests
         - __backend/:__ code and tests related to server and database functionality
             - __src/:__
-                - __controllers/:__ access points for frontend
+                - __controllers/:__ handles user request
                 - __data/:__ data files
                 - __routers/:__ express routers and endpoints
         - __components/:__ code and tests related to react components
