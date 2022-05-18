@@ -53,6 +53,6 @@ You will be asked to:
 
 Submit your bug report and we will look it over!
 
-##Known Bugs
+## Known Bugs
 There are currently no known bugs
 
