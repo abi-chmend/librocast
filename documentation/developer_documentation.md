@@ -1,11 +1,6 @@
-# Developer Documentation
-## Source Code
-To obtain the source code, clone the repository. Run the command in your terminal: 
-```
-Git clone https://github.com/abbybatinga/librocast.git
-```    
+# DEVELOPER DOCUMENTATION
 
-## Directory Layout
+## DIRECTORY LAYOUT
 - __documentation/:__ app guides and info
 - __librocast-app/:__ application code
     - __public/:__ supplemental files
@@ -19,8 +14,15 @@ Git clone https://github.com/abbybatinga/librocast.git
         - __util/:__ configuration
 - __reports/:__ weekly status reports
 
-## Using npm
+## HOW TO INSTALL AND RUN SOFTWARE
 #### Prerequisites
+  
+#### Source Code
+To obtain the source code, clone the repository. Run the command in your terminal: 
+```
+Git clone https://github.com/abbybatinga/librocast.git
+```    
+
 For information on installing and using npm please visit [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 #### Install Dependencies
@@ -50,7 +52,7 @@ npm run build
 ```
 
 
-## Adding Tests
+## ADDING TESTS
 To add a new test to the code base, create a ‘component_name.test.js’ file. Within this test file, create a “describe” block (provided by Jest) to hold the test suite
 >Frontend:  
 >add test cases using the “test” block.
