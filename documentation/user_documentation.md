@@ -3,7 +3,7 @@
 ## What is Librocast?
 Librocast provides a social platform for users to track books they are reading, update their friends on what they are reading, and find new books through updates from their community. Librocast also has a goal tracking system where users can set their reading goals.
 
-## How to access Librocast Librocast
+## How to access Librocast
 Librocast is [will be] hosted publicly, so there are no requirements to install or run the system.
 All you need is a browser that runs Javascript! To access Librocast navigate to our [landing page]()
 
@@ -41,4 +41,18 @@ You can make posts through your profile page.
 This feature is a work in progress
 
 ## Reporting a Bug
+Bug are documented through GitHub. If you experience a bug go to the issues tab
+in the Librocast repository. You should see a 'Bug Report' template. Press `Get Started` and fill out the report.
+You will be asked to:
+1. Describe the bug
+2. List steps to reproduce the behavior
+3. Describe the expected behavior
+4. Include screenshots if applicable
+5. Note your desktop or smartphone specification
+6. Leave any addition context you think is relevant
+
+Submit your bug report and we will look it over!
+
+##Known Bugs
+There are currently no known bugs
 
