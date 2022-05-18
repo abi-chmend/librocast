@@ -14,7 +14,7 @@ Librocast is a full-stack web application that allows users to create a profile 
 
 ## Getting Started
 * For information regarding testing, building, and running our app see our  [Developer's Guide](./documentation/developer_documentation.md)
-* For information on using our app see our [User's Guide]()
+* For information on using our app see our [User's Guide](./documentation/user_documentation.md)
 
 ## Functional Use Cases
 * User can sign up and login
