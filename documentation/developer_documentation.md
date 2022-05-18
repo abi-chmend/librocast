@@ -20,6 +20,9 @@ Git clone https://github.com/abbybatinga/librocast.git
 - __reports/:__ weekly status reports
 
 ## Using npm
+#### Prerequisites
+For information on installing and using npm please visit [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
 #### Install Dependencies
 Before building, testing, or running the system, first install dependencies:
 ```
