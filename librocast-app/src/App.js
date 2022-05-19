@@ -9,6 +9,7 @@ import Auth from './components/Auth'
 import Onboard from './components/Onboarding'
 import Nav from './components/Nav';
 import Profile from './components/Profile';
+import ProfileQuery from './components/ProfileQuery';
 
 function App() {
   
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/onboard" element={user ? <Onboard/> : <Navigate to="/login" />} />
                 <Route path="/profile" element={user ? <Profile/> : <Navigate to="/login" />}/>
                 <Route path="/search" element={<Search />}/>
+                <Route path="/search/profile=:id" element={<ProfileQuery />} />
               </Routes>
             </BrowserRouter>}
       </div>

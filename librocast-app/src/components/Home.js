@@ -1,18 +1,28 @@
 import './App.css'
 import {GetUserProfile} from '../backend/Query'
+import {getAuth} from "firebase/auth";
 
 function Home() {
-  const userProfile = GetUserProfile()
-  return (
-    <div id="App">
-      {userProfile.map((profile) => (
-          <DisplayHome
-              displayName={profile.data.displayName}
-              goals={profile.data.goals}
-              currentBook={profile.data.book_reading}/>
-      ))}
-    </div>
-  )
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user !== null) {
+      const userProfile = GetUserProfile(user.uid)
+      return (
+          <div id="App">
+              {userProfile.map((profile) => (
+                  <DisplayHome
+                      displayName={profile.data.displayName}
+                      goals={profile.data.goals}
+                      currentBook={profile.data.book_reading}/>
+              ))}
+          </div>
+      )
+  } else {
+      return (
+         <div>You ain't logged in pardner!</div>
+      );
+  }
+
 }
 
 function DisplayHome(props) {

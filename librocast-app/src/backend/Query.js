@@ -1,20 +1,22 @@
 import {useState, useEffect} from 'react'
-import {collection, query, onSnapshot, where} from "firebase/firestore"
+import {collection, query, onSnapshot, where, getDocs} from "firebase/firestore"
 import {db} from '../utils/firebase.js'
 import {getAuth} from "firebase/auth";
 
 /**
  * This file contains variations of firestore queries
- * @returns a list of documents that match the corresponding query. This list can be iterated over
+ * @returns an array of documents that match the corresponding query. This can be iterated over
  * with the map() function. Each document contains an identifier id (document.id) and various fields
- * (document.data.field)
+ * (document.data.field). The list can be empty if there are no matches in the database.
  */
-export function GetUserProfile() {
+export function GetUserProfile(userID) {
+    if (arguments.length !== 1) {
+        throw("Invalid number of arguments: GetUserProfile(userID) requires a user's unique id")
+    }
     // store matching user profile
     const [userProfile, setUserProfile] = useState([])
 
     useEffect(() => {
-        const userID = GetUserID();
         if (userID != null) {
             const taskColRef = query(collection(db, 'users'), where("__name__", "==", userID))
             onSnapshot(taskColRef, (snapshot) => {
@@ -24,17 +26,19 @@ export function GetUserProfile() {
                 })))
             })
         }
-    }, [])
+    }, [userID])
 
     return userProfile
 }
 
-export function GetUserPosts() {
+export function GetUserPosts(userID) {
+    if (arguments.length !== 1) {
+        throw("Invalid number of arguments: GetUserPosts(userID) requires a user's unique id")
+    }
     // store matching user posts
     const [userPosts, setUserPosts] = useState([])
 
     useEffect(() => {
-        const userID = GetUserID();
         if (userID != null) {
             const taskColRef = query(collection(db, 'users'), where("__name__", "==", userID))
             onSnapshot(taskColRef, (snapshot) => {
@@ -44,18 +48,7 @@ export function GetUserPosts() {
                 })))
             })
         }
-    },[])
+    },[userID])
 
     return userPosts
-}
-
-// 'private' helper function to return current user id
-function GetUserID() {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    if (user == null) {
-        return null;
-    } else {
-        return user.uid;
-    }
 }
