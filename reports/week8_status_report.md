@@ -34,8 +34,11 @@
       - Combine queries with CSV queries
       - Clean file hierarchy structure to be more consistent
       - Check if queries can be optimized better
-    2. 
+    2. Currently working on implementing profile search. Having some async issues tho
     3. Goals:
+      - Merge Firebase files (there's 3!)
+      - Combine queries with CSV queries
+      - Check if queries can be optimized better
   - Tommy Chung
 
     1. Goals from the last week
