@@ -48,8 +48,8 @@
      - Add database to Firebase
      - Convert book data to Firebase
 
-    2.
-    3. Goals:
+    2. In this week, I worked on debugging authentication feature. I fixed failing tests and started to work on implementing putting post data to database which is given from the frontend. 
+    3. Goals: Implement backend for add post
 
   - Alyssa Allums
 
