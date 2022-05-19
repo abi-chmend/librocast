@@ -21,29 +21,27 @@
   - Abigail Batinga
 
     1. Goals from the last week:
-
-  - add the explore page
-  - connect home page goals and current read section with backend.
+      - add the explore page
+      - connect home page goals and current read section with backend.
 
   2.
   3. For the following week, I'd like to:
 
   - Justin Chao
     1. Goals from last week
-       - Finalized Firebase schema
-       - Merge Firebase files (there's 3!)
-       - Combine queries with CSV queries
-       - Clean file hierarchy structure to be more consistent
-       - Check if queries can be optimized better
-    2.
+      - Finalized Firebase schema
+      - Merge Firebase files (there's 3!)
+      - Combine queries with CSV queries
+      - Clean file hierarchy structure to be more consistent
+      - Check if queries can be optimized better
+    2. 
     3. Goals:
   - Tommy Chung
 
     1. Goals from the last week
-
-    - Implement React component to read and write database in Firebase.
-    - Add database to Firebase
-    - Convert book data to Firebase
+     - Implement React component to read and write database in Firebase.
+     - Add database to Firebase
+     - Convert book data to Firebase
 
     2.
     3. Goals:
