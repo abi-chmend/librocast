@@ -60,8 +60,10 @@
     - Work on user search
     - Continue figuring out broken tests
 
-    2.
+    2. This week I worked on Documentation and tried to debug the failing tests. I'm currently working on posting book data to the user's account.
     3. Goals:
+    - User search
+    - Add search tests
 
   - Sarah Rashid
 
