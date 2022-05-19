@@ -24,8 +24,10 @@
       - add the explore page
       - connect home page goals and current read section with backend.
 
-  2.
+  2. I'm currently working on connecting home page goals with the backend and fixing our test suite.
   3. For the following week, I'd like to:
+   - add book clubs
+   - check out the instagram API.
 
   - Justin Chao
     1. Goals from last week
