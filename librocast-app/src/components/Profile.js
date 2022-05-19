@@ -21,11 +21,10 @@ function ProfileInfo() {
     const auth = getAuth();
     const user = auth.currentUser;
 
-    const userProfile = GetUserProfile()
-    const userPosts = GetUserPosts()
-
 
     if (user !== null) {
+        const userProfile = GetUserProfile(user.uid)
+        const userPosts = GetUserPosts(user.uid)
          return (
          <div className="flex-child">
              {userProfile.map((profile) => (
@@ -56,7 +55,7 @@ function ProfileInfo() {
 
     } else {
         return (
-            <p>You ain't logged in pardner!</p>
+            <div>You ain't logged in pardner!</div>
         );
     }
 }

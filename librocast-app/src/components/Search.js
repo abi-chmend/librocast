@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import {collection, query, onSnapshot, where} from "firebase/firestore"
 import axios from 'axios'
 
 import './Search.css'
