@@ -66,8 +66,10 @@
     - Allow for editing profile
     - Other profile views
 
-    2.
+    2. In this week, I have been working on the ui for adding posts. A user will be able to add a post about a book their reading with a caption and their progress through their profile page.
     3. Goals:
+      - connect front end to backend for adding posts, make available in master
+      - other profile views
 
   - Kihoon Lee
     1. Last week's goals:
