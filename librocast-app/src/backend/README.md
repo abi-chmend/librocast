@@ -8,9 +8,15 @@ Search user
 
 - /api/searchUser/:userName
 
-Add book to bookshelf
+Add book to bookshelf (To-Be-Read)
 
 - /api/addBook/:userID/:bookID
+
+Add book to bookshelf (In progress)
+
+- /api/addBook/:userID/:bookID
+
+Add book to bookshelf (Completed)
 
 Add friend to friends list
 
