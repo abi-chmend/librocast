@@ -10,13 +10,15 @@ export const follow = async (req, res) => {
   } else if (!friend.exists) {
     res.send("Following ID: " + fid + " does not exist");
   } else {
+    user = await db.collection("users").doc(userID);
+    friend = await db.collection("users").doc(fid);
     user.update({
       following: admin.firestore.FieldValue.arrayUnion(fid),
     });
     friend.update({
       followers: admin.firestore.FieldValue.arrayUnion(userID),
     });
-    res.send(userID + " started to follow " + friend);
+    res.send(userID + " started to follow " + fid);
   }
 };
 
@@ -31,12 +33,14 @@ export const unfollow = async (req, res) => {
   } else if (!friend.exists) {
     res.send("Following ID: " + fid + " does not exist");
   } else {
+    user = await db.collection("users").doc(userID);
+    friend = await db.collection("users").doc(fid);
     user.update({
       following: admin.firestore.FieldValue.arrayRemove(fid),
     });
     friend.update({
       followers: admin.firestore.FieldValue.arrayRemove(userID),
     });
-    res.send(userID + " is not unfollowing " + friend);
+    res.send(userID + " is not unfollowing " + fid);
   }
 };

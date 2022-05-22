@@ -39,6 +39,6 @@ export const getUserInfo = async (req, res) => {
   if (!user.exists) {
     res.send("UserID: " + userID + " does not exist");
   } else {
-    res.json(user);
+    res.json(user._fieldsProto);
   }
 };
