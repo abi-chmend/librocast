@@ -1,5 +1,11 @@
 import { db, admin } from "../firestore";
 
+export const addBook_to_be_read = async (req, res) => {};
+
+export const addBook_in_progress = async (req, res) => {};
+
+export const addBook_completed = async (req, res) => {};
+
 export const addBook = async (req, res) => {
   const { userID, bookID } = req.params;
   let user = await db.collection("bookshelf").doc(userID).get();

@@ -26,9 +26,19 @@ export const searchUser = async (req, res) => {
         .toLowerCase()
         .includes(userName.toLowerCase())
     ) {
-      console.log(doc.id);
       users.push([doc.id, doc._fieldsProto]);
     }
   });
   res.json(users);
+};
+
+// get user info with user ID
+export const getUserInfo = async (req, res) => {
+  const { userID } = req.params;
+  let user = await db.collection("users").doc(userID).get();
+  if (!user.exists) {
+    res.send("UserID: " + userID + " does not exist");
+  } else {
+    res.json(user);
+  }
 };

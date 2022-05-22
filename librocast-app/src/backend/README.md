@@ -1,31 +1,43 @@
 # API Endpoints
 
+Get user info
+
+- Returns a Json list of user data (pass unique user ID)
+
+- /api/getUserInfo/:userID
+
 Search for a book
 
-- /api/searchBook/:book/:genre?
+- Returns a Json list of books that includes :book_title as their title.
+
+- /api/searchBook/:book_title/:genre?
 
 Search user
+
+- Returns a Json pair of unique user ID and user data that includes :userName as their displayValue. Returned data format: [ID, User Data]
 
 - /api/searchUser/:userName
 
 Add book to bookshelf (To-Be-Read)
 
-- /api/addBook/:userID/:bookID
+- /api/addBook/to-be-read/:userID/:bookID
 
 Add book to bookshelf (In progress)
 
-- /api/addBook/:userID/:bookID
+- /api/addBook/in-progress/:userID/:bookID
 
 Add book to bookshelf (Completed)
 
-Add friend to friends list
-
-- /api/addFriend/:userID/:friendID
+- /api/addBook/completed/:userID/:bookID
 
 Delete book from bookshelf
 
 - /api/deleteBook/:userID/:bookID
 
-Delete friend from friends list
+Follow a user
 
-- /api/deleteFriend/:userID/:friendID
+- /api/follow/:userID/:targetUserID
+
+Unfollow a user
+
+- /api/unfollow/:userID/:targetUserID

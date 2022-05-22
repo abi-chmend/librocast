@@ -1,32 +1,42 @@
 import { db, admin } from "../firestore";
 
-export const addFriend = async (req, res) => {
-  const { userID, friendID } = req.params;
-  let user = await db.collection("friendsList").doc(userID).get();
-  if (!user.exists) {
-    user.set({
-      friendID: [],
-    });
-  }
-  user = await db.collection("friendsList").doc(userID);
-  user.update({
-    friendID: admin.firestore.FieldValue.arrayUnion(friendID),
-  });
-  res.send("Successfully added friendID:" + friendID + " to userID:" + userID);
-};
-
-export const deleteFriend = async (req, res) => {
-  const { userID, friendID } = req.params;
-  let user = await db.collection("friendsList").doc(userID).get();
+// Follow a user if only if the given user and follower exits.
+export const follow = async (req, res) => {
+  const { userID, fid } = req.params;
+  let user = await db.collection("users").doc(userID).get();
+  let friend = await db.collection("users").doc(fid).get();
   if (!user.exists) {
     res.send("UserID: " + userID + " does not exist");
+  } else if (!friend.exists) {
+    res.send("Following ID: " + fid + " does not exist");
   } else {
-    user = await db.collection("friendsList").doc(userID);
     user.update({
-      bookID: admin.firestore.FieldValue.arrayRemove(friendID),
+      following: admin.firestore.FieldValue.arrayUnion(fid),
     });
-    res.send(
-      "Successfully deleted friendID:" + friendID + " from userID:" + userID
-    );
+    friend.update({
+      followers: admin.firestore.FieldValue.arrayUnion(userID),
+    });
+    res.send(userID + " started to follow " + friend);
+  }
+};
+
+// Unfollow a user if only if the given user and follower exits and user is
+// follwing the given follower.
+export const unfollow = async (req, res) => {
+  const { userID, fid } = req.params;
+  let user = await db.collection("users").doc(userID).get();
+  let friend = await db.collection("users").doc(fid).get();
+  if (!user.exists) {
+    res.send("UserID: " + userID + " does not exist");
+  } else if (!friend.exists) {
+    res.send("Following ID: " + fid + " does not exist");
+  } else {
+    user.update({
+      following: admin.firestore.FieldValue.arrayRemove(fid),
+    });
+    friend.update({
+      followers: admin.firestore.FieldValue.arrayRemove(userID),
+    });
+    res.send(userID + " is not unfollowing " + friend);
   }
 };
