@@ -17,6 +17,7 @@ export const useSignUp = () => {
                 dispatch({ type: 'LOGIN', payload: res.user})
                 console.log('user signed up:', res.user)
                 setDoc(doc(db, 'users', res.user.uid),{
+                    bio: "",
                     bookshelf: [],
                     displayName,
                     email,
