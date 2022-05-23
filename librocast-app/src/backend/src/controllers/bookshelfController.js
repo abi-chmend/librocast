@@ -1,38 +1,91 @@
 import { db, admin } from "../firestore";
 
-export const addBook_to_be_read = async (req, res) => {};
-
-export const addBook_in_progress = async (req, res) => {};
-
-export const addBook_completed = async (req, res) => {};
-
-export const addBook = async (req, res) => {
+export const addBook_to_be_read = async (req, res) => {
   const { userID, bookID } = req.params;
-  let user = await db.collection("bookshelf").doc(userID).get();
-  if (!user.exists) {
-    user.set({
-      bookID: [],
-    });
-  }
-  user = await db.collection("bookshelf").doc(userID);
-  user.update({
-    bookID: admin.firestore.FieldValue.arrayUnion(bookID),
-  });
-  res.send("Successfully added bookID:" + bookID + " to userID:" + userID);
-};
-
-export const deleteBook = async (req, res) => {
-  const { userID, bookID } = req.params;
-  let user = await db.collection("bookshelf").doc(userID).get();
+  let user = await db.collection("users").doc(userID).get();
   if (!user.exists) {
     res.send("UserID: " + userID + " does not exist");
   } else {
-    user = await db.collection("bookshelf").doc(userID);
+    user = user = await db.collection("users").doc(userID);
     user.update({
-      bookID: admin.firestore.FieldValue.arrayRemove(bookID),
+      to_be_read: admin.firestore.FieldValue.arrayUnion(bookID),
+    });
+    res.send(bookID + " was added to " + userID + " 's to_be_Read bookshelf");
+  }
+};
+
+export const addBook_in_progress = async (req, res) => {
+  const { userID, bookID } = req.params;
+  let user = await db.collection("users").doc(userID).get();
+  if (!user.exists) {
+    res.send("UserID: " + userID + " does not exist");
+  } else {
+    user = user = await db.collection("users").doc(userID);
+    user.update({
+      in_progress: admin.firestore.FieldValue.arrayUnion(bookID),
+    });
+    res.send(bookID + " was added to " + userID + " 's in_progress bookshelf");
+  }
+};
+
+export const addBook_completed = async (req, res) => {
+  const { userID, bookID } = req.params;
+  let user = await db.collection("users").doc(userID).get();
+  if (!user.exists) {
+    res.send("UserID: " + userID + " does not exist");
+  } else {
+    user = user = await db.collection("users").doc(userID);
+    user.update({
+      completed: admin.firestore.FieldValue.arrayUnion(bookID),
+    });
+    res.send(bookID + " was added to " + userID + " 's completed bookshelf");
+  }
+};
+
+export const removeBook_to_be_read = async (req, res) => {
+  const { userID, bookID } = req.params;
+  let user = await db.collection("users").doc(userID).get();
+  if (!user.exists) {
+    res.send("UserID: " + userID + " does not exist");
+  } else {
+    user = user = await db.collection("users").doc(userID);
+    user.update({
+      to_be_read: admin.firestore.FieldValue.arrayRemove(bookID),
     });
     res.send(
-      "Successfully deleted bookID:" + bookID + " from userID:" + userID
+      bookID + " was removed from " + userID + " 's to_be_Read bookshelf"
+    );
+  }
+};
+
+export const removeBook_in_progress = async (req, res) => {
+  const { userID, bookID } = req.params;
+  let user = await db.collection("users").doc(userID).get();
+  if (!user.exists) {
+    res.send("UserID: " + userID + " does not exist");
+  } else {
+    user = user = await db.collection("users").doc(userID);
+    user.update({
+      in_progress: admin.firestore.FieldValue.arrayRemove(bookID),
+    });
+    res.send(
+      bookID + " was removed from " + userID + " 's in_progress bookshelf"
+    );
+  }
+};
+
+export const removeBook_completed = async (req, res) => {
+  const { userID, bookID } = req.params;
+  let user = await db.collection("users").doc(userID).get();
+  if (!user.exists) {
+    res.send("UserID: " + userID + " does not exist");
+  } else {
+    user = user = await db.collection("users").doc(userID);
+    user.update({
+      completed: admin.firestore.FieldValue.arrayRemove(bookID),
+    });
+    res.send(
+      bookID + " was removed from " + userID + " 's completed bookshelf"
     );
   }
 };

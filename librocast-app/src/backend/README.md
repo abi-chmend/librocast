@@ -1,43 +1,51 @@
 # API Endpoints
 
-Get user info
+GET: Get user info
 
-- Returns a Json list of user data (pass unique user ID)
+- Returns a JSON list of user data (pass unique user ID as parameter)
 
 - /api/getUserInfo/:userID
 
-Search for a book
+GET: Search for a book
 
-- Returns a Json list of books that includes :book_title as their title.
+- Returns a JSON list of books that includes :book_title as their title.
 
 - /api/searchBook/:book_title/:genre?
 
-Search user
+GET: Search user
 
-- Returns a Json pair of unique user ID and user data that includes :userName as their displayValue. Returned data format: [ID, User Data]
+- Returns a JSON pair of unique user ID and user data that includes :userName as their displayValue. Returned data format: [ID, User Data]
 
 - /api/searchUser/:userName
 
-Add book to bookshelf (To-Be-Read)
+POST: Add book to bookshelf (To-Be-Read)
 
 - /api/addBook/to-be-read/:userID/:bookID
 
-Add book to bookshelf (In progress)
+POST: Add book to bookshelf (In progress)
 
 - /api/addBook/in-progress/:userID/:bookID
 
-Add book to bookshelf (Completed)
+POST: Add book to bookshelf (Completed)
 
 - /api/addBook/completed/:userID/:bookID
 
-Delete book from bookshelf
+POST: Remove book from bookshelf (To-Be-Read)
 
-- /api/deleteBook/:userID/:bookID
+- /api/removeBook/to-be-read/:userID/:bookID
 
-Follow a user
+POST: Remove book from bookshelf (In progress)
+
+- /api/removeBook/in-progress/:userID/:bookID
+
+POST: Remove book from bookshelf (Completed)
+
+- /api/removeBook/completed/:userID/:bookID
+
+POST: Follow a user
 
 - /api/follow/:userID/:targetUserID
 
-Unfollow a user
+POST: Unfollow a user
 
 - /api/unfollow/:userID/:targetUserID
