@@ -17,8 +17,6 @@ export const useSignUp = () => {
                 dispatch({ type: 'LOGIN', payload: res.user})
                 console.log('user signed up:', res.user)
                 setDoc(doc(db, 'users', res.user.uid),{
-                    book_reading: "",
-                    books_read: 0,
                     bookshelf: [],
                     displayName,
                     email,
@@ -26,7 +24,9 @@ export const useSignUp = () => {
                     followers:[],
                     following:[],
                     goals:[],
-                    picture
+                    picture,
+                    read: [],
+                    to_be_read: []
                 }).then((res) => {
                     window.location.href = '/onboard'
                 })
