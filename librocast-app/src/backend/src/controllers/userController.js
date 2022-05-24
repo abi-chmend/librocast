@@ -1,4 +1,5 @@
 import { db, admin } from "../firestore";
+import results from "../data/csvParser";
 
 // Follow a user if only if the given user and follower exits.
 export const follow = async (req, res) => {
@@ -42,5 +43,22 @@ export const unfollow = async (req, res) => {
       followers: admin.firestore.FieldValue.arrayRemove(userID),
     });
     res.send(userID + " is not unfollowing " + fid);
+  }
+};
+
+export const newPost = async (req, res) => {
+  const { userID, book_id, contents } = req.params;
+  // const book = results.filter((o) => {return o.id === book_id});
+  try{
+      const res = await db.collection('posts').add({
+          book_id : book_id,
+          contents : contents,
+          user_id : userID
+          //book_title : book.title,
+          //book_img : book.cover_link
+      });
+      res.send("Added document with ID: " , res.id);
+  } catch (err) {
+      // alert(err)
   }
 };

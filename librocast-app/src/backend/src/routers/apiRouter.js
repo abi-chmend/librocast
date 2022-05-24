@@ -12,7 +12,8 @@ import {
   removeBook_in_progress,
   removeBook_completed,
 } from "../controllers/bookshelfController";
-import { follow, unfollow } from "../controllers/userController";
+import { follow, unfollow, newPost } from "../controllers/userController";
+// import { newPost } from "../controllers/insertController";
 
 const apiRouter = express.Router();
 
@@ -32,6 +33,9 @@ apiRouter.post(
   removeBook_in_progress
 );
 apiRouter.post("/removeBook/completed/:userID/:bookID", removeBook_completed);
+
+apiRouter.get("/newPost/:userID/:book_id/:contents", newPost);
+
 
 // Follow/Unfollwe handler
 apiRouter.post("/follow/:userID/:fid", follow);

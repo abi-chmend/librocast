@@ -15,6 +15,7 @@ import {db} from '../utils/firebase.js'
 }
 */
 
+
 // function to insert new goal for a user
 export async function InsertNewUserGoal(userID, description, progress) {
     const taskDocRef = doc(db, 'users', userID)
@@ -28,7 +29,7 @@ export async function InsertNewUserGoal(userID, description, progress) {
                 "progress" : progress
             }
             updateDoc(taskDocRef, {
-                goals: arrayUnion(goal)
+                f: arrayUnion(goal)
             })
         })
     } catch (err) {
