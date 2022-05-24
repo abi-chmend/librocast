@@ -10,7 +10,9 @@ export default function Profile(){
     <div className="Profile">
       <div className="profileWrapper">
           <ProfileInfo/>
+          <AddPost/>
       </div>
+      
     </div>
     </>
   );
@@ -138,4 +140,44 @@ function DisplayBookshelf(props){
             ))}
         </div>
     );
+}
+
+function AddPost(props) {
+    return (
+        <div className="addPost">
+
+            <h1>Add new post here</h1>
+
+            <form>
+                <p>Enter image here</p>
+                <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg"
+                 onClick={selectImage}></input>
+                <div id="img-container"></div>
+
+
+                <p>Enter caption here</p>
+                <input type="text" id="caption"></input>
+
+                <button id="submit-btn" onClick={onSubmit}>Submit</button>
+            </form>
+        </div>
+    )
+}
+
+function onSubmit() {
+    // on submit send post request for post information
+
+}
+
+function selectImage() {
+    const image_input = document.querySelector("#image-input");
+    image_input.addEventListener("change", function() {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        const uploaded_image = reader.result;
+        document.querySelector("#img-container").style.backgroundImage = `url(${uploaded_image})`;
+    });
+    reader.readAsDataURL(this.files[0]);
+    });
+    
 }

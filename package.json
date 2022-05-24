@@ -1,0 +1,21 @@
+{
+  "name": "system",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "install": "cd ./librocast-app/ && npm install && cd ./src/backend && npm install",
+    "start": "cd ./librocast-app/src/backend && npm start",
+    "test": "cd ./librocast-app/ && npm test && cd ./src/backend && npm test",
+    "build": "cd ./librocast-app && npm run-script build"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "jest": "^28.1.0",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.3"
+  }
+}
