@@ -13,6 +13,7 @@ import {
   removeBook_completed,
 } from "../controllers/bookshelfController";
 import { follow, unfollow } from "../controllers/userController";
+import { newPost, addLikes, addComments } from "../controllers/postController";
 
 const apiRouter = express.Router();
 
@@ -35,6 +36,9 @@ apiRouter.delete(
   removeBook_in_progress
 );
 apiRouter.delete("/removeBook/completed/:userID/:bookID", removeBook_completed);
+
+apiRouter.get("/newPost/:userID/:book_id/:contents", newPost);
+
 
 // Follow/Unfollwe handler
 apiRouter.post("/follow/:userID/:fid", follow);
