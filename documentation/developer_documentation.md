@@ -26,13 +26,13 @@ Git clone https://github.com/abbybatinga/librocast.git
 For information on installing and using npm please visit [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 #### Install Dependencies
-Before building, testing, or running the system, first install dependencies:
+Before building, testing, or running the system, first install dependencies in the librocast-app/src/backend directory:
 ```
 npm install
 ```
 
 #### Run the App
-To run the app and the server:
+To run the app and the server, navigate to the librocast-app/src/backend directory:
 ```
 npm start
 ```
