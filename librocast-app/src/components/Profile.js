@@ -10,7 +10,9 @@ export default function Profile(){
     <div className="Profile">
       <div className="profileWrapper">
           <ProfileInfo/>
+          <AddPost/>
       </div>
+      
     </div>
     </>
   );
@@ -138,4 +140,23 @@ function DisplayBookshelf(props){
             ))}
         </div>
     );
+}
+
+function AddPost(props) {
+    return (
+        <div className="addPost">
+
+            <h1>Add new post here</h1>
+
+            <form>
+                <p>Enter image here</p>
+                <button id="img-btn">Select image</button>
+
+                <p>Enter caption here</p>
+                <input type="text" id="caption"></input>
+
+                <button id="submit-btn">Submit</button>
+            </form>
+        </div>
+    )
 }

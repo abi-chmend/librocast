@@ -101,3 +101,16 @@
 .bookImage {
     padding-top:10px;
 }
+
+
+.addPost {
+    width: 90%;
+    height: 350px;
+    background-color: rgb(3, 152, 158);
+    top: 390px;
+    float:left;
+    margin-top: 10px;
+    padding-left: 20px;
+    border-radius: 10px;
+    color: white;
+}
