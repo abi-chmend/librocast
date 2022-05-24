@@ -105,7 +105,7 @@
 
 .addPost {
     width: 90%;
-    height: 350px;
+    height: 400px;
     background-color: rgb(3, 152, 158);
     top: 390px;
     float:left;
@@ -113,4 +113,12 @@
     padding-left: 20px;
     border-radius: 10px;
     color: white;
+}
+
+#img-container {
+    width: 300px;
+    height: 175px;
+    border: 1px solid black;
+    background-size: cover;
+    background-position: center;
 }
