@@ -26,16 +26,19 @@ apiRouter.post("/addBook/to-be-read/:userID/:bookID", addBook_to_be_read);
 apiRouter.post("/addBook/in-progress/:userID/:bookID", addBook_in_progress);
 apiRouter.post("/addBook/completed/:userID/:bookID", addBook_completed);
 
-apiRouter.post("/removeBook/to-be-read/:userID/:bookID", removeBook_to_be_read);
-apiRouter.post(
+apiRouter.delete(
+  "/removeBook/to-be-read/:userID/:bookID",
+  removeBook_to_be_read
+);
+apiRouter.delete(
   "/removeBook/in-progress/:userID/:bookID",
   removeBook_in_progress
 );
-apiRouter.post("/removeBook/completed/:userID/:bookID", removeBook_completed);
+apiRouter.delete("/removeBook/completed/:userID/:bookID", removeBook_completed);
 
 // Follow/Unfollwe handler
 apiRouter.post("/follow/:userID/:fid", follow);
-apiRouter.post("/unfollow/:userID/:fid", unfollow);
+apiRouter.delete("/unfollow/:userID/:fid", unfollow);
 
 //apiRouter.get("/setBookDB", csvToDB);
 

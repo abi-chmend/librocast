@@ -30,15 +30,15 @@ POST: Add book to bookshelf (Completed)
 
 - /api/addBook/completed/:userID/:bookID
 
-POST: Remove book from bookshelf (To-Be-Read)
+DELETE: Remove book from bookshelf (To-Be-Read)
 
 - /api/removeBook/to-be-read/:userID/:bookID
 
-POST: Remove book from bookshelf (In progress)
+DELETE: Remove book from bookshelf (In progress)
 
 - /api/removeBook/in-progress/:userID/:bookID
 
-POST: Remove book from bookshelf (Completed)
+DELETE: Remove book from bookshelf (Completed)
 
 - /api/removeBook/completed/:userID/:bookID
 
@@ -46,6 +46,6 @@ POST: Follow a user
 
 - /api/follow/:userID/:targetUserID
 
-POST: Unfollow a user
+DELETE: Unfollow a user
 
 - /api/unfollow/:userID/:targetUserID
