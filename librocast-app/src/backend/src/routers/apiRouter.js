@@ -12,8 +12,8 @@ import {
   removeBook_in_progress,
   removeBook_completed,
 } from "../controllers/bookshelfController";
-import { follow, unfollow, newPost } from "../controllers/userController";
-// import { newPost } from "../controllers/insertController";
+import { follow, unfollow } from "../controllers/userController";
+import { newPost, addLikes, addComments } from "../controllers/postController";
 
 const apiRouter = express.Router();
 
