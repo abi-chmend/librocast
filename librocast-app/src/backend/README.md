@@ -1,6 +1,6 @@
 # API Endpoints
 
-##SEARCH API ENDPOINTS
+## SEARCH API ENDPOINTS
 
 GET: Get user info
 
@@ -20,7 +20,7 @@ GET: Search for a book
 
 - /api/searchBook/:book_title/:genre?
 
-##USER API ENDPOINTS
+## USER API ENDPOINTS
 
 POST: Follow a user
 
@@ -30,7 +30,7 @@ DELETE: Unfollow a user
 
 - /api/unfollow/:userID/:targetUserID
 
-##BOOK API ENDPOINTS
+## BOOK API ENDPOINTS
 
 POST: Add book to bookshelf (To-Be-Read)
 
@@ -56,7 +56,7 @@ DELETE: Remove book from bookshelf (Completed)
 
 - /api/removeBook/completed/:userID/:bookID
 
-##PROFILE API ENDPOINTS
+## PROFILE API ENDPOINTS
 
 POST: Edit bio of a user (WORK IN PROGRESS)
 
