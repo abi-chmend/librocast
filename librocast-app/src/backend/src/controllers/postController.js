@@ -4,22 +4,21 @@ import results from "../data/csvParser";
 
 // Add post
 export const newPost = async (req, res) => {
-  const { userID, book_id, contents } = req.params;
+  const { userID, book_url, contents } = req.params;
   // const book = results.filter((o) => {return o.id === book_id});
-  //try{
+  var book = book_url;
+  book = book.slice(5);
+  try{
       const result = await db.collection('posts').add({
-          book_id : book_id,
+          book_url : book,
           contents : contents,
           user_id : userID,
           timestamp: firestore.Timestamp.now()
-          //book_title : book.title,
-          //book_img : book.cover_link
      });
     res.send("Added document with ID: " + result.id);
- // } catch (err) {
-      // alert(err)
-   //   res.send("err: ");
-  //}
+  } catch (err) {
+    res.send("err: ");
+  }
 };
 
 // Likes post

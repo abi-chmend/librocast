@@ -2,9 +2,15 @@ import React from "react";
 import "./profile.css"
 import { getAuth } from "firebase/auth";
 import {GetUserProfile, GetUserPosts} from '../backend/Query'
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import axios from 'axios'
+
+// this keeps track of input image file
+var file = null;
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(){
+
   return (
     <>
     <div className="Profile">
@@ -19,10 +25,8 @@ export default function Profile(){
 }
 
 function ProfileInfo() {
-
     const auth = getAuth();
     const user = auth.currentUser;
-
 
     if (user !== null) {
         const userProfile = GetUserProfile(user.uid)
@@ -61,6 +65,7 @@ function ProfileInfo() {
         );
     }
 }
+
 function DisplayProfile(props) {
     return (
       <>
@@ -77,6 +82,7 @@ function DisplayProfile(props) {
       </>
     );
 }
+
 function DisplayPicture(props) {
     return (
         <div className="profilePic">
@@ -89,6 +95,7 @@ function DisplayPicture(props) {
         </div>
     );
 }
+
 function DisplayMetrics(props) {
     const numFollowers = props.followers.length
     const numFollowing = props.following.length
@@ -108,7 +115,7 @@ function DisplayPost(props){
           <h3>Your post:</h3>
             <div className="postInfo">
                 <h4>Book: {props.book_title}</h4>
-                <h7>{props.contents}</h7>
+                <h6>{props.contents}</h6>
             </div>
             <div className="bookImage"> 
             <img
@@ -164,9 +171,30 @@ function AddPost(props) {
     )
 }
 
-function onSubmit() {
-    // on submit send post request for post information
+// on submit send post request for post information
+const onSubmit = (e) => {
+    // prevent refresh for debugging
+    e.preventDefault();
 
+    // this might be redundant...
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    const storage = getStorage();
+    const storageRef = ref(storage, file.name);
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, file).then((snapshot) => {
+        // get URL for uploaded file 
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            // request server to post
+            // missing caption, the last parameter 
+            axios.post("api/newPost/" + user.uid + "/&url=" + encodeURIComponent(downloadURL) + "/" + "caption");
+        });
+    }).catch((err) => {
+      console.error(err);    
+    });
 }
 
 function selectImage() {
@@ -177,7 +205,6 @@ function selectImage() {
         const uploaded_image = reader.result;
         document.querySelector("#img-container").style.backgroundImage = `url(${uploaded_image})`;
     });
-    reader.readAsDataURL(this.files[0]);
+    file = this.files[0];
     });
-    
 }
