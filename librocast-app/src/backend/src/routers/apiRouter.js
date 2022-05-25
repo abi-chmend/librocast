@@ -51,17 +51,3 @@ apiRouter.post("/editProfilePicture/:userID/:_picture", editProfilePicture);
 //apiRouter.get("/setBookDB", csvToDB);
 
 export default apiRouter;
-  removeBook_in_progress
-);
-apiRouter.delete("/removeBook/completed/:userID/:bookID", removeBook_completed);
-
-apiRouter.post("/newPost/:userID/:book_url/:contents", newPost);
-
-
-// Follow/Unfollwe handler
-apiRouter.post("/follow/:userID/:fid", follow);
-apiRouter.delete("/unfollow/:userID/:fid", unfollow);
-
-//apiRouter.get("/setBookDB", csvToDB);
-
-export default apiRouter;
