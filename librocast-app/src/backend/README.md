@@ -2,11 +2,17 @@
 
 ## SEARCH API ENDPOINTS
 
-GET: Get user info
+GET: Get user by ID
 
 - Returns a JSON list of user data (pass unique user ID as parameter)
 
-- /api/getUserInfo/:userID
+- /api/getUserByID/:userID
+
+GET: Get book by ID
+
+- Returns a JSON list of given book's data
+
+- /api/getBookByID/:bookID
 
 GET: Search user
 

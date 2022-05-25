@@ -2,7 +2,8 @@ import express from "express";
 import {
   searchBook,
   searchUser,
-  getUserInfo,
+  getUserByID,
+  getBookByID,
 } from "../controllers/searchController";
 import {
   addBook_to_be_read,
@@ -15,13 +16,15 @@ import {
 import { follow, unfollow } from "../controllers/userController";
 import { newPost, addLikes, addComments } from "../controllers/postController";
 import { editBio, editProfilePicture } from "../controllers/profileController";
+import { csvToDB } from "../controllers/setBookDB";
 
 const apiRouter = express.Router();
 
 // Search/Get handler
 apiRouter.get("/searchBook/:title/:genre?", searchBook);
 apiRouter.get("/searchUser/:userName", searchUser);
-apiRouter.get("/getUserInfo/:userID", getUserInfo);
+apiRouter.get("/getUserByID/:userID", getUserByID);
+apiRouter.get("/getBookByID/:bookID", getBookByID);
 
 // Bookshelf handler
 apiRouter.post("/addBook/to-be-read/:userID/:bookID", addBook_to_be_read);
@@ -48,6 +51,6 @@ apiRouter.delete("/unfollow/:userID/:fid", unfollow);
 apiRouter.post("/editBio/:userID/:_bio", editBio);
 apiRouter.post("/editProfilePicture/:userID/:_picture", editProfilePicture);
 
-//apiRouter.get("/setBookDB", csvToDB);
+apiRouter.get("/setBookDB", csvToDB);
 
 export default apiRouter;

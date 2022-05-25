@@ -33,12 +33,23 @@ export const searchUser = async (req, res) => {
 };
 
 // get user info with user ID
-export const getUserInfo = async (req, res) => {
+export const getUserByID = async (req, res) => {
   const { userID } = req.params;
   let user = await db.collection("users").doc(userID).get();
   if (!user.exists) {
     res.send("UserID: " + userID + " does not exist");
   } else {
     res.json(user._fieldsProto);
+  }
+};
+
+// get user info with user ID
+export const getBookByID = async (req, res) => {
+  const { bookID } = req.params;
+  let book = await db.collection("book_database").doc(bookID).get();
+  if (!book.exists) {
+    res.send("Book ID: " + userID + " does not exist");
+  } else {
+    res.json(book._fieldsProto);
   }
 };
