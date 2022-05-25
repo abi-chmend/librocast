@@ -14,6 +14,7 @@ import {
 } from "../controllers/bookshelfController";
 import { follow, unfollow } from "../controllers/userController";
 import { newPost, addLikes, addComments } from "../controllers/postController";
+import { editBio, editProfilePicture } from "../controllers/profileController";
 
 const apiRouter = express.Router();
 
@@ -33,6 +34,23 @@ apiRouter.delete(
 );
 apiRouter.delete(
   "/removeBook/in-progress/:userID/:bookID",
+  removeBook_in_progress
+);
+apiRouter.delete("/removeBook/completed/:userID/:bookID", removeBook_completed);
+
+apiRouter.get("/newPost/:userID/:book_id/:contents", newPost);
+
+// User handler
+apiRouter.post("/follow/:userID/:fid", follow);
+apiRouter.delete("/unfollow/:userID/:fid", unfollow);
+
+// Profile handler
+apiRouter.post("/editBio/:userID/:_bio", editBio);
+apiRouter.post("/editProfilePicture/:userID/:_picture", editProfilePicture);
+
+//apiRouter.get("/setBookDB", csvToDB);
+
+export default apiRouter;
   removeBook_in_progress
 );
 apiRouter.delete("/removeBook/completed/:userID/:bookID", removeBook_completed);
