@@ -1,10 +1,18 @@
 # API Endpoints
 
+##SEARCH API ENDPOINTS
+
 GET: Get user info
 
 - Returns a JSON list of user data (pass unique user ID as parameter)
 
 - /api/getUserInfo/:userID
+
+GET: Search user
+
+- Returns a JSON pair of unique user ID and user data that includes :userName as their displayValue. Returned data format: [ID, User Data]
+
+- /api/searchUser/:userName
 
 GET: Search for a book
 
@@ -12,11 +20,17 @@ GET: Search for a book
 
 - /api/searchBook/:book_title/:genre?
 
-GET: Search user
+##USER API ENDPOINTS
 
-- Returns a JSON pair of unique user ID and user data that includes :userName as their displayValue. Returned data format: [ID, User Data]
+POST: Follow a user
 
-- /api/searchUser/:userName
+- /api/follow/:userID/:targetUserID
+
+DELETE: Unfollow a user
+
+- /api/unfollow/:userID/:targetUserID
+
+##BOOK API ENDPOINTS
 
 POST: Add book to bookshelf (To-Be-Read)
 
@@ -42,10 +56,16 @@ DELETE: Remove book from bookshelf (Completed)
 
 - /api/removeBook/completed/:userID/:bookID
 
-POST: Follow a user
+##PROFILE API ENDPOINTS
 
-- /api/follow/:userID/:targetUserID
+POST: Edit bio of a user (WORK IN PROGRESS)
 
-DELETE: Unfollow a user
+- /api/editBio
 
-- /api/unfollow/:userID/:targetUserID
+- pass userID and bio as JSON
+
+POST: Edit profile picture (WORK IN PROGRESS)
+
+- /api/editProfilePicture
+
+- pass userID and profile picture url as JSON
