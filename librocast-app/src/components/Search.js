@@ -214,9 +214,9 @@ function UserSearchResult({userData}) {
 function BookSearchResult({bookID, title, author, cover}) {
   const addButton = <button type={"button"} onClick={addToLibrary}>Add Book</button>;
   const moveButton = <button type={"button"} onClick={addToLibrary}>Add Book</button>;
-  const addTBRButton = <button type={"button"} onClick={addTBR}>Add Book</button>;
-  const addReadingButton =  <button type={"button"} onClick={addReading}>Add Book</button>;
-  const addReadButton = <button type={"button"} onClick={addRead}>Add Book</button>;
+  const addTBRButton = <button type={"button"} onClick={addTBR}>To be Read</button>;
+  const addReadingButton =  <button type={"button"} onClick={addReading}>Reading</button>;
+  const addReadButton = <button type={"button"} onClick={addRead}>Read</button>;
 
   const [id, setId] = useState(bookID);
   const auth = getAuth();
@@ -227,22 +227,19 @@ function BookSearchResult({bookID, title, author, cover}) {
 
   function addToLibrary() {
     //TODO: add book to users library
-    setButtons(<div><button type={"button"} onClick={addTBR}>Add Book</button>
-                    <button type={"button"} onClick={addReading}>Add Book</button>
-                    <button type={"button"} onClick={addRead}>Add Book</button></div>)
+    setButtons(<div>{addTBRButton}{addReadingButton}{addReadButton}</div>)
 
   }
 
   function addTBR() {
-
-
+    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
   }
   function addReading() {
-
+    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
 
   }
   function addRead() {
-
+    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
   }
 
 
