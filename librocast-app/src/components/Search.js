@@ -2,10 +2,12 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import {collection, query, onSnapshot, where} from "firebase/firestore"
 import axios from 'axios'
+import {getAuth} from "firebase/auth";
 
 import './Search.css'
 
 const BOOK_URL = "/api/searchBook/";
+const USER_URL = "/api/searchUser/";
 //const USER_URL = "";
 //const NUM_PAGE_RESULTS = 5;
 
@@ -94,7 +96,7 @@ function QueryResults({searchType, searchString}) {
       axios.get(BOOK_URL + searchString)
         .then((res) => {
             setResponse(res.data);
-            setResults(appendResults(res.data));
+            setResults(appendBookResults(res.data));
             console.log(res.data);
           })
         .catch((err) => {
@@ -103,6 +105,16 @@ function QueryResults({searchType, searchString}) {
     } else if (searchType === "user") {
       //TODO: fetch users
       //set response state
+
+      axios.get(USER_URL + searchString)
+        .then((res) => {
+          setResponse(res.data);
+          setResults(appendUserResults(res.data));
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
@@ -125,15 +137,33 @@ function QueryResults({searchType, searchString}) {
   //   setResults(res);
   // }
 
-  function appendResults(data) {
+  function appendBookResults(data) {
     let res = [];
-    for (let entry of data) {
-      res.push(
-        <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
+    if (data.length === 0) {
+      res.push(<p>No results</p>)
+    } else {
+      for (let entry of data) {
+        res.push(
+          <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
         );
+      }
     }
     return res;
   }
+
+  function appendUserResults(data) {
+    let res = [];
+    if (data.length === 0) {
+      res.push(<p>No results</p>)
+    } else {
+      for (let entry of data) {
+        res.push(<UserSearchResult key={entry[0]} userData={entry[1]}/>);
+      }
+    }
+    return res;
+
+  }
+
 
   // function appendResults(data) {
   //   let res = [];
@@ -171,11 +201,48 @@ function QueryResults({searchType, searchString}) {
   );
 }
 
+function UserSearchResult({userData}) {
+  return (
+    <div id={"userSearchResult"}>
+      <img alt="profile" src={userData["picture"]["stringValue"]}/>
+      <h2>{userData["displayName"]["stringValue"]}</h2>
+    </div>
+  )
+}
+
+
 function BookSearchResult({bookID, title, author, cover}) {
+  const addButton = <button type={"button"} onClick={addToLibrary}>Add Book</button>;
+  const moveButton = <button type={"button"} onClick={addToLibrary}>Add Book</button>;
+  const addTBRButton = <button type={"button"} onClick={addTBR}>Add Book</button>;
+  const addReadingButton =  <button type={"button"} onClick={addReading}>Add Book</button>;
+  const addReadButton = <button type={"button"} onClick={addRead}>Add Book</button>;
+
   const [id, setId] = useState(bookID);
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const [buttons, setButtons] = useState(<button type={"button"} onClick={addToLibrary}>Add Book</button>);
+
+
 
   function addToLibrary() {
     //TODO: add book to users library
+    setButtons(<div><button type={"button"} onClick={addTBR}>Add Book</button>
+                    <button type={"button"} onClick={addReading}>Add Book</button>
+                    <button type={"button"} onClick={addRead}>Add Book</button></div>)
+
+  }
+
+  function addTBR() {
+
+
+  }
+  function addReading() {
+
+
+  }
+  function addRead() {
+
   }
 
 
@@ -184,7 +251,7 @@ function BookSearchResult({bookID, title, author, cover}) {
       <h3>{title}</h3>
       <img src={cover} alt={"Book cover"}/>
       <h4>{author}</h4>
-      <button type={"button"} onClick={addToLibrary}>Add Book</button>
+      {buttons}
     </div>
   )
 }
