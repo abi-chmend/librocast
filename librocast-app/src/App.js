@@ -10,6 +10,7 @@ import Onboard from './components/Onboarding'
 import Nav from './components/Nav';
 import Profile from './components/Profile';
 import ProfileQuery from './components/ProfileQuery';
+import Feed from 'components/Feed'
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/profile" element={user ? <Profile/> : <Navigate to="/login" />}/>
                 <Route path="/search" element={<Search />}/>
                 <Route path="/search/profile=:id" element={<ProfileQuery />} />
+                <Route path="/feed" element= {user ? <Feed/> : <Navigate to="/login" />}></Route>
               </Routes>
             </BrowserRouter>}
       </div>

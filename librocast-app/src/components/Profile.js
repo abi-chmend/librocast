@@ -166,7 +166,7 @@ function AddPost(props) {
 
 function onSubmit() {
     // on submit send post request for post information
-
+    
 }
 
 function selectImage() {
@@ -179,5 +179,5 @@ function selectImage() {
     });
     reader.readAsDataURL(this.files[0]);
     });
-    
+
 }
