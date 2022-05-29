@@ -48,7 +48,7 @@ export const getBookByID = async (req, res) => {
   const { bookID } = req.params;
   let book = await db.collection("book_database").doc(bookID).get();
   if (!book.exists) {
-    res.send("Book ID: " + userID + " does not exist");
+    res.send("Book ID: " + bookID + " does not exist");
   } else {
     res.json(book._fieldsProto);
   }
