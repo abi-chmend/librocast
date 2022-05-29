@@ -15,7 +15,7 @@ export const newGoal = async (req, res) => {
 };
 
 // Update Goal
-export const addComments = async (req, res) => {
+export const addGoal = async (req, res) => {
     const { userID, goal_id, progress } = req.params;
     let user = await db.collection("users").doc(userID).get();
     if (!user.exists) {
