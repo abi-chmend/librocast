@@ -1,4 +1,4 @@
-import { doc, updateDoc, addDoc, arrayUnion, collection } from "firebase/firestore";
+import { doc, setDoc, addDoc, collection } from "firebase/firestore";
 import {db} from '../utils/firebase.js'
 //import {db} from './src/firebase'
 
@@ -15,8 +15,23 @@ import {db} from '../utils/firebase.js'
 }
 */
 
-
 // function to insert new goal for a user
+export async function InsertNewUserGoal(userID, description, progress) {
+    const taskDocRef = doc(db, 'users', userID)
+
+    try{
+        await addDoc(collection(db, 'goals'), {
+            description
+        }).then((docRef) => {
+            setDoc(taskDocRef, {goals : {[docRef.id] : progress}}, {merge: true})
+        })
+    } catch (err) {
+        alert(err)
+    }
+}
+
+//  OBSOLETE function to insert new goal for a user (add new map to array)
+/**
 export async function InsertNewUserGoal(userID, description, progress) {
     const taskDocRef = doc(db, 'users', userID)
 
@@ -35,4 +50,4 @@ export async function InsertNewUserGoal(userID, description, progress) {
     } catch (err) {
         alert(err)
     }
-}
+}*/

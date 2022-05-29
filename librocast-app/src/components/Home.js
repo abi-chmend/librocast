@@ -32,8 +32,8 @@ function DisplayHome(props) {
         <div className="homeWrapper">
             <h1>Welcome Back, {props.displayName}</h1>
             <div id="readingGoals">
-                {props.goals.map((goal, index) => (
-                    <p>Goal: {goal["goal_id"]} Progress: {goal["progress"]}</p>
+                {Object.keys(props.goals).map((goal_id) => (
+                    <p>Goal: {goal_id} Progress: {props.goals[goal_id]}</p>
                 ))}
             </div>
 
