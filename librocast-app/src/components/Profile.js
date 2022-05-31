@@ -109,6 +109,7 @@ function DisplayMetrics(props) {
 }
 
 function DisplayPost(props){
+    getPosts();
     return (
       <>
         <div className="post">
@@ -130,7 +131,30 @@ function DisplayPost(props){
     );
 }
 
+function getPosts() {
+    // Get post from database and display in DisplayPost component
+    let postDiv = document.getElementsByClassName("post");
+    const auth = getAuth();
+    const user = auth.currentUser;
 
+    axios.get("/api/readPosts/" + user.uid )
+        .then(function(response) {
+            console.log(response);
+        }).catch(function (err) {
+            console.error(err);
+        });
+    
+    // get post image, and caption
+    let postImg = document.createElement("img");
+
+    let postCaption = document.createElement("p");
+
+
+    let newPost = document.createElement("div");
+
+    newPost.appendChild(postImg);
+    newPost.appendChild(postCaption);
+}
 
 
 function DisplayBookshelf(props){
@@ -198,21 +222,6 @@ const onSubmit = (e) => {
     }).catch((err) => {
       console.error(err);    
     });
-
-    
-    // Get post from database and display in DisplayPost component
-    let postDiv = document.getElementByClassName("post");
-
-    // get post image, and caption
-    let postImg = document.createElement("img");
-
-    let postCaption = document.createElement("p");
-
-
-    let newPost = document.createElement("div");
-
-    newPost.appendChild(postImg);
-    newPost.appendChild(postCaption);
 
 }
 
