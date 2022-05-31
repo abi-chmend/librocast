@@ -32,6 +32,8 @@ export function GetUserProfile(userID) {
 }
 
 export function GetUserPosts(userID) {
+    console.log("userid!!! in query")
+    console.log(userID)
     if (arguments.length !== 1) {
         throw("Invalid number of arguments: GetUserPosts(userID) requires a user's unique id")
     }
@@ -40,7 +42,8 @@ export function GetUserPosts(userID) {
 
     useEffect(() => {
         if (userID != null) {
-            const taskColRef = query(collection(db, 'users'), where("__name__", "==", userID))
+            const taskColRef = query(collection(db, 'posts'), where("user_id", "==", userID))
+            
             onSnapshot(taskColRef, (snapshot) => {
                 setUserPosts(snapshot.docs.map(doc => ({
                     id: doc.id,
@@ -49,6 +52,6 @@ export function GetUserPosts(userID) {
             })
         }
     },[userID])
-
+    console.log(userPosts)
     return userPosts
 }
