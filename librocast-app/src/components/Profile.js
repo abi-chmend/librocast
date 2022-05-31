@@ -32,8 +32,6 @@ function ProfileInfo() {
     if (user !== null) {
         const userProfile = GetUserProfile(user.uid)
         const userPosts = GetUserPosts(user.uid)
-        // console.log(user.uid)
-        // console.log(userPosts.toString())
          return (
          <div className="flex-child">
              {userProfile.map((profile) => (
@@ -56,8 +54,6 @@ function ProfileInfo() {
                          imageURL={post.data.book_url}
                          contents={post.data.contents}
                          date={post.data.timestamp}
-
-                
                      />
                  ))}
              </div>
