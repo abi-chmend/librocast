@@ -8,6 +8,13 @@ import './Search.css'
 
 const BOOK_URL = "/api/searchBook/";
 const USER_URL = "/api/searchUser/";
+const LIB_URL = "/api/getUserByID/";
+const ADD_TBR_URL = "/api/addBook/to-be-read/";
+const REMOVE_TBR_URL = "/api/removeBook/to-be-read/";
+const ADD_READING_URL = "/api/addBook/in-progress/";
+const REMOVE_READING_URL = "/api/removeBook/in-progress/";
+const ADD_READ_URL = "/api/addBook/completed/";
+const REMOVE_READ_URL = "/api/removeBook/completed/";
 //const USER_URL = "";
 //const NUM_PAGE_RESULTS = 5;
 
@@ -81,35 +88,60 @@ function QueryResults({searchType, searchString}) {
   //const [responseLength, setResponseLength] = useState(0);
   //const [index, setIndex] = useState(0);
   const [showing, setShowing] = useState([]);
+  const [userData, setUserData] = useState({});
 
+  const auth = getAuth();
+
+  //React.useEffect(getUserData, [auth.currentUser.uid]);
+
+ // React.useEffect(getUserData, [auth.currentUser.uid]);
+
+  // eslint-disable-next-line
   React.useEffect(processQuery, [searchString, searchType]);
 
+  function getUserData(keys) {
+    // let ret = {
+    //   "to_be_read": [],
+    //   "reading": [],
+    //   "read": [],
+    //   "following": []
+    // };
+    let ret = {};
+    axios.get(LIB_URL + auth.currentUser.uid)
+      .then((res) => {
+        for (let key of keys) {
+          ret[key] = res.data[key];
+        }
+        //setUserData(ret);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return ret;
+  }
 
   function processQuery() {
     // TODO: fetch query response
     // TODO: case-user
     // TODO: case-book
     if (searchType === "book") {
-      //TODO: fetch books
-      //set response state
-
+      let param = getUserData(["bookshelf", "to_be_read", "read"])
+      console.log(param);
       axios.get(BOOK_URL + searchString)
         .then((res) => {
             setResponse(res.data);
-            setResults(appendBookResults(res.data));
+            setResults(appendBookResults(res.data, param));
             console.log(res.data);
           })
         .catch((err) => {
           console.log(err);
         });
     } else if (searchType === "user") {
-      //TODO: fetch users
-      //set response state
-
+      let param = getUserData(["following"])
       axios.get(USER_URL + searchString)
         .then((res) => {
           setResponse(res.data);
-          setResults(appendUserResults(res.data));
+          setResults(appendUserResults(res.data, param));
           console.log(res.data);
         })
         .catch((err) => {
@@ -137,27 +169,27 @@ function QueryResults({searchType, searchString}) {
   //   setResults(res);
   // }
 
-  function appendBookResults(data) {
+  function appendBookResults(data, param) {
     let res = [];
     if (data.length === 0) {
       res.push(<p>No results</p>)
     } else {
       for (let entry of data) {
         res.push(
-          <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
+          <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]} userData={param}/>
         );
       }
     }
     return res;
   }
 
-  function appendUserResults(data) {
+  function appendUserResults(data, param) {
     let res = [];
     if (data.length === 0) {
       res.push(<p>No results</p>)
     } else {
       for (let entry of data) {
-        res.push(<UserSearchResult key={entry[0]} userData={entry[1]}/>);
+        res.push(<UserSearchResult key={entry[0]} userData={entry[1]} followingData={param}/>);
       }
     }
     return res;
@@ -201,7 +233,7 @@ function QueryResults({searchType, searchString}) {
   );
 }
 
-function UserSearchResult({userData}) {
+function UserSearchResult({userData, followingData}) {
   return (
     <div id={"userSearchResult"}>
       <img alt="profile" src={userData["picture"]["stringValue"]}/>
@@ -211,44 +243,78 @@ function UserSearchResult({userData}) {
 }
 
 
-function BookSearchResult({bookID, title, author, cover}) {
-  const addButton = <button type={"button"} onClick={addToLibrary}>Add Book</button>;
-  const moveButton = <button type={"button"} onClick={addToLibrary}>Add Book</button>;
-  const addTBRButton = <button type={"button"} onClick={addTBR}>To be Read</button>;
-  const addReadingButton =  <button type={"button"} onClick={addReading}>Reading</button>;
-  const addReadButton = <button type={"button"} onClick={addRead}>Read</button>;
+function BookSearchResult({bookID, title, author, cover, userData}) {
+  const addTBRButton = <button type={"button"} onClick={() => bookAction(ADD_TBR_URL, "to_be_read", removeTBRButton)}>Add To be Read</button>;
+  const removeTBRButton = <button type={"button"} onClick={() => bookAction(REMOVE_TBR_URL, "to_be_read", addTBRButton)}> Remove To be Read</button>;
+  const addReadingButton =  <button type={"button"} onClick={() => bookAction(ADD_READING_URL, "bookshelf", removeReadingButton)}>Reading</button>;
+  const removeReadingButton =  <button type={"button"} onClick={() => bookAction(REMOVE_READING_URL, "bookshelf", addReadingButton)}>Reading</button>;
+  const addReadButton = <button type={"button"} onClick={() => bookAction(ADD_READ_URL, "read", removeReadButton)}>Read</button>;
+  const removeReadButton = <button type={"button"} onClick={() => bookAction(REMOVE_READ_URL, "read", addReadButton)}>Read</button>;
 
-  const [id, setId] = useState(bookID);
+  // const [id, setId] = useState(bookID);
   const auth = getAuth();
-  const user = auth.currentUser;
-  const [buttons, setButtons] = useState(<button type={"button"} onClick={addToLibrary}>Add Book</button>);
+  const userID = auth.currentUser.uid;
+  const [buttons, setButtons] = useState(getButtons());
 
+  function getButtons() {
+    let ret = {};
+    console.log(userData);
+    if (userData["to_be_read"]?.["arrayValues"]?.["values"]?.hasOwnProperty(bookID) === undefined) {
+      ret["to_be_read"] = addTBRButton;
+    } else {
+      ret["to_be_read"] = removeTBRButton;
+    }
 
+    if (userData["bookshelf"]?.values().hasOwnProperty(bookID) === undefined) {
+      ret["bookshelf"] = addReadingButton;
+    } else {
+      ret["bookshelf"] = removeReadingButton;
+    }
 
-  function addToLibrary() {
-    //TODO: add book to users library
-    setButtons(<div>{addTBRButton}{addReadingButton}{addReadButton}</div>)
+    if (userData["read"]?.values().hasOwnProperty(bookID) === undefined) {
+      ret["read"] = addReadButton;
+    } else {
+      ret["read"] = removeReadButton;
+    }
 
+    // if (userData["to_be_read"].hasOwnProperty(bookID)) {
+    //   ret["to_be_read"] = removeTBRButton;
+    // } else {
+    //   ret["to_be_read"] = addTBRButton;
+    // }
+    // if (userData["bookshelf"].hasOwnProperty(bookID)) {
+    //   ret["bookshelf"] = removeReadingButton;
+    // } else {
+    //   ret["bookshelf"] = addReadingButton;
+    // }
+    // if (userData["read"].hasOwnProperty(bookID)) {
+    //   ret["read"] = addReadButton;
+    // } else {
+    //   ret["read"] = removeReadButton;
+    // }
+    return ret;
   }
 
-  function addTBR() {
-    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
-  }
-  function addReading() {
-    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
+  function bookAction(URL, key, button) {
+    axios.post(URL + userID + "/" + bookID, {
+      userID: userID,
+      bookID: bookID
+    })
+      .then((res) => {
+        setButtons(prevButton => ({...prevButton, [key]:button}));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
   }
-  function addRead() {
-    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
-  }
-
 
   return (
     <div id={"bookSearchResult"}>
       <h3>{title}</h3>
       <img src={cover} alt={"Book cover"}/>
       <h4>{author}</h4>
-      {buttons}
+      {Object.values(buttons)}
     </div>
   )
 }
