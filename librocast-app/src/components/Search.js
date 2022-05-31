@@ -4,10 +4,21 @@ import {collection, query, onSnapshot, where} from "firebase/firestore"
 import axios from 'axios'
 import {getAuth} from "firebase/auth";
 
+import defaultProfile from './librocast_logo.png';
+
 import './Search.css'
 
 const BOOK_URL = "/api/searchBook/";
 const USER_URL = "/api/searchUser/";
+const LIB_URL = "/api/getUserByID/";
+const ADD_TBR_URL = "/api/addBook/to-be-read/";
+const REMOVE_TBR_URL = "/api/removeBook/to-be-read/";
+const ADD_READING_URL = "/api/addBook/in-progress/";
+const REMOVE_READING_URL = "/api/removeBook/in-progress/";
+const ADD_READ_URL = "/api/addBook/completed/";
+const REMOVE_READ_URL = "/api/removeBook/completed/";
+const FOLLOW_URL = "/api/follow/";
+const UNFOLLOW_URL = "/api/unfollow/";
 //const USER_URL = "";
 //const NUM_PAGE_RESULTS = 5;
 
@@ -81,41 +92,91 @@ function QueryResults({searchType, searchString}) {
   //const [responseLength, setResponseLength] = useState(0);
   //const [index, setIndex] = useState(0);
   const [showing, setShowing] = useState([]);
+  const [userData, setUserData] = useState({});
 
-  React.useEffect(processQuery, [searchString, searchType]);
+  const auth = getAuth();
 
+  //React.useEffect(getUserData, [auth.currentUser.uid]);
+
+  // React.useEffect(() => {getUserData().then(r => );}, []);
+
+  // eslint-disable-next-line
+  React.useEffect(processQuery, [searchString, searchType, auth.currentUser.uid]);
+
+  // async function getUserData(keys) {
+  //   // let ret = {
+  //   //   "to_be_read": [],
+  //   //   "reading": [],
+  //   //   "read": [],
+  //   //   "following": []
+  //   // };
+  //   let ret = {};
+  //   await axios.get(LIB_URL + auth.currentUser.uid)
+  //     .then((res) => {
+  //       for (let key of keys) {
+  //         ret[key] = res.data[key];
+  //       }
+  //       //setUserData(ret);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   return ret;
+  // }
 
   function processQuery() {
     // TODO: fetch query response
     // TODO: case-user
     // TODO: case-book
-    if (searchType === "book") {
-      //TODO: fetch books
-      //set response state
+    axios.get(LIB_URL + auth.currentUser.uid)
+      .then((res) => {
+        setUserData(res.data);
+        return res.data;
+        //setUserData(ret);
+      })
+      .then ((userInfo) => {
+        console.log(userInfo);
+        if (searchType === "book") {
+          let data = {};
+          for (let key of ["bookshelf", "to_be_read", "read"]) {
+            data[key] = [];
+            for (let id of userInfo[key]["arrayValue"]["values"]) {
+              data[key].push(id.stringValue);
+            }
+          }
+          axios.get(BOOK_URL + searchString)
+            .then((res) => {
+              setResponse(res.data);
+              setResults(appendBookResults(res.data, data));
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
 
-      axios.get(BOOK_URL + searchString)
-        .then((res) => {
-            setResponse(res.data);
-            setResults(appendBookResults(res.data));
-            console.log(res.data);
-          })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (searchType === "user") {
-      //TODO: fetch users
-      //set response state
+        } else if (searchType === "user") {
+          let data = {};
+          for (let key of ["following"]) {
+            data[key] = [];
+            for (let entry of userInfo[key]["arrayValue"]["values"]) {
+              data[key].push(entry.stringValue);
+            }
+          }
 
-      axios.get(USER_URL + searchString)
-        .then((res) => {
-          setResponse(res.data);
-          setResults(appendUserResults(res.data));
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+          axios.get(USER_URL + searchString)
+            .then((res) => {
+              setResponse(res.data);
+              setResults(appendUserResults(res.data, data));
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+
+
+    })
+
   }
 
   // function appendResults() {
@@ -137,27 +198,27 @@ function QueryResults({searchType, searchString}) {
   //   setResults(res);
   // }
 
-  function appendBookResults(data) {
+  function appendBookResults(data, param) {
     let res = [];
     if (data.length === 0) {
       res.push(<p>No results</p>)
     } else {
       for (let entry of data) {
         res.push(
-          <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
+          <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]} userData={param}/>
         );
       }
     }
     return res;
   }
 
-  function appendUserResults(data) {
+  function appendUserResults(data, param) {
     let res = [];
     if (data.length === 0) {
       res.push(<p>No results</p>)
     } else {
       for (let entry of data) {
-        res.push(<UserSearchResult key={entry[0]} userData={entry[1]}/>);
+        res.push(<UserSearchResult key={entry[0]} targetID={entry[0]} targetData={entry[1]} followingData={param}/>);
       }
     }
     return res;
@@ -201,54 +262,151 @@ function QueryResults({searchType, searchString}) {
   );
 }
 
-function UserSearchResult({userData}) {
+function UserSearchResult({targetID, targetData, followingData}) {
+  const followButton = <button type={"button"} onClick={followUser}>Follow</button>
+  const unfollowButton = <button type={"button"} onClick={unfollowUser}>Unfollow</button>
+
+  const auth = getAuth();
+  const userID = auth.currentUser.uid;
+  const [button, setButton] = useState(getButtons());
+
+  function getButtons() {
+    console.log(followingData["following"]?.includes(targetID));
+    if (targetID == userID) {
+      return <p>Its you!</p>
+
+    }
+    if (followingData["following"]?.includes(targetID)) {
+      return unfollowButton;
+    } else {
+      return followButton;
+    }
+  }
+
+  function followUser() {
+    axios.post(FOLLOW_URL + userID + "/" + targetID, {
+      userID: userID,
+      targetUserID: targetID
+    })
+      .then((res) => {
+        setButton(unfollowButton);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+  function unfollowUser() {
+    axios.delete(UNFOLLOW_URL + userID + "/" + targetID, {
+      userID: userID,
+      targetUserID: targetID
+    })
+      .then((res) => {
+        setButton(followButton);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  console.log(followingData);
   return (
     <div id={"userSearchResult"}>
-      <img alt="profile" src={userData["picture"]["stringValue"]}/>
-      <h2>{userData["displayName"]["stringValue"]}</h2>
+      <img alt="profile" src={targetData["picture"]["stringValue"] === "default" ? defaultProfile: targetData["picture"]["stringValue"]}/>
+      <h2>{targetData["displayName"]["stringValue"]}</h2>
+      {button}
     </div>
   )
 }
 
 
-function BookSearchResult({bookID, title, author, cover}) {
-  const addButton = <button type={"button"} onClick={addToLibrary}>Add Book</button>;
-  const moveButton = <button type={"button"} onClick={addToLibrary}>Add Book</button>;
-  const addTBRButton = <button type={"button"} onClick={addTBR}>To be Read</button>;
-  const addReadingButton =  <button type={"button"} onClick={addReading}>Reading</button>;
-  const addReadButton = <button type={"button"} onClick={addRead}>Read</button>;
+function BookSearchResult({bookID, title, author, cover, userData}) {
+  const addTBRButton = <button type={"button"} onClick={() => addBook(ADD_TBR_URL, "to_be_read", removeTBRButton)}>Add To be Read</button>;
+  const removeTBRButton = <button type={"button"} onClick={() => removeBook(REMOVE_TBR_URL, "to_be_read", addTBRButton)}> Remove To be Read</button>;
+  const addReadingButton =  <button type={"button"} onClick={() => addBook(ADD_READING_URL, "bookshelf", removeReadingButton)}>Reading</button>;
+  const removeReadingButton =  <button type={"button"} onClick={() => removeBook(REMOVE_READING_URL, "bookshelf", addReadingButton)}>Reading</button>;
+  const addReadButton = <button type={"button"} onClick={() => addBook(ADD_READ_URL, "read", removeReadButton)}>Read</button>;
+  const removeReadButton = <button type={"button"} onClick={() => removeBook(REMOVE_READ_URL, "read", addReadButton)}>Read</button>;
 
-  const [id, setId] = useState(bookID);
+  // const [id, setId] = useState(bookID);
   const auth = getAuth();
-  const user = auth.currentUser;
-  const [buttons, setButtons] = useState(<button type={"button"} onClick={addToLibrary}>Add Book</button>);
+  const userID = auth.currentUser.uid;
+  const [buttons, setButtons] = useState(getButtons());
 
+  function getButtons() {
+    let ret = {};
+    //console.log(userData);
+    if (userData["to_be_read"]?.includes(bookID)) {
+      ret["to_be_read"] = removeTBRButton;
+    } else {
+      ret["to_be_read"] = addTBRButton;
+    }
 
+    if (userData["bookshelf"]?.includes(bookID)) {
+      ret["bookshelf"] = removeReadingButton;
+    } else {
+      ret["bookshelf"] = addReadingButton;
+    }
 
-  function addToLibrary() {
-    //TODO: add book to users library
-    setButtons(<div>{addTBRButton}{addReadingButton}{addReadButton}</div>)
+    if (userData["read"]?.includes(bookID)) {
+      ret["read"] = removeReadButton;
+    } else {
+      ret["read"] = addReadButton;
+    }
+
+    // if (userData["to_be_read"].hasOwnProperty(bookID)) {
+    //   ret["to_be_read"] = removeTBRButton;
+    // } else {
+    //   ret["to_be_read"] = addTBRButton;
+    // }
+    // if (userData["bookshelf"].hasOwnProperty(bookID)) {
+    //   ret["bookshelf"] = removeReadingButton;
+    // } else {
+    //   ret["bookshelf"] = addReadingButton;
+    // }
+    // if (userData["read"].hasOwnProperty(bookID)) {
+    //   ret["read"] = addReadButton;
+    // } else {
+    //   ret["read"] = removeReadButton;
+    // }
+    return ret;
+  }
+
+  function addBook(URL, key, button) {
+    axios.post(URL + userID + "/" + bookID, {
+      userID: userID,
+      bookID: bookID
+    })
+      .then((res) => {
+        setButtons(prevButton => ({...prevButton, [key]:button}));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
   }
 
-  function addTBR() {
-    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
-  }
-  function addReading() {
-    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
+  function removeBook(URL, key, button) {
+    axios.delete(URL + userID + "/" + bookID, {
+      userID: userID,
+      bookID: bookID
+    })
+      .then((res) => {
+        setButtons(prevButton => ({...prevButton, [key]:button}));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
   }
-  function addRead() {
-    setButtons(<p>This feature is a work in progress. You will be able to add books soon.</p>);
-  }
-
 
   return (
     <div id={"bookSearchResult"}>
       <h3>{title}</h3>
       <img src={cover} alt={"Book cover"}/>
       <h4>{author}</h4>
-      {buttons}
+      {Object.values(buttons)}
     </div>
   )
 }
