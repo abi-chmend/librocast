@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import {Link, NavLink, useNavigate} from 'react-router-dom'
 import {collection, query, onSnapshot, where} from "firebase/firestore"
 import axios from 'axios'
 import {getAuth} from "firebase/auth";
@@ -135,7 +135,6 @@ function QueryResults({searchType, searchString}) {
         //setUserData(ret);
       })
       .then ((userInfo) => {
-        console.log(userInfo);
         if (searchType === "book") {
           let data = {};
           for (let key of ["bookshelf", "to_be_read", "read"]) {
@@ -148,7 +147,6 @@ function QueryResults({searchType, searchString}) {
             .then((res) => {
               setResponse(res.data);
               setResults(appendBookResults(res.data, data));
-              console.log(res.data);
             })
             .catch((err) => {
               console.log(err);
@@ -167,7 +165,6 @@ function QueryResults({searchType, searchString}) {
             .then((res) => {
               setResponse(res.data);
               setResults(appendUserResults(res.data, data));
-              console.log(res.data);
             })
             .catch((err) => {
               console.log(err);
@@ -271,7 +268,6 @@ function UserSearchResult({targetID, targetData, followingData}) {
   const [button, setButton] = useState(getButtons());
 
   function getButtons() {
-    console.log(followingData["following"]?.includes(targetID));
     if (targetID == userID) {
       return <p>Its you!</p>
 
@@ -310,11 +306,12 @@ function UserSearchResult({targetID, targetData, followingData}) {
       });
   }
 
-  console.log(followingData);
   return (
     <div id={"userSearchResult"}>
-      <img alt="profile" src={targetData["picture"]["stringValue"] === "default" ? defaultProfile: targetData["picture"]["stringValue"]}/>
-      <h2>{targetData["displayName"]["stringValue"]}</h2>
+      <Link to={"/search/profile=" + targetID} className={"profileLink"}>
+        <img alt="profile" src={targetData["picture"]["stringValue"] === "default" ? defaultProfile: targetData["picture"]["stringValue"]}/>
+        <h2>{targetData["displayName"]["stringValue"]}</h2>
+      </Link>
       {button}
     </div>
   )
@@ -324,10 +321,10 @@ function UserSearchResult({targetID, targetData, followingData}) {
 function BookSearchResult({bookID, title, author, cover, userData}) {
   const addTBRButton = <button type={"button"} onClick={() => addBook(ADD_TBR_URL, "to_be_read", removeTBRButton)}>Add To be Read</button>;
   const removeTBRButton = <button type={"button"} onClick={() => removeBook(REMOVE_TBR_URL, "to_be_read", addTBRButton)}> Remove To be Read</button>;
-  const addReadingButton =  <button type={"button"} onClick={() => addBook(ADD_READING_URL, "bookshelf", removeReadingButton)}>Reading</button>;
-  const removeReadingButton =  <button type={"button"} onClick={() => removeBook(REMOVE_READING_URL, "bookshelf", addReadingButton)}>Reading</button>;
-  const addReadButton = <button type={"button"} onClick={() => addBook(ADD_READ_URL, "read", removeReadButton)}>Read</button>;
-  const removeReadButton = <button type={"button"} onClick={() => removeBook(REMOVE_READ_URL, "read", addReadButton)}>Read</button>;
+  const addReadingButton =  <button type={"button"} onClick={() => addBook(ADD_READING_URL, "bookshelf", removeReadingButton)}>Add Reading</button>;
+  const removeReadingButton =  <button type={"button"} onClick={() => removeBook(REMOVE_READING_URL, "bookshelf", addReadingButton)}>Remove Reading</button>;
+  const addReadButton = <button type={"button"} onClick={() => addBook(ADD_READ_URL, "read", removeReadButton)}>Add Read</button>;
+  const removeReadButton = <button type={"button"} onClick={() => removeBook(REMOVE_READ_URL, "read", addReadButton)}>Remove Read</button>;
 
   // const [id, setId] = useState(bookID);
   const auth = getAuth();
@@ -336,7 +333,6 @@ function BookSearchResult({bookID, title, author, cover, userData}) {
 
   function getButtons() {
     let ret = {};
-    //console.log(userData);
     if (userData["to_be_read"]?.includes(bookID)) {
       ret["to_be_read"] = removeTBRButton;
     } else {
