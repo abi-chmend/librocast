@@ -82,12 +82,7 @@ function SearchBar({type, string}) {
 }
 
 function QueryResults({searchType, searchString}) {
-  const [response, setResponse] = useState([]);
   const [results, setResults] = useState([]);
-  //const [responseLength, setResponseLength] = useState(0);
-  //const [index, setIndex] = useState(0);
-  const [showing, setShowing] = useState([]);
-  const [userData, setUserData] = useState({});
 
   const auth = getAuth();
 
@@ -95,14 +90,9 @@ function QueryResults({searchType, searchString}) {
   React.useEffect(processQuery, [searchString, searchType, auth.currentUser.uid]);
 
   function processQuery() {
-    // TODO: fetch query response
-    // TODO: case-user
-    // TODO: case-book
     axios.get(LIB_URL + auth.currentUser.uid)
       .then((res) => {
-        setUserData(res.data);
         return res.data;
-        //setUserData(ret);
       })
       .then ((userInfo) => {
         if (searchType === "book") {
@@ -115,7 +105,6 @@ function QueryResults({searchType, searchString}) {
           }
           axios.get(BOOK_URL + searchString)
             .then((res) => {
-              setResponse(res.data);
               setResults(appendBookResults(res.data, data));
             })
             .catch((err) => {
@@ -133,7 +122,6 @@ function QueryResults({searchType, searchString}) {
 
           axios.get(USER_URL + searchString)
             .then((res) => {
-              setResponse(res.data);
               setResults(appendUserResults(res.data, data));
             })
             .catch((err) => {
@@ -145,25 +133,6 @@ function QueryResults({searchType, searchString}) {
     })
 
   }
-
-  // function appendResults() {
-  //   let count;
-  //   let res = [];
-  //   res.push(results);
-  //   if (index + NUM_PAGE_RESULTS <= response.length) {
-  //     count = NUM_PAGE_RESULTS;
-  //   } else {
-  //     count = response.length - index;
-  //   }
-  //   for (let i = 0; i < count; i++) {
-  //     let entry = response[i];
-  //     res.push(
-  //       <BookSearchResult bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
-  //     );
-  //   }
-  //   setIndex(index + count);
-  //   setResults(res);
-  // }
 
   function appendBookResults(data, param) {
     let res = [];
@@ -192,37 +161,7 @@ function QueryResults({searchType, searchString}) {
 
   }
 
-
-  // function appendResults(data) {
-  //   let res = [];
-  //   let index;
-  //   results.length + NUM_PAGE_RESULTS < data.length ? index = NUM_PAGE_RESULTS : index = results.length;
-  //   for (let i = results.length; i < index; i++) {
-  //     let entry = data[i];
-  //     res.push(
-  //       <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]}/>
-  //     );
-  //   }
-  //   return results.concat(res);
-  // }
-
-  // function incrementResults(data) {
-  //   let count;
-  //   if (index + NUM_PAGE_RESULTS <= data.length) {
-  //     count = NUM_PAGE_RESULTS;
-  //   } else {
-  //     count = data.length - index;
-  //   }
-  //   setShowing(results.slice(index+count));
-  //   setIndex(index+count);
-  // }
-
-  // function handleClick() {
-  //   setResults(appendResults(response));
-  // }
-
   return (
-    //<button type={"button"} onClick={handleClick}>More</button>
     <div id={"resultsContainer"}>
       {results}
     </div>
