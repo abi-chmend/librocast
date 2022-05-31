@@ -52,6 +52,7 @@ export const addComments = async (req, res) => {
 // Read posts
 export const readPosts = async (req, res) => {
   const { userID } = req.params;
+  var result = [];
 
   const postRef = db.collection('posts');
 
@@ -63,7 +64,8 @@ export const readPosts = async (req, res) => {
   }
 
   snapshot.forEach(doc => {
-    console.log(doc.contents, '=>', doc.data());
+    // result.doc.contents, '=>', doc.data()
+    result.push(doc.data());
   });
-  res.send(doc);
+  res.send(JSON.stringify(result));
 };

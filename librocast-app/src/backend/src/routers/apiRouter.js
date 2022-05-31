@@ -14,7 +14,7 @@ import {
   removeBook_completed,
 } from "../controllers/bookshelfController";
 import { follow, unfollow } from "../controllers/userController";
-import { newPost, addLikes, addComments } from "../controllers/postController";
+import { newPost, readPosts, addLikes, addComments } from "../controllers/postController";
 import { editBio, editProfilePicture } from "../controllers/profileController";
 import { csvToDB } from "../controllers/setBookDB";
 
@@ -41,7 +41,9 @@ apiRouter.delete(
 );
 apiRouter.delete("/removeBook/completed/:userID/:bookID", removeBook_completed);
 
-apiRouter.get("/newPost/:userID/:book_id/:contents", newPost);
+apiRouter.post("/newPost/:userID/:book_id/:contents", newPost);
+apiRouter.get("/readPosts/:userID", readPosts);
+
 
 // User handler
 apiRouter.post("/follow/:userID/:fid", follow);
