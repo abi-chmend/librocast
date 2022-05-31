@@ -94,12 +94,12 @@ function QueryResults({searchType, searchString}) {
 
   //React.useEffect(getUserData, [auth.currentUser.uid]);
 
- // React.useEffect(getUserData, [auth.currentUser.uid]);
+  // React.useEffect(() => {getUserData().then(r => );}, []);
 
   // eslint-disable-next-line
   React.useEffect(processQuery, [searchString, searchType]);
 
-  function getUserData(keys) {
+  async function getUserData(keys) {
     // let ret = {
     //   "to_be_read": [],
     //   "reading": [],
@@ -107,7 +107,7 @@ function QueryResults({searchType, searchString}) {
     //   "following": []
     // };
     let ret = {};
-    axios.get(LIB_URL + auth.currentUser.uid)
+    await axios.get(LIB_URL + auth.currentUser.uid)
       .then((res) => {
         for (let key of keys) {
           ret[key] = res.data[key];
@@ -124,30 +124,39 @@ function QueryResults({searchType, searchString}) {
     // TODO: fetch query response
     // TODO: case-user
     // TODO: case-book
-    if (searchType === "book") {
-      let param = getUserData(["bookshelf", "to_be_read", "read"])
-      console.log(param);
-      axios.get(BOOK_URL + searchString)
-        .then((res) => {
-            setResponse(res.data);
-            setResults(appendBookResults(res.data, param));
-            console.log(res.data);
-          })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (searchType === "user") {
-      let param = getUserData(["following"])
-      axios.get(USER_URL + searchString)
-        .then((res) => {
-          setResponse(res.data);
-          setResults(appendUserResults(res.data, param));
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    axios.get(LIB_URL + auth.currentUser.uid)
+      .then((res) => {
+        setUserData(res.data);
+        return res.data;
+        //setUserData(ret);
+      })
+      .then ((userInfo) => {
+        console.log(userInfo);
+        if (searchType === "book") {
+          axios.get(BOOK_URL + searchString)
+            .then((res) => {
+              setResponse(res.data);
+              setResults(appendBookResults(res.data, userInfo));
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else if (searchType === "user") {
+          axios.get(USER_URL + searchString)
+            .then((res) => {
+              setResponse(res.data);
+              setResults(appendUserResults(res.data));
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+
+
+    })
+
   }
 
   // function appendResults() {
@@ -189,7 +198,7 @@ function QueryResults({searchType, searchString}) {
       res.push(<p>No results</p>)
     } else {
       for (let entry of data) {
-        res.push(<UserSearchResult key={entry[0]} userData={entry[1]} followingData={param}/>);
+        res.push(<UserSearchResult key={entry[0]} userData={entry[1]} followingData={userData}/>);
       }
     }
     return res;
@@ -258,20 +267,20 @@ function BookSearchResult({bookID, title, author, cover, userData}) {
 
   function getButtons() {
     let ret = {};
-    console.log(userData);
-    if (userData["to_be_read"]?.["arrayValues"]?.["values"]?.hasOwnProperty(bookID) === undefined) {
+    console.log(Object.values(userData["to_be_read"]["arrayValue"]["values"]));
+    if (userData["to_be_read"]?.["arrayValue"]?.["values"]?.hasOwnProperty(bookID) === false) {
       ret["to_be_read"] = addTBRButton;
     } else {
       ret["to_be_read"] = removeTBRButton;
     }
 
-    if (userData["bookshelf"]?.values().hasOwnProperty(bookID) === undefined) {
+    if (userData["bookshelf"]?.["arrayValue"]?.["values"]?.hasOwnProperty(bookID) === undefined) {
       ret["bookshelf"] = addReadingButton;
     } else {
       ret["bookshelf"] = removeReadingButton;
     }
 
-    if (userData["read"]?.values().hasOwnProperty(bookID) === undefined) {
+    if (userData["read"]?.["arrayValue"]?.["values"]?.hasOwnProperty(bookID) === undefined) {
       ret["read"] = addReadButton;
     } else {
       ret["read"] = removeReadButton;
