@@ -4,6 +4,8 @@ import {collection, query, onSnapshot, where} from "firebase/firestore"
 import axios from 'axios'
 import {getAuth} from "firebase/auth";
 
+import defaultProfile from './librocast_logo.png';
+
 import './Search.css'
 
 const BOOK_URL = "/api/searchBook/";
@@ -15,6 +17,8 @@ const ADD_READING_URL = "/api/addBook/in-progress/";
 const REMOVE_READING_URL = "/api/removeBook/in-progress/";
 const ADD_READ_URL = "/api/addBook/completed/";
 const REMOVE_READ_URL = "/api/removeBook/completed/";
+const FOLLOW_URL = "/api/follow/";
+const UNFOLLOW_URL = "/api/unfollow/";
 //const USER_URL = "";
 //const NUM_PAGE_RESULTS = 5;
 
@@ -140,7 +144,6 @@ function QueryResults({searchType, searchString}) {
               data[key].push(id.stringValue);
             }
           }
-
           axios.get(BOOK_URL + searchString)
             .then((res) => {
               setResponse(res.data);
@@ -150,11 +153,20 @@ function QueryResults({searchType, searchString}) {
             .catch((err) => {
               console.log(err);
             });
+
         } else if (searchType === "user") {
+          let data = {};
+          for (let key of ["following"]) {
+            data[key] = [];
+            for (let entry of userInfo[key]["arrayValue"]["values"]) {
+              data[key].push(entry.stringValue);
+            }
+          }
+
           axios.get(USER_URL + searchString)
             .then((res) => {
               setResponse(res.data);
-              setResults(appendUserResults(res.data));
+              setResults(appendUserResults(res.data, data));
               console.log(res.data);
             })
             .catch((err) => {
@@ -206,7 +218,7 @@ function QueryResults({searchType, searchString}) {
       res.push(<p>No results</p>)
     } else {
       for (let entry of data) {
-        res.push(<UserSearchResult key={entry[0]} userData={entry[1]} followingData={param}/>);
+        res.push(<UserSearchResult key={entry[0]} targetID={entry[0]} targetData={entry[1]} followingData={param}/>);
       }
     }
     return res;
@@ -250,11 +262,60 @@ function QueryResults({searchType, searchString}) {
   );
 }
 
-function UserSearchResult({userData, followingData}) {
+function UserSearchResult({targetID, targetData, followingData}) {
+  const followButton = <button type={"button"} onClick={followUser}>Follow</button>
+  const unfollowButton = <button type={"button"} onClick={unfollowUser}>Unfollow</button>
+
+  const auth = getAuth();
+  const userID = auth.currentUser.uid;
+  const [button, setButton] = useState(getButtons());
+
+  function getButtons() {
+    console.log(followingData["following"]?.includes(targetID));
+    if (targetID == userID) {
+      return <p>Its you!</p>
+
+    }
+    if (followingData["following"]?.includes(targetID)) {
+      return unfollowButton;
+    } else {
+      return followButton;
+    }
+  }
+
+  function followUser() {
+    axios.post(FOLLOW_URL + userID + "/" + targetID, {
+      userID: userID,
+      targetUserID: targetID
+    })
+      .then((res) => {
+        setButton(unfollowButton);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+  function unfollowUser() {
+    axios.delete(UNFOLLOW_URL + userID + "/" + targetID, {
+      userID: userID,
+      targetUserID: targetID
+    })
+      .then((res) => {
+        setButton(followButton);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  console.log(followingData);
   return (
     <div id={"userSearchResult"}>
-      <img alt="profile" src={userData["picture"]["stringValue"]}/>
-      <h2>{userData["displayName"]["stringValue"]}</h2>
+      <img alt="profile" src={targetData["picture"]["stringValue"] === "default" ? defaultProfile: targetData["picture"]["stringValue"]}/>
+      <h2>{targetData["displayName"]["stringValue"]}</h2>
+      {button}
     </div>
   )
 }
