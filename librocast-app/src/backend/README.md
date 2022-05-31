@@ -71,3 +71,13 @@ POST: Edit bio of a user
 POST: Edit profile picture
 
 - /api/editProfilePicture/:userID/:picture
+
+## POST API ENDPOINTS
+
+POST: Add new post for a specific user
+
+- /api/newPost/:userID/:book_id/:contents
+
+GET: Get all posts from an user
+
+- /api/readPosts/:userID
