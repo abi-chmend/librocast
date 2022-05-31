@@ -1,9 +1,9 @@
-import 'regenerator-runtime/runtime'
+import "regenerator-runtime/runtime";
 
 const server = require("./server");
 const supertest = require("supertest");
 const request = supertest(server);
-const express = require('express');
+const express = require("express");
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
 import apiRouter from "./routers/apiRouter";
@@ -23,5 +23,5 @@ test("/api/searchUser/:userName", async () => {
       expect(response.status).toBe(200);
       expect(Array.isArray(response.body)).toBeTruthy();
       expect(response.body.length).toEqual(1);
-    })
+    });
 });
