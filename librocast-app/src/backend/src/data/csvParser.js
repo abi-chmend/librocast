@@ -7,6 +7,7 @@ fs.createReadStream(filePath)
   .on("data", (data) => results.push(data))
   .on("end", () => {
     console.log("Successfully parsed the csv file!");
+    console.log("results array has " + results.length + " books.");
   });
 
 export default results;

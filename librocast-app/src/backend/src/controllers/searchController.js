@@ -32,6 +32,23 @@ export const searchUser = async (req, res) => {
   res.json(users);
 };
 
+// Goal Search
+export const searchGoal = async (req, res) => {
+  const { goal } = req.params;
+  const data = await db.collection("goals").get();
+  let matchingGoals = [];
+  data.forEach((doc) => {
+    if (
+        doc._fieldsProto.SOMETHING.stringValue
+            .toLowerCase()
+            .includes(userName.toLowerCase())
+    ) {
+      matchingGoals.push([doc.id, doc._fieldsProto]);
+    }
+  });
+  res.json(matchingGoals);
+};
+
 // get user info with user ID
 export const getUserByID = async (req, res) => {
   const { userID } = req.params;
@@ -48,7 +65,7 @@ export const getBookByID = async (req, res) => {
   const { bookID } = req.params;
   let book = await db.collection("book_database").doc(bookID).get();
   if (!book.exists) {
-    res.send("Book ID: " + userID + " does not exist");
+    res.send("Book ID: " + bookID + " does not exist");
   } else {
     res.json(book._fieldsProto);
   }

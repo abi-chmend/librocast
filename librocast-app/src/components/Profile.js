@@ -206,5 +206,8 @@ function selectImage() {
         document.querySelector("#img-container").style.backgroundImage = `url(${uploaded_image})`;
     });
     file = this.files[0];
+
+    // read file into image container
+    reader.readAsDataURL(file);
     });
 }

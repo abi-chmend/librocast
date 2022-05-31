@@ -44,9 +44,7 @@ export const addComments = async (req, res) => {
     res.send("post_id: " + post_id + " does not exist");
   } else {
     post = await db.collection("posts").doc(post_id);
-    post.update({
-      comments: {userID : contents}
-    });
+    post.set({comments : {[userID] : contents}} , {merge: true});
     res.send(userID + " likes " + post_id);
   }
 };

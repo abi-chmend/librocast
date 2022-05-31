@@ -2,9 +2,9 @@ import results from "../data/csvParser";
 import { db, admin } from "../firestore";
 
 export const csvToDB = async (req, res) => {
-  const booksDb = await db.collection("book_database");
+  //const booksDb = await db.collection("book_database");
   /*
-  for (let i = 5000; i < 10000; i++) {
+  for (let i = 50000; i < 52199; i++) {
     let book = results[i];
     booksDb.doc(book.id).set({
       author: book.author,
@@ -23,12 +23,15 @@ export const csvToDB = async (req, res) => {
       series: book.series,
       title: book.title,
     });
-  }
-  console.log("Done");*/
+  }*/
+
+  console.log("Done");
+  /*
   db.collection("book_database")
     .get()
     .then(function (querySnapshot) {
       console.log(querySnapshot.size);
     });
+    */
   res.send("done");
 };

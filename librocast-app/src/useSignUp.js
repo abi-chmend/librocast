@@ -24,7 +24,7 @@ export const useSignUp = () => {
                     favorite_genres:[],
                     followers:[],
                     following:[],
-                    goals:[],
+                    goals:{},
                     picture,
                     read: [],
                     to_be_read: []
