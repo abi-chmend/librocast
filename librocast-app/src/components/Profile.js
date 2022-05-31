@@ -130,6 +130,9 @@ function DisplayPost(props){
     );
 }
 
+
+
+
 function DisplayBookshelf(props){
     return (
         <div className="bookshelf">
@@ -195,6 +198,21 @@ const onSubmit = (e) => {
     }).catch((err) => {
       console.error(err);    
     });
+
+    // Get post from database and display in DisplayPost component
+    let postDiv = document.getElementByClassName("post");
+
+    // get post image, and caption
+    let postImg = document.createElement("img");
+
+    let postCaption = document.createElement("p");
+
+
+    let newPost = document.createElement("div");
+
+    newPost.appendChild(postImg);
+    newPost.appendChild(postCaption);
+
 }
 
 function selectImage() {
