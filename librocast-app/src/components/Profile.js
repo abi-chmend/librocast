@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from 'react'
 import "./profile.css"
 import { getAuth } from "firebase/auth";
 import {GetUserProfile, GetUserPosts} from '../backend/Query'
@@ -7,6 +7,8 @@ import axios from 'axios'
 
 // this keeps track of input image file
 var file = null;
+const LIB_URL = "/api/getUserByID/";
+const BOOK_URL = "/api/getBookByID/";
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(){
@@ -143,6 +145,59 @@ function DisplayPost(props){
 
 
 function DisplayBookshelf(props){
+
+        // TODO: fetch query response
+        // TODO: case-user
+        // TODO: case-book
+
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+        //const [response, setResponse] = useState([]);
+        const [results, setResults] = useState([]);
+        const [userData, setUserData] = useState({});
+
+        axios.get(LIB_URL + user.uid)
+          .then((res) => {
+            setUserData(res.data);
+            return res.data;
+            //setUserData(ret);
+          })
+          .then ((userInfo) => {
+            
+            let data = {};
+            for (let key of ["bookshelf", "to_be_read", "read"]) {
+            data[key] = [];
+            for (let id of userInfo[key]["arrayValue"]["values"]) {
+                data[key].push(id.stringValue);
+            }
+            }
+            
+            for (bookID in data["bookshelf"]) {
+                axios.get(BOOK_URL + bookID)
+                .then((res) => {
+                    //setResponse(res.data);
+                    setResults(appendBookResults(res.data, data));
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            }
+
+            let res = [];
+            if (data.length === 0) {
+              res.push(<p>No results</p>)
+            } else {
+              for (let entry of data) {
+                res.push(
+                  <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]} userData={param}/>
+                );
+              }
+            }
+            return res;
+        })
+      
+
     return (
         <div className="bookshelf">
             <h2>Bookshelf</h2>
