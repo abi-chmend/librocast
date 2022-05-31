@@ -200,8 +200,6 @@ function AddPost(props) {
 
 // on submit send post request for post information
 const onSubmit = (e) => {
-    // prevent refresh for debugging
-    e.preventDefault();
 
     // this might be redundant...
     const auth = getAuth();
