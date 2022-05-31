@@ -41,7 +41,7 @@ apiRouter.delete(
 );
 apiRouter.delete("/removeBook/completed/:userID/:bookID", removeBook_completed);
 
-apiRouter.post("/newPost/:userID/:book_id/:contents", newPost);
+apiRouter.post("/newPost/:userID/:book_url/:contents", newPost);
 apiRouter.get("/readPosts/:userID", readPosts);
 
 
