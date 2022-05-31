@@ -137,12 +137,12 @@ function getPosts() {
     const auth = getAuth();
     const user = auth.currentUser;
 
-    axios.get("/api/readPosts/" + user.uid )
-        .then(function(response) {
-            console.log(response);
-        }).catch(function (err) {
-            console.error(err);
-        });
+    // axios.get("/api/readPosts/" + user.uid )
+    //     .then(function(response) {
+    //         console.log(response);
+    //     }).catch(function (err) {
+    //         //console.error(err);
+    //     });
     
     // get post image, and caption
     let postImg = document.createElement("img");
@@ -223,6 +223,27 @@ const onSubmit = (e) => {
       console.error(err);    
     });
 
+    let imgSrc = document.getElementById("img-container").style.backgroundImage;
+    
+    
+    //showPost(imgSrc, caption);
+}
+
+function showPost(imgSrc, caption) {
+    let postDiv = document.querySelector(".post");
+
+    let postImg = document.createElement("img");
+    postImg.src = imgSrc;
+
+    let postCaption = document.createElement("p");
+    postCaption.textContent = caption
+
+    let newPost = document.createElement("div");
+
+    newPost.appendChild(postImg);
+    newPost.appendChild(postCaption);
+
+    postDiv.appendChild(newPost);
 }
 
 function selectImage() {
@@ -237,5 +258,9 @@ function selectImage() {
 
     // read file into image container
     reader.readAsDataURL(file);
+
+    
+
+
     });
 }
