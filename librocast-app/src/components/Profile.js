@@ -209,17 +209,17 @@ function AddPost(props) {
 
 function EditProfile(props) {
     return (
-        <div className="editProfile">
+        <div className="addPost">
             <h1>Edit Profile</h1>
             <form>
                 <p>Enter new profile picture here</p>
-                <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg"
+                <input type="file" id="profile-input" accept="image/jpeg, image/png, image/jpg"
                  onClick={selectImage}></input>
                 <div id="img-container"></div>
                 <button id="submit-btn" onClick={onSubmitPfp}>Submit Profile Picture</button>
 
                 <p>Enter new bio here</p>
-                <input type="text" id="caption"></input>
+                <input type="text" id="bio"></input>
 
                 <button id="submit-btn" onClick={onSubmitBio}>Submit New Bio</button>
             </form>
@@ -243,9 +243,7 @@ const onSubmitPfp = (e) => {
         getDownloadURL(snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL);
             // request server to post
-            // missing caption, the last parameter 
-            // axios.post("api/newPost/" + user.uid + "/&url=" + encodeURIComponent(downloadURL) + "/" + "caption");
-            axios.post("api/editProfilePicture/");
+            axios.post("api/editProfilePicture/" + user.uid + "/&url=" + encodeURIComponent(downloadURL));
         });
     }).catch((err) => {
       console.error(err);    
@@ -254,32 +252,15 @@ const onSubmitPfp = (e) => {
 
 // on submit for editing send profile request to edit bio
 const onSubmitBio = (e) => {
-    // prevent refresh for debugging
-    e.preventDefault();
     const auth = getAuth();
     const user = auth.currentUser;
-
-    const storage = getStorage();
-    const storageRef = ref(storage, file.name);
-
-    // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, file).then((snapshot) => {
-        // get URL for uploaded file 
-        getDownloadURL(snapshot.ref).then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            // request server to post
-            // missing caption, the last parameter 
-            
-            // do you need to encode the url 
-            axios.post("api/editBio/");
-        });
-    }).catch((err) => {
-      console.error(err);    
-    });
+    let bio = document.getElementById("bio").value;
+    axios.post("api/editBio/" + user.uid + "/" + bio);
 }
 
 // on submit send post request for post information
 const onSubmit = (e) => {
+    e.preventDefault();
 
     // this might be redundant...
     const auth = getAuth();
@@ -300,11 +281,6 @@ const onSubmit = (e) => {
     }).catch((err) => {
       console.error(err);    
     });
-
-    let imgSrc = document.getElementById("img-container").style.backgroundImage;
-    
-    
-    //showPost(imgSrc, caption);
 }
 
 function showPost(imgSrc, caption) {
@@ -336,9 +312,5 @@ function selectImage() {
 
     // read file into image container
     reader.readAsDataURL(file);
-
-    
-
-
     });
 }
