@@ -17,6 +17,7 @@ export default function Profile(){
       <div className="profileWrapper">
           <ProfileInfo/>
           <AddPost/>
+          <EditProfile/>
       </div>
       
     </div>
@@ -31,6 +32,8 @@ function ProfileInfo() {
     if (user !== null) {
         const userProfile = GetUserProfile(user.uid)
         const userPosts = GetUserPosts(user.uid)
+        // console.log(user.uid)
+        // console.log(userPosts.toString())
          return (
          <div className="flex-child">
              {userProfile.map((profile) => (
@@ -42,16 +45,19 @@ function ProfileInfo() {
                      following={profile.data.following}
                      achievements={profile.data.goals}
                      picture={profile.data.picture}
+                     bio={profile.data.bio}
                  />
              ))}
 
              <div className="postDisplay">
                  {userPosts.map((post) => (
                      <DisplayPost
-                         book_title={post.data.book_title}
+                        //  book_title={post.data.book_title}
+                         imageURL={post.data.book_url}
                          contents={post.data.contents}
-                         date={post.data.dates}
-                         likes={post.data.likes}
+                         date={post.data.timestamp}
+
+                
                      />
                  ))}
              </div>
@@ -76,6 +82,7 @@ function DisplayProfile(props) {
                 bookshelf={props.bookshelf}
                 followers={props.followers}
                 following={props.following}
+                bio={props.bio}
             />
         </div>
         <DisplayBookshelf bookshelf={props.bookshelf}/>
@@ -100,10 +107,12 @@ function DisplayMetrics(props) {
     const numFollowers = props.followers.length
     const numFollowing = props.following.length
     const booksRead = props.bookshelf.length
+    const bio = props.bio
     return (
         <div className="flex-child">
             <h1>{numFollowers}&emsp;&emsp;{numFollowing}&emsp;&emsp;{booksRead}</h1>
             <p>Followers&emsp;Following&emsp;Books read</p>
+            <h5>{bio}</h5>
         </div>
     );
 }
@@ -114,12 +123,12 @@ function DisplayPost(props){
         <div className="post">
           <h3>Your post:</h3>
             <div className="postInfo">
-                <h4>Book: {props.book_title}</h4>
+                <h4>Book: "wakanda forever"</h4>
                 <h6>{props.contents}</h6>
             </div>
             <div className="bookImage"> 
             <img
-                src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
+                src={props.imageURL}
                 width="130"
                 height="180"
                 alt=""
@@ -169,6 +178,77 @@ function AddPost(props) {
             </form>
         </div>
     )
+}
+
+function EditProfile(props) {
+    return (
+        <div className="editProfile">
+            <h1>Edit Profile</h1>
+            <form>
+                <p>Enter new profile picture here</p>
+                <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg"
+                 onClick={selectImage}></input>
+                <div id="img-container"></div>
+                <button id="submit-btn" onClick={onSubmitPfp}>Submit Profile Picture</button>
+
+                <p>Enter new bio here</p>
+                <input type="text" id="caption"></input>
+
+                <button id="submit-btn" onClick={onSubmitBio}>Submit New Bio</button>
+            </form>
+        </div>
+    )
+}
+
+// on submit for editing send profile request to edit profile picture
+const onSubmitPfp = (e) => {
+    // prevent refresh for debugging
+    e.preventDefault();
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    const storage = getStorage();
+    const storageRef = ref(storage, file.name);
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, file).then((snapshot) => {
+        // get URL for uploaded file 
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            // request server to post
+            // missing caption, the last parameter 
+            // axios.post("api/newPost/" + user.uid + "/&url=" + encodeURIComponent(downloadURL) + "/" + "caption");
+            axios.post("api/editProfilePicture/");
+        });
+    }).catch((err) => {
+      console.error(err);    
+    });
+}
+
+// on submit for editing send profile request to edit bio
+const onSubmitBio = (e) => {
+    // prevent refresh for debugging
+    e.preventDefault();
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    const storage = getStorage();
+    const storageRef = ref(storage, file.name);
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, file).then((snapshot) => {
+        // get URL for uploaded file 
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            // request server to post
+            // missing caption, the last parameter 
+            
+            // do you need to encode the url 
+            axios.post("api/editBio/");
+        });
+    }).catch((err) => {
+      console.error(err);    
+    });
 }
 
 // on submit send post request for post information
