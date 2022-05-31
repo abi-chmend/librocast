@@ -8,7 +8,7 @@
     "server": "npm run dev",
     "client": "cd ../../ && npm start",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "test": "jest src/server.test.js"
+    "test": "jest --detectOpenHandles src/server.test.js"
   },
   "author": "",
   "license": "MIT",

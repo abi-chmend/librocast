@@ -1,11 +1,11 @@
 import { db, admin } from "../firestore";
 import { firestore } from "firebase-admin";
-import results from "../data/csvParser";
 
 // Add post
 export const newPost = async (req, res) => {
   const { userID, book_url, contents } = req.params;
   // const book = results.filter((o) => {return o.id === book_id});
+  console.log(book_url);
   var book = book_url;
   book = book.slice(5);
   try{
@@ -59,13 +59,13 @@ export const readPosts = async (req, res) => {
   const snapshot = await postRef.where('user_id', '==', userID).get();
   if (snapshot.empty) {
     console.log('No matching documents.');
-    res.json([]);
-    return;
-  }
+    res.send([]);
+  } else {
 
   snapshot.forEach(doc => {
     // result.doc.contents, '=>', doc.data()
     result.push(doc.data());
   });
   res.send(JSON.stringify(result));
+}
 };

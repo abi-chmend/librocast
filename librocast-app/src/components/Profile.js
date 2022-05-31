@@ -109,7 +109,7 @@ function DisplayMetrics(props) {
 }
 
 function DisplayPost(props){
-    getPosts();
+    // getPosts();
     return (
       <>
         <div className="post">
