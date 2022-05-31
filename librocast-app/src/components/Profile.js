@@ -199,6 +199,7 @@ const onSubmit = (e) => {
       console.error(err);    
     });
 
+    
     // Get post from database and display in DisplayPost component
     let postDiv = document.getElementByClassName("post");
 
