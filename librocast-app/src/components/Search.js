@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-import {Link, NavLink, useNavigate} from 'react-router-dom'
-import {collection, query, onSnapshot, where} from "firebase/firestore"
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 import {getAuth} from "firebase/auth";
 
@@ -19,11 +18,10 @@ const ADD_READ_URL = "/api/addBook/completed/";
 const REMOVE_READ_URL = "/api/removeBook/completed/";
 const FOLLOW_URL = "/api/follow/";
 const UNFOLLOW_URL = "/api/unfollow/";
-//const USER_URL = "";
+
 //const NUM_PAGE_RESULTS = 5;
 
 export default function Search() {
-  //const [query, setQuery] = useState("");
   const url = new URLSearchParams(window.location.search);
 
   //check for properly formatted url
@@ -52,7 +50,6 @@ export default function Search() {
 function SearchBar({type, string}) {
   const [searchInput, setSearchInput] = useState(string);
   const [searchType, setSearchType] = useState(type);
-  //const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -73,9 +70,7 @@ function SearchBar({type, string}) {
   }
 
   return (
-    //<label htmlFor="site-search">Search the site</label>
     <form className={"searchBar"} onSubmit={handleSubmit}>
-
       <select className={"searchType"} name="type" value={searchType.toString()} onChange={updateType}>
         <option value="book">Books</option>
         <option value="user">Users</option>
@@ -96,33 +91,8 @@ function QueryResults({searchType, searchString}) {
 
   const auth = getAuth();
 
-  //React.useEffect(getUserData, [auth.currentUser.uid]);
-
-  // React.useEffect(() => {getUserData().then(r => );}, []);
-
   // eslint-disable-next-line
   React.useEffect(processQuery, [searchString, searchType, auth.currentUser.uid]);
-
-  // async function getUserData(keys) {
-  //   // let ret = {
-  //   //   "to_be_read": [],
-  //   //   "reading": [],
-  //   //   "read": [],
-  //   //   "following": []
-  //   // };
-  //   let ret = {};
-  //   await axios.get(LIB_URL + auth.currentUser.uid)
-  //     .then((res) => {
-  //       for (let key of keys) {
-  //         ret[key] = res.data[key];
-  //       }
-  //       //setUserData(ret);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //   return ret;
-  // }
 
   function processQuery() {
     // TODO: fetch query response
@@ -268,7 +238,7 @@ function UserSearchResult({targetID, targetData, followingData}) {
   const [button, setButton] = useState(getButtons());
 
   function getButtons() {
-    if (targetID == userID) {
+    if (targetID === userID) {
       return <p>Its you!</p>
 
     }
@@ -326,7 +296,6 @@ function BookSearchResult({bookID, title, author, cover, userData}) {
   const addReadButton = <button type={"button"} onClick={() => addBook(ADD_READ_URL, "read", removeReadButton)}>Add Read</button>;
   const removeReadButton = <button type={"button"} onClick={() => removeBook(REMOVE_READ_URL, "read", addReadButton)}>Remove Read</button>;
 
-  // const [id, setId] = useState(bookID);
   const auth = getAuth();
   const userID = auth.currentUser.uid;
   const [buttons, setButtons] = useState(getButtons());
@@ -350,22 +319,6 @@ function BookSearchResult({bookID, title, author, cover, userData}) {
     } else {
       ret["read"] = addReadButton;
     }
-
-    // if (userData["to_be_read"].hasOwnProperty(bookID)) {
-    //   ret["to_be_read"] = removeTBRButton;
-    // } else {
-    //   ret["to_be_read"] = addTBRButton;
-    // }
-    // if (userData["bookshelf"].hasOwnProperty(bookID)) {
-    //   ret["bookshelf"] = removeReadingButton;
-    // } else {
-    //   ret["bookshelf"] = addReadingButton;
-    // }
-    // if (userData["read"].hasOwnProperty(bookID)) {
-    //   ret["read"] = addReadButton;
-    // } else {
-    //   ret["read"] = removeReadButton;
-    // }
     return ret;
   }
 

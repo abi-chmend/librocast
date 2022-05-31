@@ -41,6 +41,7 @@
     margin: 2%;
     width: 320px;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 
@@ -50,6 +51,8 @@
     margin: 2%;
     width: 300px;
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #userSearchResult img {
