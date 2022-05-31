@@ -183,14 +183,14 @@ const onSubmit = (e) => {
     const storage = getStorage();
     const storageRef = ref(storage, file.name);
 
+    let caption = document.getElementById("caption").value;
     // 'file' comes from the Blob or File API
     uploadBytes(storageRef, file).then((snapshot) => {
         // get URL for uploaded file 
         getDownloadURL(snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL);
             // request server to post
-            // missing caption, the last parameter 
-            axios.post("api/newPost/" + user.uid + "/&url=" + encodeURIComponent(downloadURL) + "/" + "caption");
+            axios.post("api/newPost/" + user.uid + "/&url=" + encodeURIComponent(downloadURL) + "/" + caption);
         });
     }).catch((err) => {
       console.error(err);    

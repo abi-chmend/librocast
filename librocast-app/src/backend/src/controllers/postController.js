@@ -50,3 +50,22 @@ export const addComments = async (req, res) => {
     res.send(userID + " likes " + post_id);
   }
 };
+
+// Read posts
+export const readPosts = async (req, res) => {
+  const { userID } = req.params;
+
+  const postRef = db.collection('posts');
+
+  const snapshot = await postRef.where('user_id', '==', userID).get();
+  if (snapshot.empty) {
+    console.log('No matching documents.');
+    res.json([]);
+    return;
+  }
+
+  snapshot.forEach(doc => {
+    console.log(doc.contents, '=>', doc.data());
+  });
+  res.send(doc);
+};
