@@ -78,7 +78,9 @@ function DisplayProfile(props) {
       <>
         <div className="profileInfo-container">
           <DisplayPicture picture={props.picture}/>
-            <h1>{props.displayName}</h1>
+            <div className="displayName">
+                <h1>{props.displayName}</h1>
+            </div>
             <DisplayMetrics
                 bookshelf={props.bookshelf}
                 followers={props.followers}
@@ -124,10 +126,7 @@ function DisplayPost(props){
       <>
         <div className="post">
           <h3>Your post:</h3>
-            <div className="postInfo">
-                <h4>Book: "wakanda forever"</h4>
-                <h6>{props.contents}</h6>
-            </div>
+
             <div className="bookImage"> 
             <img
                 src={props.imageURL}
@@ -136,7 +135,10 @@ function DisplayPost(props){
                 alt=""
             />
             </div>
-          </div>
+                <div className="postInfo"> 
+                    <h7>{props.contents}</h7>
+                </div>
+            </div>
         </>
     );
 }
@@ -197,7 +199,6 @@ function AddPost(props) {
                 <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg"
                  onClick={selectImage}></input>
                 <div id="img-container"></div>
-
 
                 <p>Enter caption here</p>
                 <input type="text" id="caption"></input>

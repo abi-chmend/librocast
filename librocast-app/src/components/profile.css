@@ -4,7 +4,8 @@
 }
 
 .profileWrapper {
-    width: 745px;
+    padding-top: 30px;
+    width: 745;
     overflow: hidden; /* will contain if #first is longer than #second */
     background: white;
 }
@@ -12,6 +13,10 @@
 .profilePic {
     width: 150px;
     float:left; /* add this */
+}
+
+.displayName {
+    padding-top: 40px;
 }
 
 .profileInfo {
@@ -26,10 +31,8 @@
 
 .flex-child {
     flex: 1;
-    border: 2px solid white;
-    padding-left: 1%;
+    border: 10px solid white;
     margin-left: 8px;
-    margin-right: 30px;
 }  
 
 .flex-child:first-child {
@@ -73,6 +76,11 @@
     font-size: 25px;
 }
 
+.parent {
+    display: flex;
+    justify-content: space-around;
+}
+
 .bookshelf {
     border:3px solid rgba(238, 221, 170, 0.542);
     border-radius: 10px;
@@ -100,15 +108,18 @@
 
 .bookImage {
     padding-top:10px;
+    float:left;
 }
 
 .addPost {
     width: 88%;
     height: 400px;
-    background-color: rgb(3, 152, 158);
+    background-color: rgb(192,192,192);
+   
     top: 390px;
     float:left;
     margin-top: 10px;
+    margin-left: 23px;
     padding-left: 20px;
     border-radius: 10px;
     color: white;
