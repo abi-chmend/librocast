@@ -54,12 +54,9 @@ function ProfileInfo() {
              <div className="postDisplay">
                  {userPosts.map((post) => (
                      <DisplayPost
-                        //  book_title={post.data.book_title}
                          imageURL={post.data.book_url}
                          contents={post.data.contents}
                          date={post.data.timestamp}
-
-                
                      />
                  ))}
              </div>

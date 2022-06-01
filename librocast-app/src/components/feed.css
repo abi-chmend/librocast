@@ -5,10 +5,45 @@
 }
 
 #posts {
-  background-color: #03989E;
+  background-color: white;
   width: 70%;
   height: 60%;
   margin-left: 20%;
   color: white;
   border-radius: 20px;
+}
+
+#title {
+  background-color: rgb(10, 172, 212);
+}
+
+.postsWrapper {
+  border:3px solid rgb(10, 172, 212);
+  border-radius: 10px;
+  width:95%;
+  height:400px;
+  top: 170px;
+  float:left;
+}
+
+.post{
+  border:3px solid rgb(3, 152, 158);
+  border-radius: 10px;
+  width: 90%;
+  overflow:hidden;
+  float: left;
+  background-color: rgb(3, 152, 158);
+  color:white;
+  padding-top: 3px;
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+.postInfo {
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+  float:right;
+  width:92%;
+  padding-left: 5px;
+  font-size: 25px;
 }

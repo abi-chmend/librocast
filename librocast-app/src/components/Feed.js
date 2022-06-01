@@ -9,8 +9,8 @@ export default function Feed() {
     <div className="userFeed">
       <h1>See what's new</h1>
 
+      <h2>Friend Feed</h2>
       <div id="posts">
-      <h1>Friend Feed</h1>
       <UserPosts/>
       </div>
       
@@ -28,16 +28,14 @@ function UserPosts() {
 
     return (
       <div className="postDisplay">
-                 {userPosts.map((post) => (
-                     <DisplayPost
-                        //  book_title={post.data.book_title}
-                         imageURL={post.data.book_url}
-                         contents={post.data.contents}
-                         date={post.data.timestamp}
-
-                
-                     />
-                 ))}
+          {userPosts.map((post) => (
+              <DisplayPost
+                //  book_title={post.data.book_title}
+                  imageURL={post.data.book_url}
+                  contents={post.data.contents}
+                  date={post.data.timestamp}
+              />
+          ))}
       </div>
     )
   }
@@ -48,11 +46,8 @@ function DisplayPost(props){
   return (
     <>
       <div className="post">
-        <h3>Your post:</h3>
-          <div className="postInfo">
-              <h4>Book: "wakanda forever"</h4>
-              <h6>{props.contents}</h6>
-          </div>
+        <h3>Post:</h3>
+
           <div className="bookImage"> 
           <img
               src={props.imageURL}
@@ -61,7 +56,10 @@ function DisplayPost(props){
               alt=""
           />
           </div>
-        </div>
+              <div className="postInfo">
+                  <h7>{props.contents}</h7>
+              </div>
+          </div>
       </>
   );
 }
