@@ -7,6 +7,7 @@ import axios from 'axios'
 
 // this keeps track of input image file
 var file = null;
+var profileF = null;
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(){
@@ -189,7 +190,7 @@ function AddPost(props) {
     return (
         <div className="addPost">
 
-            <h1>Add new post here</h1>
+            <h2>Add new post here</h2>
 
             <form>
                 <p>Enter image here</p>
@@ -210,12 +211,12 @@ function AddPost(props) {
 function EditProfile(props) {
     return (
         <div className="addPost">
-            <h1>Edit Profile</h1>
+            <h2>Edit Profile</h2>
             <form>
                 <p>Enter new profile picture here</p>
                 <input type="file" id="profile-input" accept="image/jpeg, image/png, image/jpg"
-                 onClick={selectImage}></input>
-                <div id="img-container"></div>
+                 onClick={selectImagePrf}></input>
+                <div id="prf-container"></div>
                 <button id="submit-btn" onClick={onSubmitPfp}>Submit Profile Picture</button>
 
                 <p>Enter new bio here</p>
@@ -235,10 +236,10 @@ const onSubmitPfp = (e) => {
     const user = auth.currentUser;
 
     const storage = getStorage();
-    const storageRef = ref(storage, file.name);
+    const storageRef = ref(storage, profileF.name);
 
     // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, file).then((snapshot) => {
+    uploadBytes(storageRef, profileF).then((snapshot) => {
         // get URL for uploaded file 
         getDownloadURL(snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL);
@@ -312,5 +313,20 @@ function selectImage() {
 
     // read file into image container
     reader.readAsDataURL(file);
+    });
+}
+
+function selectImagePrf() {
+    const image_input = document.querySelector("#profile-input");
+    image_input.addEventListener("change", function() {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        const uploaded_image = reader.result;
+        document.querySelector("#prf-container").style.backgroundImage = `url(${uploaded_image})`;
+    });
+    profileF = this.files[0];
+
+    // read file into image container
+    reader.readAsDataURL(profileF);
     });
 }

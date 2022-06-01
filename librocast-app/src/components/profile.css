@@ -1,6 +1,6 @@
 .Profile {
     background-color: white;
-    height:2000px;
+    height:auto;
 }
 
 .profileWrapper {
@@ -115,6 +115,14 @@
 }
 
 #img-container {
+    width: 300px;
+    height: 175px;
+    border: 1px solid black;
+    background-size: cover;
+    background-position: center;
+}
+
+#prf-container {
     width: 300px;
     height: 175px;
     border: 1px solid black;

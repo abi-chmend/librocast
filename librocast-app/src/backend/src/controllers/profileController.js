@@ -19,13 +19,15 @@ export const editBio = async (req, res) => {
 // Edit profile picture of a user
 export const editProfilePicture = async (req, res) => {
   const { userID, _picture } = req.params;
+  var pic = _picture;
+  pic = pic.slice(5);
   let user = await db.collection("users").doc(userID).get();
   if (!user.exists) {
     res.send("UserID: " + userID + " does not exist");
   } else {
     user = await db.collection("users").doc(userID);
     user.update({
-      picture: _picture,
+      picture: pic,
     });
     res.send("Successfully updated picture of " + userID);
   }
