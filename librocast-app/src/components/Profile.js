@@ -170,70 +170,41 @@ function getPosts() {
 
 function DisplayBookshelf(props){
 
-        // TODO: fetch query response
-        // TODO: case-user
-        // TODO: case-book
+        const [bookshelf, setBookshelf] = useState([]);
 
-        const auth = getAuth();
-        const user = auth.currentUser;
+        React.useEffect(()=>{
+            let books = []
+            let promises = []
+            props.bookshelf.forEach((bookID) => (
+                promises.push(axios.get(BOOK_URL + bookID)
+                    .then((res) => {
+                        books.push(res);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    }))
+            ))
 
-        //const [response, setResponse] = useState([]);
-        const [results, setResults] = useState([]);
-        const [userData, setUserData] = useState({});
+            Promise.all(promises).then(() => {
+                setBookshelf(books);
+            })
 
-        axios.get(LIB_URL + user.uid)
-          .then((res) => {
-            setUserData(res.data);
-            return res.data;
-            //setUserData(ret);
-          })
-          .then ((userInfo) => {
-            
-            let data = {};
-            for (let key of ["bookshelf", "to_be_read", "read"]) {
-            data[key] = [];
-            for (let id of userInfo[key]["arrayValue"]["values"]) {
-                data[key].push(id.stringValue);
-            }
-            }
-            
-            for (bookID in data["bookshelf"]) {
-                axios.get(BOOK_URL + bookID)
-                .then((res) => {
-                    //setResponse(res.data);
-                    setResults(appendBookResults(res.data, data));
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-            }
+        }, [props.bookshelf])
 
-            let res = [];
-            if (data.length === 0) {
-              res.push(<p>No results</p>)
-            } else {
-              for (let entry of data) {
-                res.push(
-                  <BookSearchResult key={entry["id"]} bookID={entry["id"]} title={entry["title"]} author={entry["author"]} cover={entry["cover_link"]} userData={param}/>
-                );
-              }
-            }
-            return res;
-        })
       
 
     return (
         <div className="bookshelf">
             <h2>Bookshelf</h2>
-            {props.bookshelf.map((book, index) => (
+            {bookshelf.map((book, index) => (
                 <div className="book">
                     <img
-                        src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
+                        src={book.data.imageURL.stringValue}
                         width="115"
                         height="160"
                         alt=""
                     />
-                    <h7>{book.book_title}</h7>
+                    <h5>{book.data.title.stringValue}</h5>
                 </div>
             ))}
         </div>
