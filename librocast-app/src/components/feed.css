@@ -1,0 +1,14 @@
+.userFeed {
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+}
+
+#posts {
+  background-color: #03989E;
+  width: 70%;
+  height: 60%;
+  margin-left: 20%;
+  color: white;
+  border-radius: 20px;
+}
