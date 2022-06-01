@@ -32,8 +32,6 @@ export function GetUserProfile(userID) {
 }
 
 export function GetUserPosts(userID) {
-    console.log("userid!!! in query")
-    console.log(userID)
     if (arguments.length !== 1) {
         throw("Invalid number of arguments: GetUserPosts(userID) requires a user's unique id")
     }
@@ -52,6 +50,5 @@ export function GetUserPosts(userID) {
             })
         }
     },[userID])
-    console.log(userPosts)
     return userPosts
 }

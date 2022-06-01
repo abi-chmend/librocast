@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from 'react'
 import "./profile.css"
 import { getAuth } from "firebase/auth";
 import {GetUserProfile, GetUserPosts} from '../backend/Query'
@@ -8,6 +8,7 @@ import axios from 'axios'
 // this keeps track of input image file
 var file = null;
 var profileF = null;
+const BOOK_URL = "/api/getBookByID/";
 
 // User function will receive user properties (username, bio, followers, following, books read)
 export default function Profile(){
@@ -135,7 +136,7 @@ function DisplayPost(props){
                 alt=""
             />
             </div>
-                <div className="postInfo"> 
+                <div className="postInfo">
                     <h7>{props.contents}</h7>
                 </div>
             </div>
@@ -170,18 +171,42 @@ function getPosts() {
 
 
 function DisplayBookshelf(props){
+
+        const [bookshelf, setBookshelf] = useState([]);
+
+        React.useEffect(()=>{
+            let books = []
+            let promises = []
+            props.bookshelf.forEach((bookID) => (
+                promises.push(axios.get(BOOK_URL + bookID)
+                    .then((res) => {
+                        books.push(res);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    }))
+            ))
+
+            Promise.all(promises).then(() => {
+                setBookshelf(books);
+            })
+
+        }, [props.bookshelf])
+
+
+
     return (
         <div className="bookshelf">
             <h2>Bookshelf</h2>
-            {props.bookshelf.map((book, index) => (
+            {bookshelf.map((book, index) => (
                 <div className="book">
                     <img
-                        src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1423848167l/22294935.jpg"
+                        src={book.data.imageURL.stringValue}
                         width="115"
                         height="160"
                         alt=""
                     />
-                    <h7>{book.book_title}</h7>
+                    <h5>{book.data.title.stringValue}</h5>
                 </div>
             ))}
         </div>
