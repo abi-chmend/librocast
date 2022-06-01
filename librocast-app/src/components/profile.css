@@ -1,10 +1,10 @@
 .Profile {
     background-color: white;
-    height:auto;
+    /* height:2000px; */
 }
 
 .profileWrapper {
-    width: 745;
+    width: 745px;
     overflow: hidden; /* will contain if #first is longer than #second */
     background: white;
 }
