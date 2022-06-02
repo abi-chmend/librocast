@@ -73,9 +73,7 @@
 
   - Kihoon Lee
     1. Last week's goals:
-       - Add additional RESTful API implementation
-       - Add backend node tests
-    2. For this week, I have continued to work on APIs especially adding books to bookshelf and improving search book implementation. Besides the coding part, I have worked with the backend team about implementations we need to get done before the final release.
-    3. Goals:
-       - Add more API implementation before final release
-       - Add more tests based on the API implementation
+       - Finalize the API endpoints so frontend team can finalize their part
+       - Store the book data to database so it can be more accessible 
+    2. For this week, I finalized the api endpoints so it can be easily used by frontend team. Additionally, I eventually stored all of book data to the database so we can directly request to the server regarding the book data rather than reading the local csv data.
+    3. Everything looks good except for tests. All of our tests pass but the test runs forever, which is the reason our CI also fails. We could not figure out the problem in the given time.
