@@ -21,13 +21,11 @@
   - Abigail Batinga
 
     1. Goals from the last week:
-      - add the explore page
-      - connect home page goals and current read section with backend.
+      - add the feed page
+      - have the ability to add posts on profile
 
-  2. I'm currently working on connecting home page goals with the backend and fixing our test suite.
-  3. For the following week, I'd like to:
-   - add book clubs
-   - check out the instagram API.
+  2. This week, I completed the ability to add posts and added the feed page. 
+
 
   - Justin Chao
     1. Goals from last week
