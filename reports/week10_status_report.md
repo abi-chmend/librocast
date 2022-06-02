@@ -8,13 +8,14 @@
      - User authentication
      - Add more tests
      - Functionality (front and backend) to allow users to add books and view their library
-
-  2. This week, our team continued to work on implementing features that needs to be done by the final release. Additionally, we have developed strategies for better communication and bug-free application by effectively using trello and assigning each member's tasks.
-
-  3. Goals:
      - Add additional functionalities for the final release
      - Add more tests for recently added functionalities
      - Effectively use trello and slack for our communication tool
+
+  2. This week, our team finished our core features for the final release. We completed individual components and made sure that both the frontend and backend reacted correctly in response to each other.
+  We also worked on fixing tests and doing our presentation/demo. 
+  
+  3. Success and issues: we successfully completed core features and have a function app. We still have some issues with tests that we were unable to figure out
 
 - Contributions of individual team members
 
@@ -23,7 +24,7 @@
     1. Goals from the last week:
       - add the feed page
       - have the ability to add posts on profile
-
+ 
   2. This week, I completed the ability to add posts and added the feed page. 
 
 
@@ -48,15 +49,12 @@
 
     1. Goals from the last week:
 
-    - Break down search page components
-    - Create functionality to add books to library, call backend to post data
-    - Work on user search
-    - Continue figuring out broken tests
-
-    2. This week I worked on Documentation and tried to debug the failing tests. I'm currently working on posting book data to the user's account.
-    3. Goals:
     - User search
     - Add search tests
+
+    2. This week I added user search, added the ability to add and remove books from the bookshelf, and follow and unfollow users. 
+    3. Success and issues: Overall we successfully finished the core features. One open issue is last minute changes causing tests to run forever.
+    
 
   - Sarah Rashid
 
